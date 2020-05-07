@@ -1,0 +1,259 @@
+<?php
+$arrUser = $arrMemberDetail['Member'];
+
+// 性別
+$arrGender = Configure::read('arrGender');
+
+// メルマガ希望
+$arrMailMagFlg = Configure::read('arrMailMagFlg');
+
+// 販売者ステータス
+$arrSellerStatus = Configure::read('arrSellerStatus');
+
+// 会員ランク
+$arrUserRank = Configure::read('arrUserRank');
+
+?>
+<style>
+    .radioinput {
+        text-align: left;
+        font-weight: normal;
+    }
+
+    .radioinput input {
+        display: block;
+        float: left;
+        font-weight: normal;
+        width: 1em;
+        margin-right: 6px;
+    }
+
+    .radioinput label {
+        display: block;
+        width: 80px;
+        float: left;
+        margin-top: 10px !important;
+        font-weight: normal;
+    }
+
+</style>
+<h1 class="page-header">ユーザ情報</h1>
+
+<h2 class="sub-header">ユーザ登録・変更</h2>
+
+<p class="textRed"><?php echo $this->Session->flash('auth'); ?></p>
+
+<?php echo $this->Form->create('Member',array('id' => 'MemberForm', 'url' => '/user/edit/'.$arrUser['id'],'class' => 'form-horizontal','role'=>'form')); ?>
+
+<?php echo $this->Form->input('id',
+array('type'=>'hidden',
+'value' => $arrUser['id']
+)) ?>
+
+<?php echo $this->Form->input('role',
+array('type'=>'hidden',
+'value' => $arrUser['role']
+)) ?>
+
+<?php echo $this->Form->input('mode',
+array('type'=>'hidden',
+'value' => $mode
+)) ?>
+
+<div class="form-group">
+    <label class="col-sm-3 control-label">会員ランク<span class="red">*</span></label>
+
+    <div class="col-sm-4">
+        <?php echo $this->Form->input('user_rank',
+        array('label'=>false,
+        'div' => false,
+        'type' => 'select',
+        'options' => $arrUserRank,
+        'class'=>'form-control',
+        'value' => $arrUser['user_rank']
+        )) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-3 control-label">ポイント<span class="red">*</span></label>
+
+    <div class="col-sm-6">
+        <?php echo $this->Form->input('point',array('label'=>false,'class'=>'form-control','value'=>$arrUser['point'] ))
+        ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-3 control-label">氏名<span class="red">*</span></label>
+
+    <div class="col-sm-6">
+        <?php echo $this->Form->input('name',array('label'=>false,'class'=>'form-control','value'=>$arrUser['name'] ))
+        ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-3 control-label">氏名(フリガナ)<span class="red">*</span></label>
+
+    <div class="col-sm-9">
+        <?php echo $this->
+        Form->input('name_kana',array('label'=>false,'class'=>'form-control','value'=>$arrUser['name_kana'])) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-3 control-label">会社名<span class="red">*</span></label>
+
+    <div class="col-sm-9">
+        <?php echo $this->
+        Form->input('company',array('label'=>false,'class'=>'form-control','value'=>$arrUser['company'])) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-3 control-label">郵便番号<span class="red">*</span></label>
+
+    <div class="col-sm-4">
+        <?php echo $this->
+        Form->input('postcode',array('label'=>false,'class'=>'form-control','value'=>$arrUser['postcode'])) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-3 control-label">住所<span class="red">*</span></label>
+
+    <div class="col-sm-9">
+        <?php echo $this->
+        Form->input('address',array('label'=>false,'class'=>'form-control','value'=>$arrUser['address'])) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-3 control-label">電話番号<span class="red">*</span></label>
+
+    <div class="col-sm-6">
+        <?php echo $this->Form->input('phone',array('label'=>false,'class'=>'form-control','value'=>$arrUser['phone']))
+        ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-3 control-label">性別<span class="red">*</span></label>
+
+    <div class="col-sm-9 radioinput">
+        <?php echo $this->Form->input('gender',
+        array('label'=>true,
+        'div' => false,
+        'legend' => false,
+        'type' => 'radio',
+        'options' => $arrGender,
+        'class'=>'form-control',
+        'value' => $arrUser['gender']
+        )) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-3 control-label">生年月日<span class="red">*</span></label>
+
+    <div class="col-sm-9">
+        <?php echo $this->Form->dateTime('birthday','YMD','NONE',$birthdayOption); ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-3 control-label">ニックネーム<span class="red">*</span></label>
+
+    <div class="col-sm-9">
+        <?php echo $this->
+        Form->input('nickname',array('label'=>false,'class'=>'form-control','value'=>$arrUser['nickname'])) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-3 control-label">メールアドレス<span class="red">*</span></label>
+
+    <div class="col-sm-9">
+        <?php echo $this->Form->input('email',array('label'=>false,'class'=>'form-control','placeholder' =>
+        'メールアドレス','value'=>$arrUser['email'])) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-3 control-label">メールマガジン</label>
+
+    <div class="col-sm-4">
+        <?php echo $this->Form->input('mailmag_flg',
+        array('label'=>false,
+        'div' => false,
+        'type' => 'select',
+        'options' => $arrMailMagFlg,
+        'class'=>'form-control',
+        'value' => $arrUser['mailmag_flg']
+        )) ?>
+
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-3 control-label">管理者設定レベル</label>
+
+    <div class="col-sm-9">
+        <?php echo $this->Form->input('admin_level',array('label'=>false,'class'=>'form-control','placeholder' =>
+        '0.0～5.0','value'=>$arrUser['admin_level'])) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-3 control-label">銀行名<span class="red">*</span></label>
+
+    <div class="col-sm-9">
+        <?php echo $this->Form->input('bank_name',array('label'=>false,'class'=>'form-control','placeholder' =>
+        '銀行名','value'=>$arrUser['bank_name'])) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-3 control-label">支店名<span class="red">*</span></label>
+
+    <div class="col-sm-9">
+        <?php echo $this->Form->input('branch_name',array('label'=>false,'class'=>'form-control','placeholder' =>
+        '支店名','value'=>$arrUser['branch_name'])) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-3 control-label">支店コード<span class="red">*</span></label>
+
+    <div class="col-sm-9">
+        <?php echo $this->Form->input('branch_code',array('label'=>false,'class'=>'form-control','placeholder' =>
+        '支店コード','value'=>$arrUser['branch_code'])) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-3 control-label">銀行口座<span class="red">*</span></label>
+
+    <div class="col-sm-9">
+        <?php echo $this->Form->input('account_no',array('label'=>false,'class'=>'form-control','placeholder' =>
+        '銀行口座','value'=>$arrUser['account_no'])) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-3 control-label">口座名義<span class="red">*</span></label>
+
+    <div class="col-sm-9">
+        <?php echo $this->Form->input('deposit_name',array('label'=>false,'class'=>'form-control','placeholder' =>
+        '口座名義','value'=>$arrUser['deposit_name'])) ?>
+    </div>
+</div>
+
+<div class="submitButton">
+    <button class="btn btn-lg btn-primary btnW200" type="submit">登録・変更</button>
+</div>
+
+<?php echo $this->Form->end(); ?>
+
+</div>

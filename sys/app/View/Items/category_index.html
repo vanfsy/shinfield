@@ -1,0 +1,47 @@
+<?php
+$meta_title = Configure::read('html.category');
+$meta_keywords = Configure::read('html.category');
+$meta_description = Configure::read('html.category');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$this->Html->css('/css/style.css', null, array('inline' => false));
+
+$this->Html->script('/js/page.js', array('inline' => false));
+
+$arrTopicPath[] = array('カテゴリ一覧' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$code_area = <<< EOF
+EOF;
+$this->assign('script_area', $code_area);
+?>
+
+<?php if(!empty($arrDatas)): ?>
+<?php foreach($arrDatas as $category => $row): ?>
+<section class="item">
+  <h2 class="f25 mb10"><?= $category ?><span class="alignright mr05 f11 fw_normal no-uline"><a href="/item/category/<?= $category ?>"><?= $category ?>の全一覧</a></span></h2>
+  
+  <?php if(isset($arrCategory[$category]) && is_array($arrCategory[$category])){ ?>
+  <div class="cat_childs mb10">
+  <?php foreach($arrCategory[$category] as $cat2=>$cat2_name){ ?>
+  <a style="color:#333;" href="/item/category/<?= urlencode($cat2); ?>"><?= trim(mb_convert_kana($cat2_name, 's', 'UTF-8')); ?></a>
+  <?php } ?>
+  </div>
+  <?php } ?>
+  <div class="row row-eq-height">
+  <?php if(!empty($row)): ?>
+  <?php foreach($row as $rowItems): ?>
+  <?= $this->element('item_2col', ['rowItems' => $rowItems]) ?>
+  <?php endforeach; ?>
+
+  <?php else: ?>
+  <div class="ml15">該当する情報がありません。</div>
+  <?php endif; ?>
+  </div>
+</section>
+<?php endforeach; ?>
+<?php endif; ?>
+

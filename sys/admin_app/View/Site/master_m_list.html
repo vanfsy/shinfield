@@ -1,0 +1,102 @@
+	<form action="<!--{$param.fm_action}--><!--{$param.parent_code}-->" name="form1" method="post" >
+	<input type="hidden" name="data[mode]" id="mode" value="">
+	<input type="hidden" name="data[add_attach_id]" id="add_attach_id" value="">
+			<p style="text-align:right;"><input type="button" value="新規登録" class="btn" onclick="addPost('<!--{$param.add_url}-->','<!--{$param.add_attach_id}-->')" />&nbsp;<input type="submit" value="チェックを削除する" class="btn" onclick="confirmDel();return false" />&nbsp;&nbsp;&nbsp;&nbsp;表示数
+<label>
+	<select name="select" id="select" onchange="chgDispNum(this)"> 
+		<!--{html_options options=$disp_numbers selected=$current_disp_num}-->
+	</select> 
+</label></p>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table1">
+		<tr>
+			<th width="100" align="center">上位データ</th>
+			<td>
+<!--{if isset($param.attach_id)}-->
+	<select name="data[attach_id]" id="attach_id" onchange="chgDisp('chg_attach')"> 
+<!--{html_options options=$param.attach_list selected=$param.attach_id}-->
+	</select> 
+<!--{/if}-->
+
+<!--{assign var=list value=$param.topic_path}-->
+<!--{ section name=i loop=$list }-->
+<!--{if $smarty.section.i.last}-->
+			[ <!--{$list[i].name}--> ]
+<!--{else}-->
+			[ <a href="<!--{$home_url}-->admin/site/master_m/list/<!--{$list[i].code}-->"><!--{$list[i].name}--></a> ] 
+<!--{/if}-->
+<!--{ /section }-->
+
+			</td>
+		</tr>
+	</table><br />
+
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table1">
+		<tr>
+			<th width="5%" align="center">ID</th>
+			<th width="8%" align="center">階層</th>
+			<th width="10%" align="center">コード</th>
+			<th width="22%" align="center">データ名</th>
+<!--{if $param.data_branch_code == "employee"}-->
+			<th width="30%" align="center">メール</th>
+<!--{else}-->
+			<th width="30%" align="center">説明</th>
+<!--{/if}-->
+			<th width="20%" align="center">アクション</th>
+			<th width="5%" align="center"></th>
+		</tr>
+
+<!--{ section name=i loop=$param.entity.list }-->
+<!--{assign var=list value=$param.entity.list[i]}-->
+
+		<tr>
+			<td align="center"><!--{$list.id|escape}--></td>
+			<td align="center"><!--{$list.level}--></td>
+			<td><!--{$list.code|escape}--></td>
+			<td><!--{$list.name|escape}--></td>
+<!--{if $param.data_branch_code == "employee"}-->
+			<td><!--{$list.email|escape}--></td>
+<!--{else}-->
+			<td><!--{$list.description|escape}--></td>
+<!--{/if}-->
+
+			<td align="center"><a href="<!--{$home_url}-->admin/site/master_m/detail/<!--{$list.parent_code}-->.<!--{$list.id}-->">詳細</a>・<a href="<!--{$home_url}-->admin/site/master_m/mod/<!--{$list.parent_code}-->.<!--{$list.id}-->">編集</a>
+<!--{if $param.is_down == "yes"}-->
+・<a href="<!--{$home_url}-->admin/site/master_m/list/<!--{$list.code}-->">下位リスト</a>
+<!--{/if}-->
+			</td>
+			<td align="center"><input type="checkbox" name="data[del][<!--{$smarty.section.i.index}-->]" value="<!--{$list.id}-->"></td>
+		</tr>
+<!--{ /section }-->
+<!--リスト処理-->
+
+			</table><p style="text-align:right;"><input type="submit" value="チェックを削除する" class="btn" onclick="confirmDel();return false" />&nbsp;&nbsp;&nbsp;&nbsp;表示数
+<label><select name="select" id="select" onchange="chgDispNum(this)"> 
+<!--{html_options options=$disp_numbers selected=$current_disp_num}-->
+</select> 
+</label></p>
+	</form>
+<div class="pager">
+<ul> 
+<!--{if $param.entity.prev == 0}-->
+<li class="prev"></li> 
+<!--{else}-->
+<li class="prev"><a href="<!--{$home_url}-->admin/site/master_h/list/<!--{$param.entity.prev}-->">&laquo; PREV</a></li> 
+<!--{/if}-->
+<!--{section name=i loop=$param.entity.pg_list}-->
+<!--{if $param.entity.current_pg == $param.entity.pg_list[i]}-->
+<li><em><!--{$param.entity.pg_list[i]}--></em></li> 
+<!--{else}-->
+<li><a href="<!--{$home_url}-->admin/site/master_h/list/<!--{$param.entity.pg_list[i]}-->"><!--{$param.entity.pg_list[i]}--></a></li> 
+<!--{/if}-->
+<!--{/section}-->
+<!--{if $param.entity.next == 0}-->
+<li class="next"></li> 
+<!--{else}-->
+<li class="next"><a href="<!--{$home_url}-->admin/site/master_h/list/<!--{$param.entity.next}-->">NEXT &raquo;</a></li> 
+<!--{/if}-->
+</ul> 
+</div>
+
+<form action="<!--{$home_url}-->admin/site/master_h/list/" name="form2" method="post" >
+<input type="hidden" id="disp_num" name="data[disp_num]" value="">
+</form>

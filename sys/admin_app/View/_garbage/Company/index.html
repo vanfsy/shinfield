@@ -1,0 +1,28 @@
+          <h1 class="page-header">求人提供会社情報</h1>
+
+<?php echo $this->element('alert'); ?>
+
+          <h2 class="sub-header">求人提供会社 一覧</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th width='40%'>会社名</th>
+                  <th width='20%'>担当者</th>
+                  <th width='30%'>住所</th>
+                  <th width='10%'>TEL</th>
+                </tr>
+              </thead>
+              <tbody>
+<?php foreach($arrCompanyList as $row){ ?>
+                <tr>
+                  <td align="left"><?php echo $row['CompanyProfile']['company'] ?><br><a href="/admin/company/edit/<?php echo $row['CompanyProfile']['id'] ?>"><span class="label label-info">詳細・編集</span></a>
+                  <a href="javascript:void(0)" onClick="delConfirm('/admin/company/del/<?php echo $row['CompanyProfile']['id'] ?>')"><span class="label label-danger">削　除</span></a>                  </td>
+                  <td align="left"><?php echo $row['CompanyProfile']['person'] ?></td>
+                  <td align="left"><?php echo $row['CompanyProfile']['address'] ?></td>
+                  <td align="left"><?php echo $row['CompanyProfile']['phone'] ?></td>
+                </tr>
+<?php } ?>
+              </tbody>
+            </table>
+          </div>

@@ -1,0 +1,61 @@
+#suPHP_ConfigPath /Users/kiennp/Working/www/space/xserver_php/
+#AddHandler fcgid-script .php .phps
+#FCGIWrapper "/Users/kiennp/Working/www/space/xserver_php/php-cgi" .php
+#FCGIWrapper "/Users/kiennp/Working/www/space/xserver_php/php-cgi" .phps
+#php_flag display_errors on
+#AddHandler server-parsed .shtml .html .htm
+#php_value memory_limit 160M
+#DirectoryIndex index.html index.php top.htm
+#ExpiresActive On
+#ExpiresByType image/gif "access plus 1 days"
+#ExpiresByType image/jpeg "access plus 1 days"
+#ExpiresByType image/png "access plus 30 days"
+#ExpiresByType application/x-shockwave-flash "access plus 1 years"
+#ExpiresByType application/rss+xml "access plus 30 minutes"
+#ExpiresByType application/x-javascript "access plus 20 days"
+#ExpiresByType text/html "modification plus 15 minutes"
+#ExpiresByType text/css "access plus 20 days"
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    RewriteCond %{REQUEST_FILENAME} !\.(cgi|css|gif|GIF|jpeg|JPEG|jpg|JPG|png|PNG|js)$
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+    #RewriteRule ^ index.php [L]
+</IfModule>
+<IfModule mod_deflate.c>
+     SetOutputFilter DEFLATE
+ 
+     # 
+     BrowserMatch ^Mozilla/4\.0[678] no-gzip
+     BrowserMatch ^Mozilla/4 gzip-only-text/html
+     BrowserMatch \bMSI[E] !no-gzip !gzip-only-text/html
+     # 
+     SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|ico)$ no-gzip dont-vary
+     SetEnvIfNoCase Request_URI _\.utxt$ no-gzip
+ 
+     # 
+     AddOutputFilterByType DEFLATE text/plain
+     AddOutputFilterByType DEFLATE text/html
+     AddOutputFilterByType DEFLATE text/xml
+     AddOutputFilterByType DEFLATE text/css
+     AddOutputFilterByType DEFLATE application/xhtml+xml
+     AddOutputFilterByType DEFLATE application/xml
+     AddOutputFilterByType DEFLATE application/rss+xml
+     AddOutputFilterByType DEFLATE application/atom_xml
+     AddOutputFilterByType DEFLATE application/x-javascript
+     AddOutputFilterByType DEFLATE application/x-httpd-php
+</IfModule>
+#AuthUserFile /home/evenear/public_html/.htpasswd
+#AuthGroupFile /evenear/null
+#AuthName "Please enter your ID and password"
+#AuthType Basic
+#require valid-user
+#<Files ~ "^.(htpasswd|htaccess)$">
+#    deny from all
+#</Files>
+<Files ~ "\.(html|php|jpe?g|gif|png|JP?G|GIF|PNG)$">
+Header set Pragma no-cache
+Header set Cache-Control no-cache
+</Files>

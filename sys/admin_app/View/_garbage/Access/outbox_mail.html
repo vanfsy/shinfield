@@ -1,0 +1,16 @@
+          <h1 class="page-header">送信済トレイ</h1>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title ta_l"><?php echo h($arrOutboxMail['EmailData']['subject']) ?></h3>
+            <div class="Rfloat">
+              宛先人：<?php echo h($arrOutboxMail['EmailData']['to_name']) ?>
+              日時：<?php echo h($arrOutboxMail['EmailData']['send_date']) ?>
+            </div><br class="clear">
+          </div>
+          <div class="panel-body ta_l">
+            <?php echo nl2br(h($arrOutboxMail['EmailData']['body'])) ?>
+          </div>
+        </div>
+        <a href="/admin/outbox"><button type="button" class="btn btn-primary btn-lg">一覧へ戻る</button></a>
+      </div>

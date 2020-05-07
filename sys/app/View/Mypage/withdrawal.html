@@ -1,0 +1,63 @@
+<?php
+$meta_title = Configure::read('html.register');
+$meta_keywords = Configure::read('html.register');
+$meta_description = Configure::read('html.register');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$arrTopicPath[] = array('マイページ' => '/mypage/');
+$arrTopicPath[] = array('デスクトップ' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$this->Html->css('/css/main02.css', null, array('inline' => false));
+$this->Html->script('/js/page.js', array('inline' => false));
+
+$code_area = <<< EOF
+EOF;
+$this->assign('code_area', $code_area);
+?>
+
+<section>
+  <h2 class="f25 mb20">マイページ</h2>
+  <div class="mypage_row ml20 mr20">
+    <div class="black waku01 mt20">登録情報</div>
+    <table class="table03 mt10 black">
+      <tbody>
+        <tr>
+          <th>登録情報　&#8230;</th>
+          <td>
+            <p class="item-p01"><a href="/mypage/profile">登録情報を変更する</a></p>
+          </td>
+        </tr>
+        <tr>
+          <th>&nbsp;</th>
+          <td>
+            <p class="item-p01"><a href="/message">メッセージ一覧</a></p>
+          </td>
+        </tr>
+        <tr>
+          <th>&nbsp;</th>
+          <td>
+            <p class="item-p01"><a href="/mypage/follower">フォロワー一覧</a></p>
+          </td>
+        </tr>
+        <tr>
+          <th>&nbsp;</th>
+          <td>
+            <p class="item-p01"><a href="/mypage/withdrawal">退会する</a></p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="black waku01 mt30">退会する</div>
+    <div class="row">
+      <div class="bg_white p10 mr10 ml10 col-xs-12">
+        <p class="mt20 ml30 mr30">会員を退会された場合には、現在保存されている購入履歴や、お届け先などの情報は、全て削除されますがよろしいでしょうか？</p>
+        <p class="ml30 mr30">退会手続きが完了した時点で、現在保存されている購入履歴や、お届け先等の情報は全てなくなりますのでご注意ください。</p>
+        <div class="textcenter mt20"><a href="javascript:void(0);" id="btnWithdrawal" class="mybtn-bl mybtn-bl-md">退会手続きへ</a></div>
+      </div>
+    </div>
+  </div>
+</section>

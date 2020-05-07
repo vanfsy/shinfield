@@ -1,0 +1,89 @@
+<?php
+$meta_title = Configure::read('html.mypage');
+$meta_keywords = Configure::read('html.mypage');
+$meta_description = Configure::read('html.mypage');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$arrTopicPath[] = array('マイページ' => '/mypage/');
+$arrTopicPath[] = array('デスクトップ' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$this->Html->css('/css/main02.css', null, array('inline' => false));
+$this->Html->css('/css/style.css', null, array('inline' => false));
+
+$code_area = <<< EOF
+EOF;
+$this->assign('script_area', $code_area);
+?>
+
+<section>
+  <h2 class="f25 mb20">マイページ</h2>
+  <div class="mypage_row ml20 mr20">
+    <div class="black waku01 mt20"><a href="/message/">メッセージ管理</a></div>
+    <table class="table03 mt10 black">
+      <tbody>
+        <tr>
+          <th>総合管理　&#8230;</th>
+          <td>
+            <p class="item-p01"><a href="/message/receivedlist">受信メール一覧</a></p>
+          </td>
+        </tr>
+        <tr>
+          <th>&nbsp;</th>
+          <td>
+            <p class="item-p01"><a href="/message/sendinglist">送信メール一覧</a></p>
+          </td>
+        </tr>
+        <tr>
+          <th>&nbsp;</th>
+          <td>
+            <p class="item-p01"><a href="/message/draftlist">下書き一覧</a></p>
+          </td>
+        </tr>
+        <tr>
+          <th>&nbsp;</th>
+          <td>
+            <p class="item-p01"><a href="/message/trashlist">ゴミ箱</a></p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="black waku01 mt50 mb20">送信メール一覧</div>
+    <table class="table04">
+      <thead>
+        <tr>
+            <th class="width200p">宛先</th>
+            <th>件名</th>
+            <th class="width150p">商品</th>
+            <th>日付</th>
+        </tr>
+      </thead>
+      <tbody>
+<?php if(!empty($arrMessage['list'])): ?>
+<?php foreach($arrMessage['list'] as $row): ?>
+        <tr>
+            <td class="textleft"><?php echo h($row['ToMember']['name']) ?>
+            </td>
+            <td><p class="blue textleft" style="margin: 0px;"><a href="/message/message_detail/<?php echo h($row['Message']['id']) ?>"><?php echo h($row['Message']['subject']) ?></a></p></td>
+            <td><p class="blue textleft" style="margin: 0px;"><a href="/item/detail/<?php echo h($row['FromItem']['id']) ?>"><?php echo h($row['FromItem']['title']) ?></a></p></td>
+            <td class="f11 mt05"><?php echo date('Y/m/d', strtotime($row['Message']['created'])) ?></td>
+        </tr>
+<?php endforeach; ?>
+<?php else: ?>
+      <tr>
+        <td colspan="4" class="textcenter p05">現在メッセージはありません</td>
+      </tr>
+<?php endif; ?>
+      </tbody>
+    </table>
+
+  <?php if(!empty($arrMessage['list'])): ?>
+    <div class="textcenter"><?php echo $this->Paging->list_navi($arrMessage, $url); ?></div>
+  <?php endif; ?>
+
+  </div>
+</section>

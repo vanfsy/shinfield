@@ -1,0 +1,119 @@
+<?php
+$arrOrderPoint = $arrData['OrderPoint'];
+$arrMember = $arrData['Member'];
+
+// ポイント購入金額
+$arrPointRateList = Configure::read('arrPointRateList');
+
+// 支払方法
+$arrPaymentMethod = Configure::read('arrPaymentMethod');
+
+// ポイント購入ステータス
+$arrPaymentStatus = Configure::read('arrPaymentStatus');
+
+// 性別
+$arrGender = Configure::write('arrGender');
+
+?>
+
+<h1 class="page-header">決済情報管理</h1>
+<h2 class="sub-header">ポイント購入 詳細情報</h2>
+<?php echo $this->element('alert'); ?>
+
+<?php echo $this->Form->create('OrderPoint',array('url' => '/point_pay/detail/'.$arrOrderPoint['id'],'role'=>'form')); ?>
+
+<?php echo $this->Form->input('id',
+                array('type'=>'hidden',
+                      'value' => $arrOrderPoint['id']
+)) ?>
+
+<table class="table table-hover">
+  <tbody>
+    <tr>
+      <th>ステータス</th>
+      <td>
+      <p>
+              <?php echo $this->Form->input('status',
+                array('label'=>false,
+                      'div' => false,
+                      'type' => 'select',
+                      'options' => $arrPaymentStatus,
+                      'value' => $arrOrderPoint['status']
+                      )) ?>
+        <button class="btn btn-lg btn-primary btnW200" type="submit">更新する</button>
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <th>購入ポイント</th>
+      <td><p><?php echo number_format($arrOrderPoint['point']); ?> ポイント</p></td>
+    </tr>
+    <tr>
+      <th>購入金額</th>
+      <td><p><?php echo number_format($arrPointRateList[$arrOrderPoint['point']]); ?> 円</p></td>
+    </tr>
+    <tr>
+      <th>決済方法</th>
+      <td><p><?php echo $arrPaymentMethod[$arrOrderPoint['payment']] ?></p></td>
+    </tr>
+    <tr>
+      <th>更新日</th>
+      <td><p><?php echo date('Y年m月d日　H時i分',strtotime($arrOrderPoint['modified'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>申請日</th>
+      <td><p><?php echo date('Y年m月d日　H時i分',strtotime($arrOrderPoint['created'])); ?></p></td>
+    </tr>
+  </tbody>
+</table>
+<?php echo $this->Form->end(); ?>
+
+<h2 class="sub-header">ポイント購入者ユーザ情報</h2>
+<table class="table table-hover">
+  <tbody>
+    <tr>
+      <th>氏名</th>
+      <td><p><?php echo h($arrMember['name']); ?></p></td>
+    </tr>
+    <tr>
+      <th>氏名(フリガナ)</th>
+      <td><p><?php echo h($arrMember['name_kana']); ?></p></td>
+    </tr>
+    <tr>
+      <th>会社名</th>
+      <td><p><?php echo h($arrMember['company']); ?></p></td>
+    </tr>
+    <tr>
+      <th>郵便番号</th>
+      <td><p><?php echo h($arrMember['postcode']); ?></p></td>
+    </tr>
+    <tr>
+      <th>住所</th>
+      <td><p><?php echo h($arrMember['address']); ?></p></td>
+    </tr>
+    <tr>
+      <th>電話番号</th>
+      <td><p><?php echo h($arrMember['phone']); ?></p></td>
+    </tr>
+    <tr>
+      <th>性別</th>
+      <td><p><?php echo $arrGender[$arrMember['gender']]; ?></p></td>
+    </tr>
+    <tr>
+      <th>生年月日</th>
+      <td><p><?php echo h($arrMember['birthday']); ?></p></td>
+    </tr>
+    <tr>
+      <th>ニックネーム</th>
+      <td><p><?php echo h($arrMember['nickname']); ?></p></td>
+    </tr>
+    <tr>
+      <th>メールアドレス</th>
+      <td><p><?php echo h($arrMember['email']); ?></p></td>
+    </tr>
+
+  </tbody>
+</table>
+<div class="submitButton">
+  <a href="/admin/point_pay/"><button class="btn btn-lg btn-primary btnW200" type="button">一覧へ戻る</button></a>
+</div>

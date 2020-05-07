@@ -1,0 +1,30 @@
+          <h1 class="page-header">応募登録者管理</h1>
+
+<?php echo $this->element('alert'); ?>
+
+          <h2 class="sub-header">応募登録者 一覧</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>応募登録者</th>
+                  <th>住所</th>
+                  <th>Eメール</th>
+                  <th>登録日時</th>
+                </tr>
+              </thead>
+              <tbody>
+<?php foreach($arrDatas as $row){ ?>
+                <tr>
+                  <td align="left"><?php echo $row['SeekerProfile']['name'] ?><br>（<?php echo $row['SeekerProfile']['kana_name'] ?>）<br>
+                  <a href="/admin/seeker/detail/<?php echo $row['SeekerProfile']['id'] ?>"><span class="label label-info">詳細・編集</span></a>
+                  <a href="javascript:void(0)" onClick="delConfirm('/admin/seeker/del/<?php echo $row['SeekerProfile']['user_id'] ?>')"><span class="label label-danger">削　除</span></a>
+                  </td>
+                  <td align="left"><p class="w300">〒<?php echo $row['SeekerProfile']['postcode'] ?><br><?php echo $row['SeekerProfile']['address'] ?></p></td>
+                  <td align="left"><?php echo $row['SeekerProfile']['email'] ?></td>
+                  <td align="left"><?php echo date("Y年 n月 j日" , strtotime($row['SeekerProfile']['created'])) ?></td>
+                </tr>
+<?php } ?>
+              </tbody>
+            </table>
+          </div>

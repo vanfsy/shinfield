@@ -1,0 +1,348 @@
+@charset "utf-8";
+
+/* ---IE7対応clearfix--- */
+
+.clearfix:after {
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+
+.clearfix {
+	display: inline-block;
+}
+
+/* Hides from IE-mac \*/
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
+
+/* ------------------------------
+TAG　タグ基本設定
+------------------------------ */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+p {
+	padding: 12px;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+td {
+	padding: 5px;
+}
+
+th {
+	padding: 5px;
+}
+
+
+img {
+	vertical-align: bottom;
+	border: 0;
+}
+
+
+li {
+	list-style-type: none;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-weight: normal;
+	font-size: 1.0em;
+}
+
+/* ------------------------------
+aTAG
+------------------------------ */
+a {
+	color: #317795;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #FFFFFF;
+	background: #50A5CE;
+}
+
+/* ------------------------------
+clear
+------------------------------ */
+.clear {
+	clear: both;
+}
+
+/*-----------------------------
+Base
+------------------------------ */
+
+#wrapper {
+width: 1000px;
+padding-bottom:50px;
+}
+
+/* 
+コンテンツ部分
+----------------------- */
+
+#container {
+float: right;
+width: 790px;
+text-align:left;
+padding:20px 0px 0px 0px;
+}
+
+h1 {
+height: 50px;
+font-size:26px;
+color:#fff;
+padding:0px 0px 0px 20px;
+line-height:50px;
+margin-bottom: 20px;
+background: url(../images/h1.gif) no-repeat left bottom;
+}
+
+h2{
+	background: url(../images/co_h3_1.png) repeat-x left bottom;
+	margin-bottom: 20px;
+	font-size: 18px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+}
+
+#content .category {
+margin-bottom: 30px;
+border: 1px solid #d6d6d6;
+}
+
+#content .type1 {
+background: url(../images/co_m1.gif) repeat-x top left;
+}
+
+#content .category h2 {
+	height: 40px;
+	margin-bottom: 15px;
+	padding: 10px 0 0 15px;
+	font-size: 16px;
+	font-weight: bold;
+	background: url(none);
+}
+
+#content .category ul {
+margin: 0 20px 20px;
+}
+
+#content .type1 li {
+margin-bottom: 5px;
+padding-left: 20px;
+background: url(../images/co_a1.gif) no-repeat center left;
+}
+
+#content .type2 li {
+margin-bottom: 5px;
+padding-left: 20px;
+background: url(../images/co_a2.gif) no-repeat center left;
+}
+
+#content .category p {
+margin: 0 10px 5px;
+font-size: 12px;
+line-height: 140%;
+}
+
+/* 
+フッター部分
+----------------------- */
+
+#pagetop {
+margin-bottom: 20px;
+clear: both;
+}
+
+#pagetop a {
+line-height:100%;
+float: right;
+display: block;
+width: 67px;
+margin: 0;
+padding: 7px 0px 10px 30px;
+font-size: 10px;
+background: url(../images/bt_4.gif) repeat-x top left;
+text-align: left;
+color: #005896;
+}
+
+#pagetop a:hover {
+background: url(../images/bt_4o.gif) repeat-x top left;
+}
+
+#footer {
+height: 40px;
+margin: 0;
+padding-top: 24px;
+}
+
+#footer p {
+float: left;
+text-align: left;
+}
+
+#footer ul {
+padding-top:20px;
+float: right;
+}
+
+#footer li {
+float: left;
+margin: 0 0 0 7px;
+padding: 0 0 0 7px;
+font-size: 12px;
+}
+
+#footer li.none {
+margin: 0;
+padding: 0;
+background: none;
+}
+
+/* 
+その他
+----------------------- */
+
+/* 汎用テーブル その１ */
+.table1{}
+.table1 td,.table1 th{
+	border:1px solid #98BDCD;
+	padding:5px 10px;
+}
+.table1 .inner table td{
+	padding:0 10px 0 0;
+	border-color:#FFFFFF;
+}
+}
+.table1 th{
+	background: #C2DEED;
+}
+/*------------- */
+
+/* 汎用テーブル その２ */
+.table2{}
+.table2 td,.table2 th{
+	border:1px solid #98BDCD;
+	padding:2px 4px;
+}
+.table2 th{
+	background: #C2DEED;
+}
+/*------------- */
+
+/* フォームボタン */
+.btn {
+/padding-top:3px;
+/line-height:100%;
+/*
+IE6、7でフォームボタンの文字位置が上にきてしまうので
+上にpaddingを入れて調整をしています
+*/
+}
+/*------------- */
+
+
+/* カラー */
+.cR {color:#f00;}
+.cG {color:#0f0;}
+.cB {color:#00f;}
+/*------------- */
+
+
+/*schedule*/
+
+.prev{
+	float:left;}
+
+.current{
+	font-weight:bold;
+	float:left;
+	font-size:14px;
+	margin-left:250px;}
+
+.next{
+	float:right;}
+
+table.schedule{
+	margin:0 0 20px 0;
+	clear:both;}
+table.schedule th{
+	height:20px;
+	background:#4D859D;
+	color:#FFF;}
+
+table.schedule td{
+	height:60px;
+	vertical-align:top;}
+
+table.schedule a{
+	text-decoration:underline;}
+
+td.sun{
+	background:#F8E9ED;}
+
+td.sat{
+	background:#E8F7F7;}
+
+table.time{
+	width:600px;
+	margin:0 auto 20px auto;}
+
+table.time td{
+	height:30px;
+	vertical-align:middle;}
+
+
+.pager ul li {
+      float: left;
+      margin-right: 5px;
+      border: 1px #4D859D solid;
+      font-weight: bold;
+}
+.pager ul li.prev,
+.pager ul li.next {
+      border: none;
+}
+.pager ul li a {
+      position: relative;
+      display: block;
+      padding: 3px 8px;
+      color: #4D859D;
+}
+.pager ul li a:link,
+.pager ul li a:visited {
+      text-decoration: none;
+}
+.pager ul li a:hover,
+.pager ul li a:active {
+      background-color: #98BDCD;
+      text-decoration: none;
+      color: #FFF;
+}
+.pager ul li em {
+      display: block;
+      padding: 3px 8px;
+      background: #4D859D;
+      color: #FFFFFF;
+}
+
+
+
+

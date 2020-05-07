@@ -1,0 +1,88 @@
+<?php
+$arrOrderItem = $arrData['OrderItem'];
+$arrMember = $arrData['Member'];
+
+// 性別
+$arrGender = Configure::write('arrGender');
+
+?>
+
+<h1 class="page-header">購入情報管理</h1>
+<h2 class="sub-header">購入詳細情報</h2>
+<?php echo $this->element('alert'); ?>
+
+<table class="table table-hover">
+  <tbody>
+  <tr>
+      <th>注文番号</th>
+      <td><p><?php echo h($arrOrderItem['id']); ?></p></td>
+  </tr>
+    <tr>
+      <th>商品名</th>
+      <td><p><?php echo h($arrOrderItem['title']); ?></p></td>
+    </tr>
+    <tr>
+      <th>購入ポイント</th>
+      <td><p><?php echo number_format($arrOrderItem['price']); ?></p></td>
+    </tr>
+    <tr>
+      <th>更新日</th>
+      <td><p><?php echo date('Y年m月d日　H時i分',strtotime($arrOrderItem['modified'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>購入日</th>
+      <td><p><?php echo date('Y年m月d日　H時i分',strtotime($arrOrderItem['created'])); ?></p></td>
+    </tr>
+  </tbody>
+</table>
+<?php echo $this->Form->end(); ?>
+
+<h2 class="sub-header">購入者ユーザ情報</h2>
+<table class="table table-hover">
+  <tbody>
+    <tr>
+      <th>氏名</th>
+      <td><p><?php echo h($arrMember['name']); ?></p></td>
+    </tr>
+    <tr>
+      <th>氏名(フリガナ)</th>
+      <td><p><?php echo h($arrMember['name_kana']); ?></p></td>
+    </tr>
+    <tr>
+      <th>会社名</th>
+      <td><p><?php echo h($arrMember['company']); ?></p></td>
+    </tr>
+    <tr>
+      <th>郵便番号</th>
+      <td><p><?php echo h($arrMember['postcode']); ?></p></td>
+    </tr>
+    <tr>
+      <th>住所</th>
+      <td><p><?php echo h($arrMember['address']); ?></p></td>
+    </tr>
+    <tr>
+      <th>電話番号</th>
+      <td><p><?php echo h($arrMember['phone']); ?></p></td>
+    </tr>
+    <tr>
+      <th>性別</th>
+      <td><p><?php echo $arrGender[$arrMember['gender']]; ?></p></td>
+    </tr>
+    <tr>
+      <th>生年月日</th>
+      <td><p><?php echo h($arrMember['birthday']); ?></p></td>
+    </tr>
+    <tr>
+      <th>ニックネーム</th>
+      <td><p><?php echo h($arrMember['nickname']); ?></p></td>
+    </tr>
+    <tr>
+      <th>メールアドレス</th>
+      <td><p><?php echo h($arrMember['email']); ?></p></td>
+    </tr>
+
+  </tbody>
+</table>
+<div class="submitButton">
+  <a href="/admin/order/"><button class="btn btn-lg btn-primary btnW200" type="button">一覧へ戻る</button></a>
+</div>

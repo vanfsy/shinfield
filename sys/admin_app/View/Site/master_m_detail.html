@@ -1,0 +1,41 @@
+
+<!--{assign var=entity value=$param.entity}-->
+			<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table1">
+				<tr>
+					<th width="20%">上位データ</th>
+					<td>
+						<!--{$param.parent_list[$entity.data_leaves.parent_id]}--> 
+				</tr>
+				<tr>
+					<th width="20%">コード</th>
+					<td>
+						<!--{$entity.data_leaves.code|escape}-->
+				</tr>
+				<tr>
+					<th width="20%"><!--{$param.data_name|escape}--></th>
+					<td>
+						<!--{$entity.data_leaves.name|escape}-->
+					</td>
+				</tr>
+<!--{if $param.data_name == "社員名"}-->
+				<tr>
+					<th width="20%">Eメール</th>
+					<td>
+						<!--{$entity.data_leaves.email|escape}-->
+					</td>
+				</tr>
+<!--{/if}-->
+				<tr>
+					<th width="20%">説明文</th>
+					<td>
+						<!--{$entity.data_leaves.description|escape|nl2br}-->
+					</td>
+				</tr>
+			</table>
+			<div class="submit_area">
+				<input name="submit" type='button' value='一覧に戻る' class="btn" onclick="location = '<!--{$home_url}-->admin/site/master_m/list/<!--{$param.parent_code}-->'" />　
+				<input name="submit" type='button' value='修　　正' class="btn" onclick="location = '<!--{$param.reentry_url}--><!--{$param.parent_code}-->.<!--{$entity.data_leaves.id}-->'" />　
+<!--{if $param.complete_url != ""}-->
+				<input name="submit" type='button' value='確　　定' class="btn" onclick="location = '<!--{$param.complete_url}--><!--{$param.parent_code}-->'" />　
+<!--{/if}-->
+			</div>

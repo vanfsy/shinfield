@@ -1,0 +1,26 @@
+
+<!--{assign var=entity value=$param.entity}-->
+<form action="<!--{$param.fm_action}-->" name="form1" method="post" enctype="multipart/form-data[page_contents]" >
+<input name="data[page_contents][id]" type="hidden" value="<!--{$entity.page_contents.id}-->" />
+			<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table1">
+				<tr>
+					<th width="20%">ディレクトリ</th>
+					<td>
+						<select name="region_select" id="region_select" onchange="chgOptionValue(this,'main_region_id');">
+                        	<option>選択してください</option>
+						</select>
+						<div class="error"><!--{$param.error.name}--></div>
+					</td>
+				</tr>
+				<tr>
+					<th width="20%">ファイル</th>
+					<td><input name="" type="file" />
+						<div class="error"><!--{$param.error.name}--></div>
+					</td>
+				</tr>
+			</table>
+			<div class="submit_area">
+				<input name="" type='button' value='一覧に戻る' class="btn" onclick="location = '<!--{$home_url}-->admin/shop/customers/'" />　
+				<input name="submit" type='submit' value='登　　　録' class="btn" />　
+			</div>
+</form>

@@ -1,0 +1,37 @@
+          <h1 class="page-header">求人情報公開設定</h1>
+
+          <h2 class="sub-header">求人情報 一覧</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>タイトル</th>
+                  <th nowrap="nowrap">現在状況</th>
+                  <th nowrap="nowrap">公開予定日</th>
+                  <th nowrap="nowrap">公開終了予定日</th>
+                  <th nowrap="nowrap">設定変更</th>
+                </tr>
+              </thead>
+              <tbody>
+<?php foreach($arrDatas as $row){ ?>
+                <tr>
+                  <td><?php echo $row['JobData']['id'] ?></td>
+                  <td><a href="/admin/job/detail/<?php echo $row['JobData']['id'] ?>"><?php echo $row['JobData']['title'] ?></a></td>
+<?php if($row['JobData']['public_flg']){ ?>
+                  <td>公開中</td>
+<?php }else{ ?>
+                  <td>非公開</td>
+<?php } ?>
+                  <td><?php if(!empty($row['JobSchedule']['start'])){ echo date('Y.m.d',strtotime($row['JobSchedule']['start']));} ?></td>
+                  <td><?php if(!empty($row['JobSchedule']['end'])){ echo date('Y.m.d',strtotime($row['JobSchedule']['end']));} ?></td>
+<?php if(!is_null($row['JobSchedule']['edit_flg']) && $row['JobSchedule']['edit_flg'] == 0){ ?>
+                  <td>設定変更</td>
+<?php }else{ ?>
+                  <td><a href="/admin/schedule/edit/<?php echo $row['JobData']['id'] ?>">設定変更</a></td>
+<?php } ?>
+                </tr>
+<?php } ?>
+              </tbody>
+            </table>
+          </div>

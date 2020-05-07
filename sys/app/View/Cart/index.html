@@ -1,0 +1,90 @@
+<?php
+$meta_title = Configure::read('html.cart');
+$meta_keywords = Configure::read('html.cart');
+$meta_description = Configure::read('html.cart');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$this->Html->css('/css/style.css', null, array('inline' => false));
+
+$referer = @$_SERVER["HTTP_REFERER"];
+if(empty($referer) || strpos($referer,'/cart') !== false){
+  $referer = '/item/category';
+}
+
+$arrTopicPath[] = array('商品一覧' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$code_area = <<< EOF
+EOF;
+$this->assign('script_area', $code_area);
+?>
+
+<section>
+  <h2 class="f25 mb40">カート</h2>
+  <form>
+    <h3 class="ml30 mb30 mt40"><span>購入商品一覧</span></h3>
+    <table class="cart">
+      <caption class="textright">
+      （ポイント）
+      </caption>
+      <tr class="bg_lightgray">
+        <th>商品番号</th>
+        <th class="width30">タイトル名</th>
+        <th>販売額</th>
+        <th>削除</th>
+        <th>小計</th>
+      </tr>
+      <?php if(!empty($arrCart['list'])): ?>
+      <?php foreach($arrCart['list'] as $row): ?>
+      <tr>
+        <td><?php echo sprintf('%06d', $row['item_id']) ?></td>
+        <td class="tl"><a href="/item/detail/<?php echo sprintf('%06d', $row['item_id']) ?>"><?php echo h($row['item_name']) ?></a></td>
+        <td><?php echo number_format($row['price']) ?></td>
+        <td><a href="/cart/delItem/<?php echo $row['item_id'] ?>">削除</a></td>
+        <td><?php echo number_format($row['total']) ?></td>
+      </tr>
+      <?php endforeach; ?>
+      <?php else: ?>
+      <tr>
+        <td colspan="5">現在カートに商品は入っていません</td>
+      </tr>
+      <?php endif; ?>
+      <tr>
+        <td colspan="4" class="trr bg_lightgray">合　計</td>
+        <td><?php echo number_format($arrCart['sumTotal']) ?></td>
+      </tr>
+    </table>
+    <div class="btn_area mt30 textcenter width100 clearfix">
+<?php if(!empty($arrCart['list'])): ?>
+
+  <?php if(!empty($loginname)): ?>
+        <a href="/cart/buy_point" class="mybtn mybtn03 m05">ポイント購入する</a>
+        <a href="/cart/clearance" class="mybtn mybtn05 m05">ポイント決済する</a>
+  <?php else: ?>
+        <a href="/cart/login/buy_point" class="mybtn mybtn03 m05">ポイント購入する</a>
+        <a href="/cart/login/clearance" class="mybtn mybtn05 m05">ポイント決済する</a>
+  <?php endif; ?>
+
+<?php else: ?>
+
+  <?php if(!empty($loginname)): ?>
+        <a href="/cart/buy_point" class="mybtn mybtn03 m05">ポイント購入する</a>
+  <?php else: ?>
+        <a href="/cart/login/buy_point" class="mybtn mybtn03 m05">ポイント購入する</a>
+  <?php endif; ?>
+        <a href="javascript:alert('決済する商品がありません。');" class="mybtn mybtn05 m05">ポイント決済する</a>
+
+<?php endif; ?>    
+    </div>
+  </form>
+</section>
+
+
+<!--
+<input type="submit" value="ポイント購入する" class="mybtn mybtn03">
+<a href="<?php echo $referer ?>" class="mybtn mybtn04">買い物を続ける</a>
+<a href="/cart/buy_point" class="mybtn mybtn05">ポイント購入する</a>
+-->

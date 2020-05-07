@@ -1,0 +1,156 @@
+<?php
+// エリア
+$arrArea = Configure::read('arrArea');
+
+// 職種・免許
+$arrJobCategory = Configure::read('arrJobCategory');
+
+// 雇用形態
+$arrEmployment = Configure::read('arrEmployment');
+
+// 条件
+$arrApplication = Configure::read('arrApplication');
+
+?>
+
+          <h1 class="page-header">求人情報</h1>
+
+<?php echo $this->element('alert'); ?>
+
+          <h2 class="sub-header">新規登録</h2>
+<?php echo $this->Form->create('JobData',array('id' => 'JobDataForm', 'url' => '/job/entry/','class' => 'form-horizontal','role'=>'form')); ?>
+
+          <?php echo $this->Form->input('company_profile_id',
+                array('type'=>'hidden',
+                      'value' => $arrJobDataDetail['JobData']['company_profile_id']
+                      )) ?>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">タイトル<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('title',array('label'=>false,'rows'=>'2','class'=>'form-control')) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">募集職種<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('job_type',array('label'=>false,'rows'=>'2','class'=>'form-control')) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">給与<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('salary',array('label'=>false,'class'=>'form-control')) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">勤務地<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('location',array('label'=>false,'class'=>'form-control')) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">仕事内容<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('description',array('label'=>false,'rows'=>'2','class'=>'form-control')) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">勤務先　企業名・支店名・店名<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('company',array('label'=>false,'class'=>'form-control')) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">勤務地<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('address',array('label'=>false,'class'=>'form-control')) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">最寄駅<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('access',array('label'=>false,'class'=>'form-control')) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">勤務期間<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('term',array('label'=>false,'class'=>'form-control')) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">休日・休暇<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('holiday',array('label'=>false,'class'=>'form-control')) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">勤務時間<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('hours',array('label'=>false,'class'=>'form-control')) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">経験・資格<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('career',array('label'=>false,'class'=>'form-control')) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">待遇</label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('benefit',array('label'=>false,'class'=>'form-control')) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">応募方法<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('howto_enter',array('label'=>false,'class'=>'form-control')) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">担当者名<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('person',array('label'=>false,'class'=>'form-control')) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">連絡先　電話番号<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('phone',array('label'=>false,'class'=>'form-control')) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">連絡先　メールアドレス<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('email',array('label'=>false,'class'=>'form-control')) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">一覧用説明文<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('list_description',array('label'=>false,'class'=>'form-control')) ?>
+            </div>
+          </div>
+
+          <div class="submitButton"><button class="btn btn-lg btn-primary btnW200" type="submit">登録・更新</button></div>
+    
+<?php echo $this->Form->end(); ?>

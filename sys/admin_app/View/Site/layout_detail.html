@@ -1,0 +1,36 @@
+			<h1><!--{$param.title}--></h1>
+			<h2><!--{$param.h2}--></h2>
+
+<!--{assign var=entity value=$param.entity}-->
+			<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table1">
+				<tr>
+					<th width="20%">レイアウト名</th>
+					<td><!--{$entity.page_layouts.name|escape}-->
+					</td>
+				</tr>
+				<tr>
+					<th width="20%">ページ用領域</th>
+					<td>
+						<!--{if $entity.page_layouts.main_region_name != ""}-->
+						<!--{$entity.page_layouts.main_region_name|escape}-->
+						<!--{else}-->
+						※領域を作成して、ページ用領域を設定してください。
+						<!--{/if}-->
+					</td>
+				</tr>
+				<tr>
+					<th colspan="2">コンテンツ</th>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<!--{$entity.page_layouts.layout|escape|nl2br}-->
+					</td>
+				</tr>
+			</table>
+			<div class="submit_area">
+				<input name="submit" type='button' value='一覧に戻る' class="btn" onclick="location = '<!--{$home_url}-->admin/site/layouts/'" />　
+				<input name="submit" type='button' value='修　　正' class="btn" onclick="location = '<!--{$param.reentry_url}--><!--{$entity.page_layouts.id}-->'" />　
+<!--{if $param.complete_url != ""}-->
+				<input name="submit" type='button' value='確　　定' class="btn" onclick="location = '<!--{$param.complete_url}-->'" />　
+<!--{/if}-->
+			</div>

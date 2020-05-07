@@ -1,0 +1,105 @@
+<?php
+$arrUser = $arrMemberDetail['Member'];
+
+// 性別
+$genderOptions = Configure::read('arrGender');
+
+?>
+<style>
+.radioinput{
+text-align:left;
+font-weight:normal;
+}
+.radioinput label{
+margin-left:6px;
+margin-right:10px;
+}
+
+</style>
+          <h1 class="page-header">管理者情報</h1>
+
+<?php echo $this->element('alert'); ?>
+
+          <h2 class="sub-header">管理者情報登録・変更</h2>
+
+        <p class="textRed"><?php echo $this->Session->flash('auth'); ?></p>
+
+<?php echo $this->Form->create('Member',array('id' => 'UserForm1', 'url' => '/user/admin_profile/','class' => 'form-horizontal','role'=>'form')); ?>
+
+          <?php echo $this->Form->input('id',
+                array('type'=>'hidden',
+                      'value' => $arrUser['id']
+                      )) ?>
+
+          <?php echo $this->Form->input('role',
+                array('type'=>'hidden',
+                      'value' => 'admin'
+                      )) ?>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">ユーザID<span class="red">*</span></label>
+            <div class="col-sm-6">
+<?php echo $this->Form->input('user_id',array('label'=>false,'type'=>'text','class'=>'form-control','value'=>$arrUser['user_id'] )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">名前</label>
+            <div class="col-sm-6">
+<?php echo $this->Form->input('name',array('label'=>false,'type'=>'text','class'=>'form-control','value'=>$arrUser['name'] )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">名前（カタカナ）</label>
+            <div class="col-sm-6">
+<?php echo $this->Form->input('name_kana',array('label'=>false,'class'=>'form-control','value'=>$arrUser['name_kana'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">性別</label>
+            <div class="col-sm-6 radioinput">
+<?php echo $this->Form->radio('gender',$genderOptions,array('legend'=>false,'value'=>$arrUser['gender'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">メールアドレス<span class="red">*</span></label>
+            <div class="col-sm-6">
+<?php echo $this->Form->input('email',array('label'=>false,'class'=>'form-control','placeholder' => 'メールアドレス','value'=>$arrUser['email'])) ?>
+            </div>
+          </div>
+
+          <div class="submitButton"><button class="btn btn-lg btn-primary btnW200" type="submit">登録・変更</button></div>
+    
+<?php echo $this->Form->end(); ?>
+<hr class="mBottom40">
+
+          <h2 class="sub-header">管理者パスワード変更</h2>
+
+        <p class="textRed"><?php echo $this->Session->flash('auth'); ?></p>
+
+<?php echo $this->Form->create('Member',array('id' => 'UserForm1', 'url' => '/user/admin_profile/','class' => 'form-horizontal','role'=>'form')); ?>
+
+          <?php echo $this->Form->input('id',
+                array('type'=>'hidden',
+                      'value' => $arrUser['id']
+                      )) ?>
+
+          <?php echo $this->Form->input('role',
+                array('type'=>'hidden',
+                      'value' => 'admin'
+                      )) ?>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">パスワード<span class="red">*</span></label>
+            <div class="col-sm-6">
+<?php echo $this->Form->input('password',array('label'=>false,'class'=>'form-control','value'=> null )) ?>
+            </div>
+          </div>
+
+          <div class="submitButton"><button class="btn btn-lg btn-primary btnW200" type="submit">登録・変更</button></div>
+    
+<?php echo $this->Form->end(); ?>
+

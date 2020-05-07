@@ -1,0 +1,88 @@
+
+<!--{assign var=entity value=$param.entity}-->
+<form action="<!--{$param.fm_action}-->" name="form1" method="post" >
+<input name="data[mode]" type="hidden" id="mode" value="complete" />
+<input name="data[page_layouts][id]" type="hidden" value="<!--{$entity.page_layouts.id}-->" />
+<input name="data[page_layouts][main_region_id]" id="main_region_id" type="hidden" value="<!--{$entity.page_layouts.main_region_id}-->" />
+<input name="data[page_regions][id]" type="hidden" value="<!--{$param.region_id}-->" />
+
+<div class="submit_area">
+<!--{if !empty($attention_message)}--><p id="head_message"><!--{$attention_message}--></p><!--{/if}-->
+				<input name="" type='button' value='一覧に戻る' class="btn" onclick="location = '<!--{$home_url}-->admin/site/layouts/'" />　
+				<input type="button" value="新規登録" class="btn" onclick="location.href = '<!--{$param.add_url}-->'" />
+				<input name="submit1" type='submit' value='更　　新' class="btn" />　
+			</div>
+
+			<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table1">
+				<tr>
+					<th width="20%">レイアウト名</th>
+					<td>
+						<input name="data[page_layouts][name]" id="name" type="text" value="<!--{$entity.page_layouts.name}-->" style="width:400px;" />
+						<div class="error"><!--{$param.error.page_layouts.name}--></div>
+					</td>
+				</tr>
+				<tr>
+					<th colspan="2">領域リスト</th>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<p>※コピーしてレイアウトに配置して下さい。</p>
+						<table id="region_list">
+						<!--{ section name=i loop=$arrRegions }-->
+							<tr>
+								<td><!--{$arrRegions[i].page_regions.name|escape}-->：&nbsp;</td>
+								<td><input type="text" value="<!--@R_<!--{$arrRegions[i].page_regions.code}-->-->" size="30" />&nbsp;
+<!--{if $entity.page_layouts.id > 0}-->
+									<a href="<!--{$param.region_mod_url}--><!--{$arrRegions[i].page_regions.id}-->" onclick="">変更</a>・
+									<a href="<!--{$param.region_del_url}--><!--{$arrRegions[i].page_regions.id}-->">削除</a>
+<!--{/if}-->
+								</td>
+							</tr>
+						<!--{ /section }-->
+						</table>
+<!--{if $entity.page_layouts.id > 0}-->
+						<div id="region_upd">
+							<div class="sub"><b>領域リスト　追加・更新</b></div>
+							<div class="sub">
+								<p class="title">領域名</p>&nbsp;<input type="text" name="data[page_regions][name]" value="<!--{$param.region_name}-->" size="30" />
+							</div>
+							<div class="error"><!--{$param.error.page_regions.name}--></div>
+							<div class="sub">
+								<p class="title">コード名</p>&nbsp;<p>&lt;!--@R_</p><input type="text" name="data[page_regions][code]" value="<!--{$param.region_code}-->" style="width:130px;" /><p>--&gt;</p>
+							</div>
+							<div class="error"><!--{$param.error.page_regions.code}--></div>
+							<div class="sub"><input id="button" type="button" value="更新" onclick="chgDisp('region')" /></div>
+						</div>
+<!--{/if}-->
+					</td>
+				</tr>
+				<tr>
+					<th colspan="2">コンテンツ領域設定</th>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<!--{html_radios name='data[page_layouts][main_region_id]' options=$param.region_options selected=$entity.page_layouts.main_region_id separator=' '}-->
+						
+					</td>
+				</tr>
+				<tr>
+					<th colspan="2">レイアウト</th>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<textarea name="data[page_layouts][layout]" id="txtArea" rows="30" cols="140"><!--{$entity.page_layouts.layout}--></textarea>
+					<div class="error"><!--{$param.error.page_layouts.layout}--></div>
+					</td>
+				</tr>
+			</table>
+</form>
+<script type="text/javascript">
+<!--
+	editAreaLoader.init({
+		id : "txtArea"		// textarea id
+		,syntax: "css"			// syntax to be uses for highgliting
+		,start_highlight: true		// to display with highlight mode on start-up
+	});
+
+-->
+</script>

@@ -1,0 +1,179 @@
+<?php
+// ポイント購入金額
+$arrPointRateList = Configure::read('arrPointRateList');
+
+// 支払方法
+$arrPaymentMethod = Configure::read('arrPaymentMethod');
+
+// ポイント購入
+$arrPaymentStatus = Configure::read('arrPaymentStatus');
+
+?>
+<h1 class="page-header">決済情報管理</h1>
+
+<?php echo $this->element('alert'); ?>
+
+          <h2 class="sub-header">ポイント購入 一覧</h2>
+
+<!-- Button trigger modal -->
+<div class="col-sm-8 text-left"><?php echo $strSearchParam ?></div>
+<!--
+<button type="button" class="btn btn-primary btn-lg mBottom20" data-toggle="modal" data-target="#myModal">
+  検索条件
+</button> &nbsp;&nbsp;&nbsp;
+-->
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">検索条件</h4>
+      </div>
+      <div class="modal-body">
+<?php echo $this->Form->create('SearchParam',array('url' => '/event/','class' => 'form-horizontal','role'=>'form')); ?>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">商品タイトル</label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('code',array('label'=>false,'class'=>'form-control','value' => $arrSearchParam['code'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">公開・非公開</label>
+            <div class="col-sm-9">
+<?php foreach($arrPublicFlg as $id => $val){ ?>
+<div class="checkbox"><label><input type="radio" name="data[SearchParam][public_flg]" value="<?php echo $id ?>" <?php if($arrSearchParam['public_flg'] == $id) echo 'checked=checked' ?> ><?php echo $val ?></label></div>
+<?php } ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">エリア</label>
+            <div class="col-sm-9">
+<?php foreach($arrArea as $id => $val){ ?>
+<?php
+$checked = null;
+if(!empty($arrSearchParam['area'])) foreach($arrSearchParam['area'] as $rowid){if($id == $rowid){$checked = 'checked=checked';}}
+?>
+<div class="checkbox"><input type="checkbox" name="data[SearchParam][area][]" value="<?php echo $id ?>" <?php echo $checked ?> /><label><?php echo $val ?></label></div>
+<?php } ?>
+            </div>
+<?php echo $this->Form->error('JobData.area'); ?>
+          </div>
+<!--
+          <div class="form-group">
+            <label class="col-sm-3 control-label">職種</label>
+            <div class="col-sm-9">
+            <input type="hidden" name="data[SearchParam][event_category]" value="" />
+<?php foreach($arrJobCategory as $id => $val){ ?>
+<?php
+$checked = null;
+if(!empty($arrSearchParam['event_category'])) foreach($arrSearchParam['event_category'] as $rowid){if($id == $rowid){$checked = 'checked=checked';}}
+?>
+<div class="checkbox"><input type="checkbox" name="data[SearchParam][event_category][]" value="<?php echo $id ?>" <?php echo $checked ?> /><label><?php echo $val ?></label></div>
+<?php } ?>
+            </div>
+<?php echo $this->Form->error('JobData.event_category'); ?>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">免許</label>
+            <div class="col-sm-9">
+            <input type="hidden" name="data[SearchParam][licence]" value="" />
+<?php foreach($arrLicence as $id => $val){ ?>
+<?php
+$checked = null;
+if(!empty($arrSearchParam['licence'])) foreach($arrSearchParam['licence'] as $rowid){if($id == $rowid){$checked = 'checked=checked';}}
+?>
+<div class="checkbox"><input type="checkbox" name="data[SearchParam][licence][]" value="<?php echo $id ?>" <?php echo $checked ?> /><label><?php echo $val ?></label></div>
+<?php } ?>
+            </div>
+<?php echo $this->Form->error('JobData.licence'); ?>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">雇用形態</label>
+            <div class="col-sm-9">
+            <input type="hidden" name="data[SearchParam][employment]" value="" />
+<?php foreach($arrEmployment as $id => $val){ ?>
+<?php
+$checked = null;
+if(!empty($arrSearchParam['employment'])) foreach($arrSearchParam['employment'] as $rowid){if($id == $rowid){$checked = 'checked=checked';}}
+?>
+<div class="checkbox"><input type="checkbox" name="data[SearchParam][employment][]" value="<?php echo $id ?>" <?php echo $checked ?> /><label><?php echo $val ?></label></div>
+<?php } ?>
+            </div>
+<?php echo $this->Form->error('JobData.employment'); ?>
+          </div>
+-->
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">キーワード</label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('keywords',array('label'=>false,'class'=>'form-control','value' => $arrSearchParam['keywords'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">電話番号</label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('phone',array('label'=>false,'class'=>'form-control','value' => $arrSearchParam['phone'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">メールアドレス</label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('email',array('label'=>false,'class'=>'form-control','value' => $arrSearchParam['email'])) ?>
+            </div>
+          </div>
+
+          <div class="submitButton"><button class="btn btn-lg btn-primary btnW200" type="submit">検索</button></div>
+
+<?php echo $this->Form->end(); ?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                <tr>
+                  <th class="w50">購入日</th>
+                  <th class="w200">ユーザ名</th>
+                  <th class="w200">ステータス</th>
+                  <th class="w300">購入ポイント</th>
+                </tr>
+                </tr>
+              </thead>
+              <tbody>
+<?php foreach($arrData['list'] as $row): ?>
+                <tr>
+                  <td align="left"><?php echo date('Y.m.d H:i:s',strtotime($row['OrderPoint']['created'])) ?></td>
+                  <td align="left"><?php echo $row['Member']['company'] ?>　<?php echo $row['Member']['name'] ?><br>
+                  <a href="/admin/point_pay/detail/<?php echo $row['OrderPoint']['id'] ?>"><span class="label label-info">詳細・編集</span></a>
+                  <a href="javascript:void(0)" onClick="delConfirm('/admin/point_pay/del/<?php echo $row['OrderPoint']['id'] ?>')"><span class="label label-danger">削　除</span></a>
+                  </td>
+                  <td align="left"><?php echo $arrPaymentStatus[$row['OrderPoint']['status']] ?>
+                  <p><?php echo $arrPaymentMethod[$row['OrderPoint']['payment']] ?></p></td>
+                  <td align="left">
+                    購入ポイント：<?php echo number_format($row['OrderPoint']['point']) ?>
+                    <p>購入金額：<?php echo number_format($arrPointRateList[$row['OrderPoint']['point']]) ?></p>
+                  </td>
+                </tr>
+<?php endforeach; ?>
+              </tbody>
+            </table>
+
+<!-- ページネーション -->
+<?php echo $this->Paging->list_navi($arrData,$url,5); ?>
+<!-- ページネーション -->
+
+          </div>

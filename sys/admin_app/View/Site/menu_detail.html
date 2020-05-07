@@ -1,0 +1,41 @@
+
+<!--{assign var=entity value=$param.entity}-->
+			<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table1">
+				<tr>
+					<th width="20%">コントローラー</th>
+					<td>
+						<!--{$entity.menu_lists.controller|escape}-->
+					</td>
+				</tr>
+				<tr>
+					<th width="20%">アクション</th>
+					<td>
+						<!--{$entity.menu_lists.action|escape}-->
+					</td>
+				</tr>
+				<tr>
+					<th width="20%">カテゴリ名</th>
+					<td>
+						<!--{$entity.menu_lists.category_name|escape}-->
+					</td>
+				</tr>
+				<tr>
+					<th width="20%">メニュー名</th>
+					<td>
+						<!--{$entity.menu_lists.memu_name|escape}-->
+					</td>
+				</tr>
+				<tr>
+					<th width="20%">説明文</th>
+					<td>
+						<!--{$entity.menu_lists.description|escape|nl2br}-->
+					</td>
+				</tr>
+			</table>
+			<div class="submit_area">
+				<input name="submit" type='button' value='一覧に戻る' class="btn" onclick="location = '<!--{$home_url}-->admin/site/menu/'" />　
+				<input name="submit" type='button' value='修　　正' class="btn" onclick="location = '<!--{$param.reentry_url}--><!--{$entity.menu_lists.id}-->'" />　
+<!--{if $param.complete_url != ""}-->
+				<input name="submit" type='button' value='確　　定' class="btn" onclick="location = '<!--{$param.complete_url}-->'" />　
+<!--{/if}-->
+			</div>

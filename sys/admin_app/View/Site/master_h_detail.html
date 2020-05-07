@@ -1,0 +1,40 @@
+
+<!--{assign var=entity value=$param.entity}-->
+			<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table1">
+				<tr>
+					<th width="20%">コード名</th>
+					<td>
+						<!--{$entity.data_branches.code|escape}-->
+					</td>
+				</tr>
+				<tr>
+					<th width="20%">データ名</th>
+					<td>
+						<!--{$entity.data_branches.name|escape}-->
+					</td>
+				</tr>
+				<tr>
+					<th width="20%">階層最大値</th>
+					<td>
+						<!--{$entity.data_branches.limit_level}-->
+					</td>
+				</tr>
+				<tr>
+					<th width="20%">所属データ</th>
+					<td>
+						<!--{$param.attach_list[$entity.data_branches.attach_id]}--> 
+				</tr>
+				<tr>
+					<th width="20%">説明文</th>
+					<td>
+						<!--{$entity.data_branches.description|escape|nl2br}-->
+					</td>
+				</tr>
+			</table>
+			<div class="submit_area">
+				<input name="submit" type='button' value='一覧に戻る' class="btn" onclick="location = '<!--{$home_url}-->admin/site/master_h/'" />　
+				<input name="submit" type='button' value='修　　正' class="btn" onclick="location = '<!--{$param.reentry_url}--><!--{$entity.data_branches.id}-->'" />　
+<!--{if $param.complete_url != ""}-->
+				<input name="submit" type='button' value='確　　定' class="btn" onclick="location = '<!--{$param.complete_url}-->'" />　
+<!--{/if}-->
+			</div>

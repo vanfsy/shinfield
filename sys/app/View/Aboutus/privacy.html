@@ -1,0 +1,36 @@
+<?php
+$meta_title = Configure::read('html.privacy');
+$meta_keywords = Configure::read('html.privacy');
+$meta_description = Configure::read('html.privacy');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+$this->Html->css('/css/style.css', null, array('inline' => false));
+$arrTopicPath[] = array('個人情報保護について' => '/guide/');
+$arrTopicPath[] = array('個人情報保護について' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$code_area = <<< EOF
+EOF;
+$this->assign('code_area', $code_area);
+?>
+
+<section>
+  <h2 class="f25 mb20">お問い合わせ</h2>
+  <!--
+  <div id="sub" class="col-xs-12 col-sm-12 col-md-12 m60">
+  <h3 class="ml30 mb30 mt20"><span>個人情報保護について</span></h3>
+    <div class="mt20 ml20 pl20 spml_0 sppl_0">
+      <p class="f14 mt10">FILL MALLでは個人情報の重要性を確認し、以下の取り組みを実施いたしており</p>
+      <p>(1) FILL MALLでは、お客様個人に関する情報（以下「個人情報」といいます。」を館</p>
+      <p>(2) ユーザーの皆様から個人情報を取得させていただく場合は、利用目的をできる限り</p>
+      <p>(3) FILL MALLでは、お客様より取得させていただいた個人情報を適切に管理し、以 </p>
+      <p class="ml15">(a)「※この商品を購入すると、ダウンロード会員の氏名がアップロード会員に開示</p>
+      <p class="ml15">(b)「※この商品を購入すると、ダウンロード会員のEメールアドレスがアップロー </p>
+      <p class="ml15">(c) 商品の購入後、ダウンロード会員の意思で、該商品のアップロード会員にダウン</p>
+    </div>
+  </div>
+  -->
+      <?php echo $HTML_GUIDE_PRIVACY ?>
+</section>

@@ -1,0 +1,38 @@
+<?php
+$meta_title = Configure::read('html.privacy');
+$meta_keywords = Configure::read('html.privacy');
+$meta_description = Configure::read('html.privacy');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+$this->Html->css('/css/style.css', null, array('inline' => false));
+$arrTopicPath[] = array('個人情報保護について' => '/guide/');
+$arrTopicPath[] = array('個人情報保護について' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$code_area = <<< EOF
+EOF;
+$this->assign('code_area', $code_area);
+?>
+
+<div id="legal">
+<section id="content">
+  <h2 class="f25 mb20">ご利用案内</h2>
+  <div id="sub" class="col-xs-12 col-sm-12 col-md-12 m60">
+  <h3 class="ml30 mb30 mt20"><span>運営からお知らせ</span></h3>
+<?php foreach($arrWhatNews as $row):?>
+  <!--<table class="ml30 mb30 border-all-gray width90 member">-->
+
+      <p class="title"><?php echo h($row['Whatsnews']['title']) ?></p>
+
+      <p>
+        <?php echo h($row['Whatsnews']['comment']) ?>
+        <p class="textright mr10"><?php echo h($row['Whatsnews']['comment_date']) ?></p>
+      </p>
+
+  <!--</table>-->
+<?php endforeach; ?>
+  </div>
+</section>
+</div>

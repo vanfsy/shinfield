@@ -1,0 +1,66 @@
+<?php
+$meta_title = Configure::read('html.register');
+$meta_keywords = Configure::read('html.register');
+$meta_description = Configure::read('html.register');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$arrTopicPath[] = array('マイページ' => '/mypage/');
+$arrTopicPath[] = array('デスクトップ' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$this->Html->css('/css/main02.css', null, array('inline' => false));
+
+$code_area = <<< EOF
+EOF;
+$this->assign('code_area', $code_area);
+?>
+
+<section>
+  <h2 class="f25 mb20">マイページ</h2>
+  <div class="mypage_row ml20 mr20">
+    <div class="black waku01 mt20">登録情報</div>
+    <table class="table03 mt10 black">
+      <tbody>
+        <tr>
+          <th>登録情報　&#8230;</th>
+          <td><p class="item-p01"><a href="/mypage/profile">登録情報を変更する</a></p></td>
+        </tr>
+        <tr>
+          <th>&nbsp;</th>
+          <td><p class="item-p01"><a href="/message">メッセージ一覧</a></p></td>
+        </tr>
+        <tr>
+          <th>&nbsp;</th>
+          <td><p class="item-p01"><a href="/mypage/followerlist">フォロワー一覧</a></p></td>
+        </tr>
+        <tr>
+          <th>&nbsp;</th>
+          <td><p class="item-p01"><a href="/mypage/withdrawal">退会する</a></p></td>
+        </tr>
+      </tbody>
+    </table>
+
+<?php if($arrData['Member']['mode'] == 'profile'): ?>
+<div class="black waku02 mt50 mb20">会員登録内容変更</div>
+<?php endif; ?>
+
+<?php if($arrData['Member']['mode'] == 'email'): ?>
+<div class="black waku02 mt50 mb20">メールアドレス変更</div>
+<?php endif; ?>
+
+<?php if($arrData['Member']['mode'] == 'password'): ?>
+<div class="black waku02 mt50 mb20">パスワード変更</div>
+<?php endif; ?>
+
+<div class="bg_white p10 mr10 ml10 col-xs-12 prof_main">
+  <div class="alert alert-info alert-dismissible" role="alert">
+    <button type="button_style aligncenter" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>登録更新が完了しました。</strong>
+  </div>
+</div>
+</div>
+
+</section>

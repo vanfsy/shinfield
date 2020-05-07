@@ -1,0 +1,113 @@
+<?php
+$meta_title = Configure::read('html.member');
+$meta_keywords = Configure::read('html.member');
+$meta_description = Configure::read('html.member');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$this->Html->css('/css/style.css', null, array('inline' => false));
+
+$arrGender = Configure::read('arrGender');
+$arrMailMagFlg = Configure::read('arrMailMagFlg');
+
+$arrTopicPath[] = array('商品一覧' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$code_area = <<< EOF
+EOF;
+$this->assign('code_area', $code_area);
+?>
+<style>
+.datetimeStyle{
+}
+</style>
+<section>
+  <h2 class="f25 mb40">新規会員登録</h2>
+  <h3 class="ml30 mb20 mt20"><span>会員情報確認</span></h3>
+  <p class="textleft ml30">※は必須項目</p>
+
+<?php echo $this->Form->create('Member',
+                            array('url' => '/member_regist/confirm',
+)); ?>
+
+    <table class="ml30 mb30 table-res01">
+      <tr>
+        <th class="width20">氏　名※</th>
+        <td><?php echo h($arrData['Member']['name']) ?></td>
+        </td>
+      </tr>
+      <tr>
+        <th>氏　名（フリガナ）</th>
+        <td><?php echo h($arrData['Member']['name_kana']) ?></td>
+        </td>
+      </tr>
+      <tr>
+        <th>会社名</th>
+        <td><?php echo h($arrData['Member']['company']) ?></td>
+        </td>
+      </tr>
+      <tr>
+        <th>郵便番号※</th>
+        <td><?php echo h($arrData['Member']['postcode']) ?></td>
+        </td>
+      </tr>
+      <tr>
+        <th>住　所※</th>
+        <td><?php echo h($arrData['Member']['address']) ?></td>
+        </td>
+      </tr>
+      <tr>
+        <th>電話番号※</th>
+        <td><?php echo h($arrData['Member']['phone']) ?></td>
+        </td>
+      </tr>
+      <tr>
+        <th>性　別※</th>
+        <td><?php echo $arrGender[$arrData['Member']['gender']] ?></td>
+        </td>
+      </tr>
+      <tr>
+        <th>生年月日※</th>
+        <td><?php echo h($arrData['Member']['birthday']) ?></td>
+        </td>
+      </tr>
+      <tr>
+        <th>ニックネーム※</th>
+        <td><?php echo h($arrData['Member']['nickname']) ?></td>
+        </td>
+      </tr>
+      <tr>
+        <th>プロフィール紹介文</th>
+        <td><?php echo h($arrData['Member']['comment']) ?></td>
+        </td>
+      </tr>
+      <tr>
+        <th>メールアドレス※</th>
+        <td><?php echo h($arrData['Member']['email']) ?></td>
+        </td>
+      </tr>
+      <tr>
+        <th>パスワード※</th>
+        <td> **** </td>
+        </td>
+      </tr>
+      <tr>
+        <th>パスワードのヒント</th>
+        <td><?php echo h($arrData['Member']['password_hint']) ?></td>
+      </tr>
+      <?php /*<tr>
+        <th>メールマガジン</th>
+        <td><?php echo $arrMailMagFlg[$arrData['Member']['mailmag_flg']] ?></td>
+        </td>
+      </tr>*/ ?>
+    </table>
+    
+
+    <p class="textcenter pt20">
+      <a href="/member_regist/member_form"><input type="button" value="戻って変更する" class="mybtn-bl  mybtn-bl-md" style="color:blue;"></a>
+      <input type="submit" value="確定する" class="mybtn-bl mybtn-bl-md">
+    </p>
+<?php echo $this->Form->end(); ?>
+</section>

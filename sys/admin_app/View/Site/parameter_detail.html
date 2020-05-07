@@ -1,0 +1,23 @@
+
+<!--{assign var=entity value=$param.entity}-->
+			<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table1">
+				<tr>
+					<th width="20%">パラメータ</th>
+					<td>
+						<!--{$entity.page_parameters.name|escape}-->
+					</td>
+				</tr>
+				<tr>
+					<th width="20%">コード名</th>
+					<td>
+						&#123;&#36P_<!--{$entity.page_parameters.code}-->&#125;
+					</td>
+				</tr>
+			</table>
+			<div class="submit_area">
+				<input name="submit1" type='button' value='一覧に戻る' class="btn" onclick="location = '<!--{$home_url}-->admin/site/parameter/'" />　
+				<input name="submit2" type='button' value='修　　正' class="btn" onclick="location = '<!--{$param.reentry_url}--><!--{$entity.page_parameters.id}-->'" />　
+<!--{if $param.complete_url != ""}-->
+				<input name="submit3" type='button' value='確　　定' class="btn" onclick="location = '<!--{$param.complete_url}-->'" />　
+<!--{/if}-->
+			</div>

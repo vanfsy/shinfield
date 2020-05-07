@@ -1,0 +1,108 @@
+<?php
+$meta_title = Configure::read('html.cart');
+$meta_keywords = Configure::read('html.cart');
+$meta_description = Configure::read('html.cart');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$this->Html->css('/css/style.css', null, array('inline' => false));
+
+$referer = @$_SERVER["HTTP_REFERER"];
+if(empty($referer) || strpos($referer,'/cart') !== false){
+  $referer = '/item/category';
+}
+
+$arrTopicPath[] = array('商品一覧' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$code_area = <<< EOF
+    jQuery(document).ready(function() {
+        if ($('#paymentIdentity').val() != '') {
+            InitIdentity($('#paymentIdentity').val());
+            $('#paymentIdentity').val('');
+        }
+    });
+EOF;
+$this->assign('script_area', $code_area);
+?>
+<section>
+  <h2 class="f25 mb40">カート <?php echo $point_str; ?></h2>
+  
+  
+<?php if(is_array($arrError)){ foreach($arrError as $error){ ?>
+<p class="ml30" style="color:red;"><?php echo $error; ?></p>
+<?php }} ?>
+
+  
+  <h3 class="ml30 mb30 mt40"><span>クレジット決済</span></h3>
+
+  <?php echo $this->Form->create('OrderPoint',
+                            array('id' => 'OrderPointForm',
+                                  'url' => '/cart/credit_card/',
+)); ?>
+<?php echo $this->Form->input('mode',
+                            array('label' => false,
+                                  'type' => 'hidden',
+                                  'value' => 'payment',
+)) ?>
+<?php echo $this->Form->input('paymentToken',
+                            array('id' => 'paymentToken',
+                                  'label' => false,
+                                  'type' => 'hidden',
+                                  'value' => '',
+)) ?>
+<?php echo $this->Form->input('apiType',
+                            array('label' => false,
+                                  'type' => 'hidden',
+                                  'value' => $apiType,
+)) ?>
+
+  <table class="point mb10">
+    <tr>
+      <th class="width30 sp_width100">クレジットカード番号</th>
+      <td class="width70 sp_width100"><input type="text" class="form-control" id="creditCardNumber" value="<?php echo $this->request->data('credit.card_no'); ?>" placeholder="例) 4980123412341234"></td>
+    </tr>
+    <tr>
+      <th>クレジットカード有効期限</th>
+      <td>
+        <div class="input-group" style="width: 90%;">
+            <select id="creditCardExpireYear" class="form-control">
+                <option value="0">---</option>
+                <?php for($i=date('Y'); $i<=date('Y')+20; $i++){ ?>
+                <option value="<?php echo sprintf('%04d', $i); ?>" <?php echo ($this->request->data('credit.card_expire_y')==$i)? 'selected':''; ?>><?php echo sprintf('%04d', $i); ?></option>
+                <?php } ?>
+            </select>
+            <span class="input-group-addon">年</span>
+            <select id="creditCardExpireMonth" class="form-control">
+                <option value="0">---</option>
+                <?php for($i=1; $i<=12; $i++){ ?>
+                <option value="<?php echo sprintf('%02d', $i); ?>" <?php echo ($this->request->data('credit.card_expire_m')==$i)? 'selected':''; ?>><?php echo sprintf('%02d', $i); ?></option>
+                <?php } ?>
+            </select>
+            <span class="input-group-addon">月</span>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th>セキュリティコード</th>
+      <td><input type="text" class="form-control" id="creditCardCVV2" value="<?php echo $this->request->data('credit.card_cvv'); ?>" placeholder="例) 123"></td>
+    </tr>
+    <tr>
+      <th>クレジットカード名義</th>
+      <td><input type="text" class="form-control" id="creditCardName" value="<?php echo $this->request->data('credit.card_name'); ?>" placeholder="例) TARO YAMADA"></td>
+    </tr>
+  </table>
+  <p class="textcenter mt30">
+    <!-- id="imgBtn" -->
+    <input type="button" value="ポイントを購入する" class="mybtn mybtn03" onclick="GetTokenAndRun()">
+  </p>
+
+  <?php echo $this->Form->end(); ?>
+
+</section>
+
+<input type='hidden' id='paymentIdentity' value='<?php echo $identity ?>'/>
+<?php echo $this->Html->script($includeJs, array('inline' => false)) ?>
+<?php echo $this->Html->script('credit-token.' . $paymentJs . '.js', array('inline' => false)) ?>

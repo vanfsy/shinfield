@@ -1,0 +1,109 @@
+<?php
+$meta_title = Configure::read('html.mypage');
+$meta_keywords = Configure::read('html.mypage');
+$meta_description = Configure::read('html.mypage');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$arrTopicPath[] = array('マイページ' => '/mypage/');
+$arrTopicPath[] = array('デスクトップ' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$this->Html->css('/css/style.css', null, array('inline' => false));
+$this->Html->css('/css/main02.css', null, array('inline' => false));
+$code_area = <<< EOF
+EOF;
+$this->assign('code_area', $code_area);
+?>
+
+<section>
+  <h2 class="f25 mb20">マイページ</h2>
+  <div class="mypage_row ml20 mr20">
+    <div class="black waku01 mt20">購入者用</div>
+    <table class="table03 mt10 black">
+      <tbody>
+        <tr>
+          <th>購入商品　&#8230;</th>
+          <td><p class="item-p01"><a href="/cart">カートを見る</a></p></td>
+        </tr>
+        <tr>
+          <th>&nbsp;</th>
+          <td><p class="item-p01"><a href="/cart/buy_point">ポイントを買う</a></p></td>
+        </tr>
+        <tr>
+          <th>&nbsp;</th>
+          <td><p class="item-p01"><a href="/mypage/favorite">お気に入り一覧</a></p></td>
+        </tr>
+        <tr>
+          <th>&nbsp;</th>
+          <td><p class="item-p01"><a href="/mypage/purchased">購入した商品を見る</a></p></td>
+        </tr>
+        <tr>
+          <th>&nbsp;</th>
+          <td><p class="item-p01"><a href="/mypage/purchased_point">ポイント購入履歴を見る</a></p></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="black waku01 mt50 mb20" style="width:150px">ポイント購入履歴</div>
+<?php if(!$isMobile): ?>
+<?php if(!empty($arrData['list'])): ?>
+    <table class="table04">
+      <thead>
+        <tr>
+          <th>購入日</th>
+          <th>購入ポイント</th>
+          <th>決済方法</th>
+        </tr>
+      </thead>
+      <tbody>
+<?php foreach($arrData['list'] as $row): ?>
+        <tr>
+          <td><?php echo date('Y年m月d日 H時i分', strtotime($row['OrderPoint']['created'])); ?></td>
+          <td><?php echo $row['OrderPoint']['point']; ?>P</td>
+          <td><?php echo Configure::read('arrPaymentMethod.'.$row['OrderPoint']['payment']); ?></td>
+        </tr>
+<?php endforeach; ?>
+      </tbody>
+    </table>
+
+    <div class="textcenter"><?php echo $this->Paging->list_navi($arrData,$url); ?></div>
+<?php else: ?>
+    <p>該当する情報はありません</p>
+<?php endif; ?>
+<?php endif; ?>
+
+<?php if($isMobile): ?>
+<?php if(!empty($arrData['list'])): ?>
+<?php foreach($arrData['list'] as $row): ?>
+    <table class="table07 mt20">
+      <tbody>
+        <tr>
+          <th class="width120p td_gray">商品番号</th>
+          <td><?php echo sprintf('%05d', $row['Item']['id']) ?></td>
+        </tr>
+        <tr>
+          <td class="td_gray">タイトル名</td>
+          <td><a href="/item/detail/<?php echo $row['Item']['id'] ?>"><?php echo h($row['Item']['title']) ?></a></td>
+        </tr>
+        <tr>
+          <td class="td_gray">販売額</td>
+          <td><?php echo number_format($row['Item']['price']) ?></td>
+        </tr>
+        <tr>
+          <td class="td_gray">ステータス</td>
+          <td><a href="/item/download/<?php echo $row['Item']['id'] ?>">ダウンロード</a></td>
+        </tr>
+      </tbody>
+    </table>
+<?php endforeach; ?>
+
+    <div class="textcenter"><?php echo $this->Paging->list_navi($arrData,$url); ?></div>
+
+<?php else: ?>
+    <p>該当する情報はありません</p>
+<?php endif; ?>
+<?php endif; ?>
+
+</section>

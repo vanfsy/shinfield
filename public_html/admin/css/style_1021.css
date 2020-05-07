@@ -1,0 +1,91 @@
+@charset "UTF-8";
+/*------------------------------------- */
+/* 追加CSS 2014/10/21 */
+/*------------------------------------- */
+
+
+body, h1, h2, h3, h4, h5, h6, p,ul,ol,li {
+	margin: 0;
+	padding: 0;
+}
+p {
+	margin-bottom: 1em;
+}
+
+#header,#contents,#footer {
+	clear:both;
+	}
+	
+/*画像を入れた下隙間は、vertical-align 
+img{
+	vertical-align:bottom;
+	}*/
+	
+a img{
+	border:none;
+	}			
+	
+a img:hover{
+	opacity:0.5;
+		}
+		
+/*------------------------------------- */
+/*ページトップボタン */
+/*------------------------------------- */
+		
+#page-top{
+  width:70px;
+  height:70px;
+  position:fixed;
+  right:16px;
+  bottom:16px;
+  display:none;
+}
+ 
+#page-top p{
+  margin:0;
+  padding:0;
+  text-align:center;
+  background:#666;
+  -webkit-transition:all 0.3s;
+  -moz-transition:all 0.3s;
+  transition:all 0.3s;
+}
+ 
+#page-top p:hover{
+  background:#FFA700;/*オレンジ*/
+}
+ 
+#page-top p a{
+	font-weight:bold;
+  color:#fff;
+  line-height:50px;
+  text-decoration:none;
+  display:block;
+  cursor:pointer;
+}
+
+/*------------------------------------- */
+/*保管 */
+/*------------------------------------- */
+/*#contents {
+	background-color: #0f0;
+	padding: 0 20px;
+}
+#contents_main {
+	background-color: #FF00FA;
+	width: 540px;
+	float:right;
+}
+#contents_sub {
+	background-color: #2F09BF;
+	width: 200px;
+	float:left;
+}
+#footer {
+	background-color: #00f;
+	height: 50px;
+	color: #fff;
+}
+*/
+

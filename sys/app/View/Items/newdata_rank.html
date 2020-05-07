@@ -1,0 +1,121 @@
+<?php
+$meta_title = Configure::read('html.items');
+$meta_keywords = Configure::read('html.items');
+$meta_description = Configure::read('html.items');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$this->Html->css('/css/style.css', null, array('inline' => false));
+
+$this->Html->script('/js/page.js', array('inline' => false));
+
+// 表示件数
+$arrDispNum = Configure::read('arrDispNum');
+
+$arrTopicPath[] = array('商品一覧' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$code_area = <<< EOF
+    $('.disp_num').change(function() {
+      $("#ChangeDispNumForm").submit();
+    });
+EOF;
+$this->assign('script_area', $code_area);
+?>
+
+<?php echo $this->Form->create('formDispNum',
+                            array('id' => 'ChangeDispNumForm',
+                                  'url' => $url,
+)); ?>
+<?php echo $this->Form->input('mode',
+                            array('id' => 'mode',
+                                  'type' => 'hidden',
+                                  'value' => 'changeDispNum',
+)) ?>
+<?php echo $this->Form->input('sort',
+                            array('id' => 'sort',
+                                  'type' => 'hidden',
+                                  'value' => 'new',
+)) ?>
+
+<section class="item">
+  <h2 class="f25 mb20">新着商品一覧</h2>
+<div class="category clearfix">
+  <p class="item_num"><span class="strong"><?php echo $arrNewDataRank['total'] ?></span>件表示</p>
+  
+  <p class="sponly spviewnum"><span class='alignleft'>表示件数： </span>
+<?php echo $this->Form->input('disp_num',
+                            array('label' => false,
+                                  'div' => false,
+                                  'type' => 'select',
+                                  'class' => 'alignleft disp_num',
+                                  'options' => $arrDispNum,
+                                  'value' => $disp_num,
+)) ?>
+</p>
+
+  <ul class="cate_menu">
+    <li class="spnone"><span class='alignleft'>表示件数： </span>
+<?php echo $this->Form->input('disp_num',
+                            array('label' => false,
+                                  'div' => false,
+                                  'type' => 'select',
+                                  'class' => 'alignleft disp_num',
+                                  'options' => $arrDispNum,
+                                  'value' => $disp_num,
+)) ?>
+    </li>
+      <!--
+    <li<?php if($setSort == 'sale') echo ' class="current"' ?>>
+      <a href="javascript:void(0)" onClick="chgSort('sale','ChangeDispNumForm');return false">売れ筋</a></li>
+    <li<?php if($setSort == 'high') echo ' class="current"' ?>>
+      <a href="javascript:void(0)" onClick="chgSort('high','ChangeDispNumForm');return false">価格が高い</a></li>
+    <li<?php if($setSort == 'low') echo ' class="current"' ?>>
+      <a href="javascript:void(0)" onClick="chgSort('low','ChangeDispNumForm');return false">価格が安い</a></li>
+    <li<?php if($setSort == 'new') echo ' class="current"' ?>>
+      <a href="javascript:void(0)" onClick="chgSort('new','ChangeDispNumForm');return false">新着順</a></li> -->
+  </ul>
+</div>
+<?php echo $this->Form->end(); ?>
+  <div class="row">
+  <?php if(!empty($arrNewDataRank['list'])): ?>
+  <?php foreach($arrNewDataRank['list'] as $i => $row): ?>
+   <!-- <?= $this->element('item_1col', ['row' => $row]) ?>-->
+      <div class="col-xs-12 col-sm-6 col-md-3">
+      <?php
+      $img_url = $this->Upload->uploadUrl($row,'Item.main_image',array('style'=>'list_s'));
+      $img_path = str_replace('//','/',WWW_ROOT.$img_url);
+      if(!file_exists($img_path)){
+      $img_url = "/img/front_s.png";
+      }
+      $item_url = "/item/detail/".$row['Item']['id'];
+      $title = mb_strimwidth($row['Item']['title'], 0, 40, "…");
+      $name_base = $row['Member']['company'].' '.$row['Member']['name'];
+      $name = mb_strimwidth($name_base, 0, 50, "…");
+      $price = number_format($row['Item']['price']);
+      $user_url = "/mypage/sellerinfo/".$row['Item']['member_id'];
+      ?>
+      <dl class="">
+          <dt class="ranking"><div class="rank_tag" style="color: red;"><?php if($pgnum==0) echo ($i+1); else echo ((($pgnum-1) * $disp_num)+$i+1); ?></div><a href="<?= $item_url ?>"><img src="<?= $img_url ?>" alt="<?= h($row['Item']['title']) ?>" onerror="onImgErr(this)"></a></dt>
+          <dd class="mt05 title_wrapper">
+              <p class="title textleft"><a href="<?= $item_url ?>"><?= h($title) ?></a></p>
+              <p class="strong textright"><a href="<?= $item_url ?>" class="price"><?= $price ?>円</a></p>
+              <p class="name textleft"><a class="company_a" href="<?= $user_url ?>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><?= h($name) ?></a></p>
+          </dd>
+      </dl>
+      </div>
+    <?php if($i%4 == 3) echo '</div><div class="row">' ?>
+  <?php endforeach; ?>
+
+  <?php else: ?>
+  <div class="ml15">該当する情報がありません。再度、条件を変えて検索して下さい。</div>
+  <?php endif; ?>
+  </div>
+
+  <?php if(!empty($arrNewDataRank['list'])): ?>
+    <div class="textcenter"><?php echo $this->Paging->list_navi($arrNewDataRank, $url); ?></div>
+  <?php endif; ?>
+</section>
+

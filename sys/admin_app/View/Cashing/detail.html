@@ -1,0 +1,149 @@
+<?php
+$arrCashingData = $arrData['CashingData'];
+$arrMember = $arrData['Member'];
+
+// 換金申請ステータス
+$arrCashingStatus = Configure::read('arrCashingStatus');
+
+// 性別
+$arrGender = Configure::write('arrGender');
+
+?>
+
+<h1 class="page-header">換金情報管理</h1>
+<h2 class="sub-header">換金申請 詳細情報</h2>
+<?php echo $this->element('alert'); ?>
+
+<?php echo $this->Form->create('CashingData',array('url' => '/cashing/detail/'.$arrCashingData['id'],'role'=>'form')); ?>
+
+<?php echo $this->Form->input('id',
+                array('type'=>'hidden',
+                      'value' => $arrCashingData['id']
+)) ?>
+<?php echo $this->Form->input('money',
+                array('type'=>'hidden',
+                      'value' => $arrCashingData['money']
+)) ?>
+<?php echo $this->Form->input('fee',
+                array('type'=>'hidden',
+                      'value' => $arrCashingData['fee']
+)) ?>
+<?php echo $this->Form->input('possible_cashing',
+                array('type'=>'hidden',
+                      'value' => $arrCashingData['possible_cashing']
+)) ?>
+<?php echo $this->Form->input('possible_cashing_min',
+                array('type'=>'hidden',
+                      'value' => $arrCashingData['possible_cashing_min']
+)) ?>
+
+<table class="table table-hover">
+  <tbody>
+    <tr>
+      <th>ステータス</th>
+      <td>
+      <p>
+              <?php echo $this->Form->input('status',
+                array('label'=>false,
+                      'div' => false,
+                      'type' => 'select',
+                      'options' => $arrCashingStatus,
+                      'value' => $arrCashingData['status']
+                      )) ?>
+        <button class="btn btn-lg btn-primary btnW200" type="submit">更新する</button>
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <th>申請金額</th>
+      <td><p><?php echo number_format($arrCashingData['money'] + $arrCashingData['fee']); ?></p></td>
+    </tr>
+    <tr>
+      <th>手数料</th>
+      <td><p><?php echo number_format($arrCashingData['fee']); ?></p></td>
+    </tr>
+    <tr>
+      <th>振込金額</th>
+      <td><p><?php echo number_format($arrCashingData['money']); ?></p></td>
+    </tr>
+    <tr>
+      <th>更新日</th>
+      <td><p><?php echo date('Y年m月d日　H時i分',strtotime($arrCashingData['modified'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>申請日</th>
+      <td><p><?php echo date('Y年m月d日　H時i分',strtotime($arrCashingData['created'])); ?></p></td>
+    </tr>
+  </tbody>
+</table>
+<?php echo $this->Form->end(); ?>
+
+<h2 class="sub-header">販売者ユーザ情報</h2>
+<table class="table table-hover">
+  <tbody>
+    <tr>
+      <th>氏名</th>
+      <td><p><?php echo h($arrMember['name']); ?></p></td>
+    </tr>
+    <tr>
+      <th>氏名(フリガナ)</th>
+      <td><p><?php echo h($arrMember['name_kana']); ?></p></td>
+    </tr>
+    <tr>
+      <th>会社名</th>
+      <td><p><?php echo h($arrMember['company']); ?></p></td>
+    </tr>
+    <tr>
+      <th>郵便番号</th>
+      <td><p><?php echo h($arrMember['postcode']); ?></p></td>
+    </tr>
+    <tr>
+      <th>住所</th>
+      <td><p><?php echo h($arrMember['address']); ?></p></td>
+    </tr>
+    <tr>
+      <th>電話番号</th>
+      <td><p><?php echo h($arrMember['phone']); ?></p></td>
+    </tr>
+    <tr>
+      <th>性別</th>
+      <td><p><?php echo $arrGender[$arrMember['gender']]; ?></p></td>
+    </tr>
+    <tr>
+      <th>生年月日</th>
+      <td><p><?php echo h($arrMember['birthday']); ?></p></td>
+    </tr>
+    <tr>
+      <th>ニックネーム</th>
+      <td><p><?php echo h($arrMember['nickname']); ?></p></td>
+    </tr>
+    <tr>
+      <th>メールアドレス</th>
+      <td><p><?php echo h($arrMember['email']); ?></p></td>
+    </tr>
+    <tr>
+      <th>銀行名</th>
+      <td><p><?php echo h($arrMember['bank_name']); ?></p></td>
+    </tr>
+    <tr>
+      <th>支店名</th>
+      <td><p><?php echo h($arrMember['branch_name']); ?></p></td>
+    </tr>
+    <tr>
+      <th>支店コード</th>
+      <td><p><?php echo h($arrMember['branch_code']); ?></p></td>
+    </tr>
+    <tr>
+      <th>銀行口座</th>
+      <td><p><?php echo h($arrMember['account_no']); ?></p></td>
+    </tr>
+    <tr>
+      <th>口座名義</th>
+      <td><p><?php echo h($arrMember['deposit_name']); ?></p></td>
+    </tr>
+
+  </tbody>
+</table>
+<div class="submitButton">
+  <a href="/admin/cashing/"><button class="btn btn-lg btn-primary btnW200" type="button">一覧へ戻る</button></a>
+</div>

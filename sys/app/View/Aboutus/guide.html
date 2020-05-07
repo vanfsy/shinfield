@@ -1,0 +1,100 @@
+<?php
+//$meta_title = Configure::read('html.guide');
+//$meta_keywords = Configure::read('html.guide');
+//$meta_description = Configure::read('html.guide');
+
+//$this->set('title_for_layout',$meta_title);
+//$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+//$this->Html->meta('description', $meta_description, array('inline' => false));
+
+//yoshi 20180220
+$this->set('title_for_layout',$META_TITLE);
+$this->Html->meta('keywords', $META_KEYWORDS, array('inline' => false));
+$this->Html->meta('description', $META_DESCRIPTION, array('inline' => false));
+
+// 20170730追加
+$this->Html->css('/css/style.css', null, array('inline' => false));
+
+$arrTopicPath[] = array('ショップガイド' => '/guide/');
+$arrTopicPath[] = array('送料・納期' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$code_area = <<< EOF
+EOF;
+$this->assign('code_area', $code_area);
+?>
+
+<section>
+  <h2 class="f25 mb20">ご利用案内</h2>
+  <!--
+  <div id="sub" class="col-xs-12 col-sm-12 col-md-12 m60">
+    <h3 class="ml30 mb30 mt20"><span>会員利用規約</span></h3>
+  
+    <h4 class="ml30 spml_0 mb10 f14 strong">1.まずは新規会員登録をしよう。</h4>
+    <p class="ml30 spml_0">新規会員登録は、必要事項を入力するだけでとても簡単です。<br>
+      登録したメールアドレスに届く登録認証メールをクリックし、完了します。 </p>
+  -->
+  <!--
+    <ul class="guide ml30 spml_0 mb40 clearfix">
+      <li class="alignleft mr10"><img src="/img/front_ss.png" alt="" class="guide_img"></li>
+      <li class="alignleft mr10"><img src="/img/newArrival_01_s.png" alt=""></li>
+      <li class="alignleft mr10"><img src="/img/newArrival_01_s.png" alt=""></li>
+      <li><img src="/img/newArrival_01_s.png" alt=""></li>
+    </ul>
+  -->
+  <!--
+    <ul class="ml30 spml_0 mb40 clearfix">
+      <li class="alignleft mr10 mb10"><img src="/img/front_ss.png" alt="" class="guide_img"></li>
+      <li class="alignleft mr10 mb10"><img src="/img/newArrival_01_s.png" alt=""></li>
+      <li class="alignleft mr10"><img src="/img/newArrival_01_s.png" alt=""></li>
+      <li><img src="/img/newArrival_01_s.png" alt=""></li>
+    </ul>
+  -->
+  <!--
+    <div>
+      <img src="/img/front_ss.png" alt="" class="guide_img">
+    </div>
+    <h4 class="ml30 spml_0 f14 strong">2.サイトにログインしましょう。</h4>
+    <p class="ml30 spml_0 mb20">会員登録時に入力した登録情報（メールアドレスとパスワード）を入力し、
+      「ログイン」ボタンをクリックして、ログインして下さい。 </p>
+    <div>
+      <img src="/img/front_ss.png" alt="" class="guide_img">
+    </div>
+    <h4 class="ml30 spml_0 f14 strong">3.購入したい商品をカートに入れて購入手続きをしましょう。</h4>
+    
+    <p class="ml30 spml_0 mb20">購入希望商品を1点ずつ「カートに入れる」ボタンをクリックしてショッピングカートに入れます。
+      購入希望商品全てをカートに入れ終わりましたら、「カートの中」ボタンをクリックし、購入手続きに進みます。 </p>
+    <div>
+      <img src="/img/front_ss.png" alt="" class="guide_img">
+    </div>
+    <h4 class="ml30 spml_0 f14 strong">4.カート内の商品を確認しましょう。</h4>
+    <p class="ml30 spml_0 mb20">カート内の商品を確認して下さい。<br>
+      もし必要のない商品がある場合はカートから削除して下さい。 </p>
+    <div>
+      <img src="/img/front_ss.png" alt="" class="guide_img">
+    </div>
+    <h4 class="ml30 spml_0 f14 strong">5.商品の決済をしよう。</h4>
+    <p class="ml30 spml_0 mb20">お持ちのコイン（ポイント）を使用するかどうかを選択して、
+      ご注文のお支払金額合計を確認して下さい。<br>
+      問題がなければ、クレジットカードの銘柄を選択し、「購入手続きに進む」をクリックして決済ページへ進んで下さい。 </p>
+    <div>
+      <img src="/img/front_ss.png" alt="" class="guide_img">
+    </div>
+    <h4 class="ml30 spml_0 mb10 f14 strong">6.クレジットカード情報を正確に入力しましょう。</h4>
+    <p class="ml30 spml_0 mb20">クレジットカードの情報は、入力方法に従って正確に入力して下さい。<br>
+      最後に「購入完了」ボタンをクリックすると、決済は完了します。 </p>
+    <div>
+      <img src="/img/front_ss.png" alt="" class="guide_img">
+    </div>
+    <h4 class="ml30 spml_0 mb10 f14 strong">7.購入した商品をダウンロードしましょう。</h4>
+    <p class="ml30 spml_0 mb20">FILLMALLにログインし、「マイページ」内の「注文履歴・購入商品のダウンロード・ストリーミング再生」
+      ページを開くと、購入商品のリストが表示されます。<br>
+      ダウンロードボタンをクリックして下さい。<br>
+      ダウンロードの有効期限は。ご購入日から「２０日間」となりますのでお早めにダウンロードして下さい。 </p>
+    <div>
+      <img src="/img/front_ss.png" alt="" class="guide_img">
+    </div>
+  </div>
+   -->
+   <?php echo $HTML_GUIDE_CONTENT ?>
+</section>

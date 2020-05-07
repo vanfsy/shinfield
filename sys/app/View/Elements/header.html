@@ -1,0 +1,57 @@
+<header class="container">
+    <div class="header">
+        <div class="header-logo"> <a href="<?php echo Router::fullbaseUrl() ?>"><img src="/img/logo.png" class="img-responsive" alt="オリジナルデザインT シャツプリントのエスグラフィック"/></a>
+            <h1 class="header_top">オリジナルデザインT シャツプリントのエスグラフィック</h1>
+        </div>
+        <div class="header-menu"> 
+            <a href="javascript:void(0)" class="cartButton"><img src="/img/menu-cart.png" alt=""></a> 
+<?php if(isset($arrAuthCustomer['auth']) && $arrAuthCustomer['auth']):?>
+            <a href="/member/logout"><img src="/img/menu-logout.png" alt=""></a> 
+<?php else:?>
+            <a href="/member/login"><img src="/img/menu-login.png" alt=""></a> 
+<?php endif;?>
+
+            <a><img src="/img/menu-category.png" alt=""> <span class="blue">
+            <p class="alinkbox" onClick="itemlink('category/1');">Tシャツ</p>
+            <p class="alinkbox" onClick="itemlink('category/2');">ドライTシャツ・ポロ</p>
+            <p class="alinkbox" onClick="itemlink('category/3');">ラグラン(半袖・長袖)</p>
+            <p class="alinkbox" onClick="itemlink('category/4');">ロンT</p>
+            <p class="alinkbox" onClick="itemlink('category/5');">ポロシャツ</p>
+            <p class="alinkbox" onClick="itemlink('category/6');">タンクトップ</p>
+            <p class="alinkbox" onClick="itemlink('category/7');">スウェット</p>
+            <p class="alinkbox" onClick="itemlink('category/8');">パーカー</p>
+            <p class="alinkbox" onClick="itemlink('category/9');">スウェットパンツ</p>
+            <p class="alinkbox" onClick="itemlink('category/10');">ウインドブレーカー</p>
+            <p class="alinkbox" onClick="itemlink('category/11');">スポーツウェア</p>
+            <p class="alinkbox" onClick="itemlink('category/12');">レディース</p>
+            <p class="alinkbox" onClick="itemlink('category/13');">ベビー</p>
+            <p class="alinkbox" onClick="itemlink('category/14');">その他</p>
+            <p class="alinkbox" onClick="itemlink('category/15');">エプロン</p>
+            <p class="alinkbox" onClick="itemlink('category/16');">バッグ</p>
+            <p class="alinkbox" onClick="itemlink('category/17');">タオル</p>
+            <p class="alinkbox" onClick="itemlink('category/18');">シャツ</p>
+            </span> </a> <a><img src="/img/menu-brand.png" alt=""> <span class="blue">
+            <p class="alinkbox" onClick="itemlink('brand/UnitedAthle');">UnitedAthle</p>
+            <p class="alinkbox" onClick="itemlink('brand/Printstar');">Printstar</p>
+            <p class="alinkbox" onClick="itemlink('brand/MAXIMUM');">MAXIMUM</p>
+            <p class="alinkbox" onClick="itemlink('brand/GLIMMER');">GLIMMER</p>
+            <p class="alinkbox" onClick="itemlink('brand/CrossStitch');">CrossStitch</p>
+            <p class="alinkbox" onClick="itemlink('brand/Jellan');">Jellan</p>
+            <p class="alinkbox" onClick="itemlink('brand/SeventeenVergleBee');">SeventeenVergleBee</p>
+            <p class="alinkbox" onClick="itemlink('brand/TRUSS');">TRUSS</p>
+            <p class="alinkbox" onClick="itemlink('brand/DALUC');">DALUC</p>
+            <p class="alinkbox" onClick="itemlink('brand/BEESBEAM');">BEESBEAM</p>
+            <p class="alinkbox" onClick="itemlink('brand/anvil');">anvil</p>
+            <p class="alinkbox" onClick="itemlink('brand/FELIC');">FELIC</p>
+            <p class="alinkbox" onClick="itemlink('brand/FLORIDAWIND');">FLORIDAWIND</p>
+            <p class="alinkbox" onClick="itemlink('brand/rucca');">rucca</p>
+            <p class="alinkbox" onClick="itemlink('brand/JERZEES');">JERZEES</p>
+            <p class="alinkbox" onClick="itemlink('brand/nobrand');">nobrand</p>
+            <p class="alinkbox" onClick="itemlink('brand/AIMY');">AIMY</p>
+            <p class="alinkbox" onClick="itemlink('brand/CROSSRUNNER');">CROSSRUNNER</p>
+            <p class="alinkbox" onClick="itemlink('brand/wundou');">wundou</p>
+            </span> </a>
+            <a><form name="formname" action="/item/search/" method="get" ><input type="text" class="header" name="keywords" value="<?php echo $search_keyword ?>" onFocus="Input(this.name,'キーワードで探す','formname')" onBlur="Output(this.name,'キーワードで探す','formname')"></form></a>
+        </div>
+    </div>
+</header>

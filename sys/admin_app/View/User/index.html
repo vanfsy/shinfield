@@ -1,0 +1,163 @@
+<?php
+// エリア
+$arrArea = Configure::read('arrArea');
+
+// 会員ランク
+$arrUserRank = Configure::read('arrUserRank');
+
+// 販売者ステータス
+$arrSellerStatus = Configure::read('arrSellerStatus');
+
+$arrGender = Configure::read('arrGender');
+?>
+          <h1 class="page-header">ユーザ情報</h1>
+
+<?php echo $this->element('alert'); ?>
+
+          <h2 class="sub-header">ユーザ情報 一覧</h2>
+
+<!-- Button trigger modal -->
+<div class="col-sm-9 text-left"><?php echo $strSearchParam ?></div>
+<button type="button" class="btn btn-primary btn-lg mBottom20" data-toggle="modal" data-target="#myModal">
+  検索条件
+</button> &nbsp;&nbsp;&nbsp;
+<a href="/admin/user/edit/0"><button type="button" class="btn btn-primary btn-lg mBottom20">新規登録</button></a>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">検索条件</h4>
+      </div>
+      <div class="modal-body">
+<?php echo $this->Form->create('SearchParam',array('url' => '/user/','class' => 'form-horizontal','role'=>'form')); ?>
+
+          <div class="form-group">
+              <label class="col-sm-3 control-label">ユーザー番号</label>
+              <div class="col-sm-9">
+                  <?php echo $this->Form->input('id',array('label'=>false, 'id'=>'inp_id', 'class'=>'form-control','value' => $arrSearchParam['id'])) ?>
+              </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">氏名</label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('name',array('label'=>false, 'id'=>'inp_name', 'class'=>'form-control','value' => $arrSearchParam['name'])) ?>
+            </div>
+          </div>
+<!--
+          <div class="form-group">
+            <label class="col-sm-3 control-label">会員ランク</label>
+            <div class="col-sm-9">
+<?php foreach($arrUserRank as $id => $val){ ?>
+<div class="checkbox"><label><input type="" class="inp_user_rank" name="data[SearchParam][user_rank]" value="<?php echo $id ?>" <?php if($arrSearchParam['user_rank'] == $id) echo 'checked=checked' ?> ><?php echo $val ?></label></div>
+<?php } ?>
+            </div>
+          </div>-->
+          <div class="form-group">
+              <label class="col-sm-3 control-label">会員ランク</label>
+              <div class="col-sm-9">
+                  <?php
+               echo $this->Form->input('user_rank',
+                  array('label' => false,
+                  'div' => false,
+                  'type' => 'select',
+                  'options' => $arrUserRank,
+                  'value' => $arrSearchParam['user_rank'],
+                  'class'=>'form-control'
+                  ));
+                  ?>
+              </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">電話番号</label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('phone',array('label'=>false, 'id'=>'inp_phone', 'class'=>'form-control','value' => $arrSearchParam['phone'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">メールアドレス</label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('email',array('label'=>false, 'id'=>'inp_email', 'class'=>'form-control','value' => $arrSearchParam['email'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">住所</label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('address',array('label'=>false, 'id'=>'inp_address', 'class'=>'form-control','value' => $arrSearchParam['address'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">キーワード</label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('keywords',array('label'=>false, 'id'=>'inp_keywords', 'class'=>'form-control','value' => $arrSearchParam['keywords'])) ?>
+            </div>
+          </div>
+
+          <div class="submitButton"><button class="btn btn-lg btn-primary btnW200" type="submit">検索</button> <button class="btn btn-lg btn-primary btnW200" type="button" onClick="searchClear()">クリア</button></div>
+
+<?php echo $this->Form->end(); ?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                <tr>
+                  <th class="w40">ユーザー番号</th>
+                  <th class="w40">会員ランク</th>
+                  <th class="w200">ユーザ名</th>
+                  <th class="w40">性別</th>
+                  <th class="w300">住所</th>
+                  <th class="w100">メール</th>
+                </tr>
+                </tr>
+              </thead>
+              <tbody>
+<?php foreach($arrMembers['list'] as $row): ?>
+                <tr>
+                  <td align="center"><?php echo $row['id'] ?></td>
+                  <td align="left"><?php echo isset($arrUserRank[$row['user_rank']]) ? $arrUserRank[$row['user_rank']] : '' ?></td>
+                  <td align="left">
+                    <?php echo $row['name'] ?>
+                    <p><?php echo empty($row['company']) ? '会社名：未設定' : '会社名：' . $row['company'] ?></p>
+                    <p><a href="/admin/user/detail/<?php echo $row['id'] ?>"><span class="label label-info">詳細・編集</span></a>
+                    <span class="label label-default"><?php echo $arrSellerStatus[$row['status']] ?></span>
+                    <a href="javascript:void(0)" onClick="delConfirm('/admin/user/del/<?php echo $row['id'] ?>')"><span class="label label-danger">削　除</span></a></p>
+                  </td>
+                  <td align="left"><?php echo @$arrGender[$row['gender']] ?></td>
+                  <td align="left"><?php echo $row['address'] ?></td>
+                  <td align="left"><?php echo $row['email'] ?></td>
+                </tr>
+<?php endforeach; ?>
+              </tbody>
+            </table>
+
+<!-- ページネーション -->
+<?php echo $this->Paging->list_navi($arrMembers,$url,5); ?>
+<!-- ページネーション -->
+
+          </div>
+<script>
+	function searchClear() {
+    $("#inp_id").val('');
+    $("#inp_name").val('');
+    $("#inp_phone").val('');
+    $("#inp_email").val('');
+    $("#inp_address").val('');
+    $("#inp_keywords").val('');
+    $("#inp_public").val('');
+    $(".inp_user_rank").removeAttr('checked');
+	}
+</script>

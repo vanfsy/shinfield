@@ -1,0 +1,172 @@
+<?php
+// エリア
+$arrArea = Configure::read('arrArea');
+
+$arrEventReviewData = $arrEventReview['EventReviewData'];
+$arrEventData = $arrEventReview['EventData'];
+
+// 公開・非公開
+$arrPublicFlg = array('0' => '非公開','1' => '公開');
+
+?>
+
+<h1 class="page-header">イベントレビュー情報</h1>
+
+<h2 class="sub-header">イベントレビュー詳細情報</h2>
+<table class="table table-hover">
+  <tbody>
+    <tr>
+      <th>タイトル</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrEventReviewData['title'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>公開・非公開</th>
+      <td><p><?php echo h($arrPublicFlg[$arrEventReviewData['public_flg']]); ?></p></td>
+    </tr>
+    <tr>
+      <th>キャッチコピー</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrEventReviewData['headline'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>メイン画像</th>
+      <td colspan="3"><p><?php echo $this->Upload->uploadImage($arrEventReview,'EventReviewData.main_image',array('style'=>'thumb'));?></p></td>
+    </tr>
+    <tr>
+      <th>内容 1</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrEventReviewData['description1'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>サブ画像1</th>
+      <td colspan="3"><p><?php echo $this->Upload->uploadImage($arrEventReview,'EventReviewData.sub_image1',array('style'=>'thumb'));?></p></td>
+    </tr>
+    <tr>
+      <th>内容 2</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrEventReviewData['description2'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>サブ画像2</th>
+      <td colspan="3"><p><?php echo $this->Upload->uploadImage($arrEventReview,'EventReviewData.sub_image2',array('style'=>'thumb'));?></p></td>
+    </tr>
+    <tr>
+      <th>内容 3</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrEventReviewData['description3'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>サブ画像3</th>
+      <td colspan="3"><p><?php echo $this->Upload->uploadImage($arrEventReview,'EventReviewData.sub_image3',array('style'=>'thumb'));?></p></td>
+    </tr>
+    <tr>
+      <th>内容 4</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrEventReviewData['description4'])); ?></p></td>
+    </tr>
+  </tbody>
+</table>
+<div class="submitButton"> <a href="/admin/event_review/edit/<?php echo $arrEventReviewData['id'] ?>">
+  <button class="btn btn-lg btn-primary btnW200" type="button">編集</button></a>
+</div>
+
+<h2 class="sub-header">イベント詳細情報</h2>
+<table class="table table-hover">
+  <tbody>
+    <tr>
+      <th>No.</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrEventData['id'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>タイトル</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrEventData['title'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>進捗ステータス</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrEventData['hold_status'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>キャッチコピー</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrEventData['headline'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>開催日・時間</th>
+      <td colspan="3"><p><?php echo date('Y年m月d日　H時i分',strtotime($arrEventData['event_date'].' '.$arrEventData['start_time'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>募集期間</th>
+      <td colspan="3"><p><?php echo date('Y年m月d日',strtotime($arrEventData['entry_start_date'])); ?> ～ <?php echo date('Y年m月d日',strtotime($arrEventData['entry_end_date'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>エリア</th>
+      <td colspan="3"><p><?php echo @$arrArea[$arrEventData['area']]; ?></p></td>
+    </tr>
+    <tr>
+      <th>カテゴリ</th>
+      <td colspan="3"><p><?php echo str_replace(';',' / ',$arrEventData['category']); ?></p></td>
+    </tr>
+    <tr>
+      <th>タグ</th>
+      <td colspan="3"><p><?php echo str_replace(';',' / ',$arrEventData['tags']); ?></p></td>
+    </tr>
+    <tr>
+      <th>料金</th>
+      <td colspan="3"><p>男性 <?php echo number_format($arrEventData['fee_male']); ?>円
+          女性 <?php echo number_format($arrEventData['fee_female']); ?>円</p></td>
+    </tr>
+    <tr>
+      <th>参加定員</th>
+      <td colspan="3"><p>男性 <?php echo number_format($arrEventData['quorum_male']); ?>名
+          女性 <?php echo number_format($arrEventData['quorum_female']); ?>名</p></td>
+    </tr>
+    <tr>
+      <th>参加者数</th>
+      <td colspan="3"><p>男性 <?php echo number_format($arrEventData['turnout_male']); ?>名
+          女性 <?php echo number_format($arrEventData['turnout_female']); ?>名</p></td>
+    </tr>
+    <tr>
+      <th>参加条件</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrEventData['precondition'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>会場</th>
+      <td colspan="3"><p><b>会場名・店舗名</b>：<?php echo h($arrEventData['place_address']); ?></p>
+        <p><b>住所</b>：<?php echo h($arrEventData['place_address']); ?></p>
+        <p><b>アクセス</b>：<?php echo h($arrEventData['place_access']); ?></p>
+        <p><b>電話番号</b>：<?php echo h($arrEventData['place_phone']); ?></p>
+        <p><b>メール</b>：<?php echo h($arrEventData['place_email']); ?></p>
+        <p><b>ホームページ</b>：<?php echo h($arrEventData['place_url']); ?></p>
+        <p><b>googleマップ</b>：<?php echo $arrEventData['place_map'] ?></p></td>
+    </tr>
+    <tr>
+      <th>メイン画像</th>
+      <td colspan="3"><p><?php echo $this->Upload->uploadImage($arrEventReview,'EventData.main_image',array('style'=>'thumb'));?></p></td>
+    </tr>
+    <tr>
+      <th>内容 1</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrEventData['description1'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>サブ画像1</th>
+      <td colspan="3"><p><?php echo $this->Upload->uploadImage($arrEventReview,'EventData.sub_image1',array('style'=>'thumb'));?></p></td>
+    </tr>
+    <tr>
+      <th>内容 2</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrEventData['description2'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>サブ画像2</th>
+      <td colspan="3"><p><?php echo $this->Upload->uploadImage($arrEventReview,'EventData.sub_image2',array('style'=>'thumb'));?></p></td>
+    </tr>
+    <tr>
+      <th>内容 3</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrEventData['description3'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>サブ画像3</th>
+      <td colspan="3"><p><?php echo $this->Upload->uploadImage($arrEventReview,'EventData.sub_image3',array('style'=>'thumb'));?></p></td>
+    </tr>
+    <tr>
+      <th>内容 4</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrEventData['description4'])); ?></p></td>
+    </tr>
+  </tbody>
+</table>
+<div class="submitButton"> <a href="/admin/event_review/edit/<?php echo $arrEventReviewData['id'] ?>">
+  <button class="btn btn-lg btn-primary btnW200" type="button">イベントレビュー編集</button></a>
+</div>

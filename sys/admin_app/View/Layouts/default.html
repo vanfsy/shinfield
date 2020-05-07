@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <?php echo $this->html->meta('icon','/assets/ico/favicon.ico', array('fullBase' => true)); ?>
+
+    <title>管理画面</title>
+
+    <!-- Bootstrap core CSS -->
+    <?php echo $this->html->css('bootstrap.min.css', array('fullBase' => true)); ?>
+
+    <!-- Custom styles for this template -->
+    <?php echo $this->html->css('dashboard.css', array('fullBase' => true)); ?>
+
+    <?php echo $this->html->css('main.css', array('fullBase' => true)); ?>
+    <?php echo $this->html->css('common.css', array('fullBase' => true)); ?>
+    <?php echo $this->html->css('ext.css', array('fullBase' => true)); ?>
+
+<?php echo $this->fetch('css'); ?>
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <h1 class="header_top">管理画面</h1>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a>Login <?php echo $loginname ?></a></li>
+            <li><a href="/admin/dashboard/">ダッシュボード</a></li>
+            <li><a href="/admin/user/logout/">ログアウト</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul id="sideNav" class="nav nav-sidebar">
+
+    <?php if ($this->viewPath == 'Dashboard'){ ?>
+            <li class="active"><a href="/admin/dashboard">ダッシュボード</a></li>
+    <?php } else { ?>
+            <li><a href="/admin/dashboard">ダッシュボード</a></li>
+    <?php } ?>
+    <?php if ($this->viewPath == 'Item'){ ?>
+            <li class="active"><a href="/admin/item">商品情報</a></li>
+    <?php } else { ?>
+            <li><a href="/admin/item">商品情報</a></li>
+    <?php } ?>
+    <?php if ($this->viewPath == 'User' && $this->action != 'admin_profile'){ ?>
+            <li class="active"><a href="/admin/user">ユーザ情報</a></li>
+    <?php } else { ?>
+            <li><a href="/admin/user">ユーザ情報</a></li>
+    <?php } ?>
+
+    <?php if ($this->viewPath == 'Review') { ?>
+            <li class="active"><a href="/admin/review">レビュー情報</a></li>
+    <?php } else { ?>
+            <li><a href="/admin/review">レビュー情報</a></li>
+    <?php } ?>
+
+    <?php if ($this->viewPath == 'Order'){ ?>
+            <li class="active"><a href="/admin/order">購入情報管理</a></li>
+    <?php } else { ?>
+            <li><a href="/admin/order">購入情報管理</a></li>
+    <?php } ?>
+
+    <?php if ($this->viewPath == 'Cashing'){ ?>
+            <li class="active"><a href="/admin/cashing">換金情報管理</a></li>
+    <?php } else { ?>
+            <li><a href="/admin/cashing">換金情報管理</a></li>
+    <?php } ?>
+
+    <?php if ($this->viewPath == 'PointPay'){ ?>
+            <li class="active"><a href="/admin/point_pay">決済情報管理</a></li>
+    <?php } else { ?>
+            <li><a href="/admin/point_pay">決済情報管理</a></li>
+    <?php } ?>
+
+    <?php if ($this->viewPath == 'Config'){ ?>
+            <li class="active"><a href="/admin/config">設定値管理</a></li>
+    <?php } else { ?>
+            <li><a href="/admin/config">設定値管理</a></li>
+    <?php } ?>
+
+    <?php if ($this->viewPath == 'HtmlPart'){ ?>
+            <li class="active"><a href="/admin/html_part">ページ・CSS編集</a></li>
+    <?php } else { ?>
+            <li><a href="/admin/html_part">ページ・CSS編集</a></li>
+    <?php } ?>
+<!--
+    <?php if ($this->viewPath == 'Contact'){ ?>
+            <li class="active"><a href="/admin/contact">問い合わせ情報</a></li>
+    <?php } else { ?>
+            <li><a href="/admin/contact">問い合わせ情報</a></li>
+    <?php } ?>
+-->
+    <?php if ($this->viewPath == 'Whatnews'){ ?>
+            <li class="active"><a href="/admin/whatnews">新着情報管理</a></li>
+    <?php } else { ?>
+            <li><a href="/admin/whatnews">新着情報管理</a></li>
+    <?php } ?>
+
+    <?php if ($this->viewPath == 'User' && $this->action == 'admin_profile'){ ?>
+            <li class="active"><a href="/admin/user/admin_profile">管理者情報管理</a></li>
+    <?php } else { ?>
+            <li><a href="/admin/user/admin_profile">管理者情報管理</a></li>
+    <?php } ?>
+
+          </ul>
+        </div>
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<?php echo $this->fetch('content'); ?>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><?php echo $this->html->script('ie8-responsive-file-warning.js', array('fullBase' => true)); ?></script><![endif]-->
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <?php echo $this->html->script('admin.js', array('fullBase' => true)); ?>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <?php echo $this->html->script('bootstrap.min.js', array('fullBase' => true)); ?>
+
+<!--[if lt IE 9]>
+<script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<?php echo $this->fetch('script'); ?>
+
+  </body>
+
+</html>
+	<?php echo $this->element('sql_dump'); ?>

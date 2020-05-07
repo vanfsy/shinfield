@@ -1,0 +1,75 @@
+<?php
+$meta_title = Configure::read('html.law');
+$meta_keywords = Configure::read('html.law');
+$meta_description = Configure::read('html.law');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$this->Html->css('/css/style.css', null, array('inline' => false));
+
+$arrTopicPath[] = array('ショップガイド' => '/guide/');
+$arrTopicPath[] = array('送料・納期' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$code_area = <<< EOF
+EOF;
+$this->assign('code_area', $code_area);
+?>
+
+<div id="legal">
+  <section id="content">
+    <h2 class="f25 mb40">お問い合わせ</h2>
+    <!--
+    <h3 class="ml30 mb30 mt20"><span>運営会社</span></h3>
+
+    
+      <p class="title">運営会社</p>
+      <p>テキストが入ります</p>
+    
+    
+      <p class="title">運営統括責任者</p>
+      <p>テキストが入ります</p>
+    
+    
+      <p class="title">所在地</p>
+      <p>テキストが入ります</p>
+    
+    
+      <p class="title">販売価格</p>
+      <p>テキストが入ります</p>
+    
+    
+      <p class="title">お支払い方法</p>
+      <p>テキストが入ります</p>
+    
+    
+      <p class="title">お届け方法</p>
+      <p>テキストが入ります</p>
+    
+    
+      <p class="title">お届け期間</p>
+      <p>テキストが入ります</p>
+    
+    
+      <p class="title">有効期限</p>
+      <p>テキストが入ります</p>
+    
+    
+      <p class="title">商品の返品</p>
+      <p>テキストが入ります</p>
+    
+    
+      <p class="title">メールアドレス※</p>
+      <p>テキストが入ります</p>
+    
+    
+      <p class="title">電話番号</p>
+      <p>テキストが入ります</p>
+    -->
+    <?php echo $HTML_GUIDE_ABOUT ?>
+
+  
+</section>
+</div>

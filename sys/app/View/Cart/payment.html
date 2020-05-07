@@ -1,0 +1,93 @@
+<?php
+$meta_title = Configure::read('html.cart');
+$meta_keywords = Configure::read('html.cart');
+$meta_description = Configure::read('html.cart');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$this->Html->css('/css/style.css', null, array('inline' => false));
+
+$referer = @$_SERVER["HTTP_REFERER"];
+if(empty($referer) || strpos($referer,'/cart') !== false){
+  $referer = '/item/category';
+}
+
+$arrMember = $arrAuthMember['Member'];
+
+$isPoint = true;
+if($arrMember['point'] < $arrCart['sumTotal']){
+  $isPoint = false;
+}
+
+$arrTopicPath[] = array('商品一覧' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$code_area = <<< EOF
+EOF;
+$this->assign('script_area', $code_area);
+?>
+
+<section>
+  <h2 class="f25 mb40">カート</h2>
+    <h3 class="ml30 mb30 mt40"><span>商品を購入する</span></h3>
+    <table class="cart">
+      <caption class="textright">
+      （ポイント）
+      </caption>
+      <tr class="bg_lightgray">
+        <th>商品番号</th>
+        <th class="width30">タイトル名</th>
+        <th>販売額</th>
+        <th>削除</th>
+        <th>小計</th>
+      </tr>
+      <?php if(!empty($arrCart['list'])): ?>
+      <?php foreach($arrCart['list'] as $row): ?>
+      <tr>
+        <td><?php echo sprintf('%06d', $row['item_id']) ?></td>
+        <td class="tl"><a href="/item/detail/<?php echo sprintf('%06d', $row['item_id']) ?>"><?php echo h($row['item_name']) ?></a></td>
+        <td><?php echo number_format($row['price']) ?></td>
+        <td><a href="/cart/delItem/<?php echo $row['item_id'] ?>">削除</a></td>
+        <td><?php echo number_format($row['total']) ?></td>
+      </tr>
+      <?php endforeach; ?>
+      <?php else: ?>
+      <tr>
+        <td colspan="4">現在カートに商品は入っていません</td>
+      </tr>
+      <?php endif; ?>
+      <tr>
+        <td colspan="4" class="trr bg_lightgray">合　計</td>
+        <td><?php echo number_format($arrCart['sumTotal']) ?></td>
+      </tr>
+    </table>
+    
+        <table class="border-all-gray ml30 mb30 mt30 width90">
+      <tr>
+        <th class="bg_lightgray pr10 pt05 pb05 textright border-all-gray width85">現在の保有ポイント数</th>
+        <td class="textcenter pl10 pt05 pb05 border-all-gray width20"><?php echo number_format($arrMember['point']) ?></td>
+      </tr>
+      <tr>
+        <th class="bg_lightgray pr10 pt05 pb05 textright border-all-gray">今回使用するポイント数</th>
+        <td class="textcenter pl10 pt05 pb05 border-all-gray"><?php echo number_format($arrCart['sumTotal']) ?></td>
+      </tr>
+    </table>
+
+    <?php if($isPoint): ?>
+
+    <div class="btn_area ml30 mt30 width90 clearfix">
+      <p class="alignleft mr10"><a href="<?php echo $referer ?>"><img src="/img/shoppingBtn.png" alt="買い物を続ける"></a></p>
+      <p><a href=""><img src="/img/settlementBtn.png" alt="ポイント決済する"></a></p>
+    </div>
+    <?php else: ?>
+    <p class="textright red pr30">ポイントが足りません。ポイント購入するボタンからポイントを購入してください。</p>
+    <div class="btn_area ml30 mt30 width90 clearfix">
+      <p class="alignleft mr10"><a href="<?php echo $referer ?>"><img src="/img/shoppingBtn.png" alt="買い物を続ける"></a></p>
+      <p class="alignleft mr10"><a href="/cart/buy_point"><img src="/img/pointBtn.png" alt="ポイント購入する"></a></p>
+      <p><img src="/img/settlementBtn.png" alt="ポイント決済する"></p>
+    </div>
+    <?php endif; ?>
+    
+</section>

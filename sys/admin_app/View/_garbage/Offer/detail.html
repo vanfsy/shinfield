@@ -1,0 +1,27 @@
+          <h1 class="page-header">イベント提案情報</h1>
+
+          <h2 class="sub-header">イベント提案詳細情報</h2>
+
+          <table class="table table-hover">
+            <tbody>
+              <tr>
+                <th>提案日</th>
+                <td><p><?php echo date('Y年m月d日',strtotime($arrDatas['OfferEventData']['created'])) ?></p></td>
+              </tr>
+              <tr>
+                <th>名前</th>
+                <td><p><?php echo h($arrDatas['OfferEventData']['name']); ?></p></td>
+              </tr>
+              <tr>
+                <th>メールアドレス</th>
+                <td><p><?php echo h($arrDatas['OfferEventData']['email']); ?></p></td>
+              </tr>
+              <tr>
+                <th>提案内容</th>
+                <td><p><?php echo nl2br(h($arrDatas['OfferEventData']['summary'])); ?></p></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="submitButton"><a href="/admin/offer/"><button class="btn btn-lg btn-primary btnW200" type="button">一覧へ戻る</button></a></div>
+    

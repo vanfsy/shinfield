@@ -1,0 +1,23 @@
+
+<!--{assign var=entity value=$param.entity}-->
+			<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table1">
+				<tr>
+					<th width="20%">ファイル名</th>
+					<td>
+						xxxx.jpg
+					</td>
+				</tr>
+				<tr>
+					<th width="20%">パス</th>
+					<td>
+						http://www.xxx.com/www/xxxx.jpg
+					</td>
+				</tr>
+			</table>
+			<div class="submit_area">
+				<input name="submit" type='button' value='一覧に戻る' class="btn" onclick="location = '<!--{$home_url}-->admin/site/media/'" />　
+				<input name="submit" type='button' value='修　　正' class="btn" onclick="location = '<!--{$param.reentry_url}--><!--{$entity.page_contents.id}-->'" />　
+<!--{if $param.complete_url != ""}-->
+				<input name="submit" type='button' value='確　　定' class="btn" onclick="location = '<!--{$param.complete_url}-->'" />　
+<!--{/if}-->
+			</div>

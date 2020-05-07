@@ -1,0 +1,22 @@
+<?php 
+      $img_url = $this->Upload->uploadUrl($row,'Item.main_image',array('style'=>'list_s'));
+      $img_path = str_replace('//','/',WWW_ROOT.$img_url);
+      if(!file_exists($img_path)){
+        $img_url = "/img/front_s.png";
+      }
+      $item_url = "/item/detail/".$row['Item']['id'];
+      $title = mb_strimwidth($row['Item']['title'], 0, 40, "…");
+      $name_base = $row['Member']['company'].' '.$row['Member']['name'];
+      $name = mb_strimwidth($name_base, 0, 38, "…");
+      $price = number_format($row['Item']['price']);
+      $user_url = "/mypage/sellerinfo/".$row['Item']['member_id'];
+?>
+<div class="col-xs-12 col-sm-6 col-md-3">
+    <dl class="">
+        <dt><a href="<?= $item_url ?>"><img src="<?= $img_url ?>" alt="<?= h($row['Item']['title']) ?>" onerror="onImgErr(this)"></a></dt>
+        <dd class="mt05 title_wrapper">
+          <p class="title textleft"><a href="<?= $item_url ?>"><?= h($title) ?></a></p>
+          <p class="name"><a class="company_a" href="<?= $user_url ?>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><?= h($name) ?></a></p>
+        </dd>
+    </dl>
+</div>

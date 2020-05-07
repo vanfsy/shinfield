@@ -1,0 +1,49 @@
+<?php $arrReviewItem = $arrData['Review']; ?>
+<h1 class="page-header">レビュー情報管理</h1>
+<h2 class="sub-header">レビュー詳細情報</h2>
+<?php echo $this->element('alert'); ?>
+<table class="table table-hover">
+    <tbody>
+        <tr>
+            <th>レビューID</th>
+            <td><p><?php echo h($arrReviewItem['id']); ?></p></td>
+        </tr>
+        <tr>
+            <th>メンバーID</th>
+            <td><p><?php echo $this->Html->link($arrReviewItem['member_id'], '/user/detail/' . $arrReviewItem['member_id'], array('target' => '_blank')); ?></p></td>
+        </tr>
+        <tr>
+            <th>アイテムID</th>
+            <td><p><?php echo $this->Html->link($arrReviewItem['item_id'], '/item/detail/' . $arrReviewItem['item_id'], array('target' => '_blank')); ?></p></td>
+        </tr>
+        <tr>
+            <th>コメント</th>
+            <td><p><?php echo h($arrReviewItem['comment']); ?></p></td>
+        </tr>
+        <tr>
+            <th>評価</th>
+            <td><p><?php echo Configure::read('rating')[$arrReviewItem['rating']]; ?></p></td>
+        </tr>
+        <tr>
+            <th>評価</th>
+            <td><p><?php echo Configure::read('del_flg')[$arrReviewItem['del_flg']]; ?></p></td>
+        </tr>
+        <tr>
+            <th>登録日</th>
+            <td><p><?php echo date('Y年m月d日　H時i分', strtotime($arrReviewItem['created'])); ?></p></td>
+        </tr>
+        <tr>
+            <th>更新日</th>
+            <td><p><?php echo date('Y年m月d日　H時i分', strtotime($arrReviewItem['modified'])); ?></p></td>
+        </tr>
+    </tbody>
+</table>
+<?php echo $this->Form->end(); ?>
+<div class="submitButton">
+    <a href="/admin/review/edit/<?php echo $arrReviewItem['id']; ?>">
+        <button class="btn btn-lg btn-primary btnW200" type="button">編集</button>
+    </a>
+</div>
+<div class="submitButton">
+    <a href="/admin/review/"><button class="btn btn-lg btn-primary btnW200" type="button">一覧へ戻る</button></a>
+</div>

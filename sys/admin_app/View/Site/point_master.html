@@ -1,0 +1,28 @@
+	<form action="<!--{$param.fm_action}-->" name="form1" method="post" >
+		<input name="data[mode]" id="mode" type="hidden" value="massup" />
+			<div class="submit_area">
+				<!--{if !empty($attention_message)}--><p id="head_message"><!--{$attention_message}--></p><!--{/if}-->
+			</div>
+			<p style="text-align:right;"><input name="submit2" type='submit' value='登録・更新' class="btn" /></p>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table1">
+		<tr>
+			<th width="15%" align="center">ID</th>
+			<th width="20%" align="center">CODE</th>
+			<th width="40%" align="center">項目</th>
+			<th width="25%" align="center">ポイント</th>
+		</tr>
+
+<!--{ section name=i loop=$param.entity.list }-->
+<!--{assign var=list value=$param.entity.list[i]}-->
+
+		<tr>
+			<td align="center"><!--{$list.id}--></td>
+			<td align="center"><!--{$list.code}--></td>
+			<td><!--{$list.name|escape}--></td>
+			<td align="center"><input type="text" name="data[data_leaves][point][<!--{$list.id}-->]" value="<!--{$list.point}-->" style="width:50px;" > point </td>
+		</tr>
+<!--{ /section }-->
+<!--リスト処理-->
+
+			</table>
+	</form><br />

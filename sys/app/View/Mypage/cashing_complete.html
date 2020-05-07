@@ -1,0 +1,73 @@
+<?php
+$meta_title = Configure::read('html.mypage');
+$meta_keywords = Configure::read('html.mypage');
+$meta_description = Configure::read('html.mypage');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$arrTopicPath[] = array('マイページ' => '/mypage/');
+$arrTopicPath[] = array('デスクトップ' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$this->Html->css('/css/main02.css', null, array('inline' => false));
+
+$code_area = <<< EOF
+EOF;
+$this->assign('code_area', $code_area);
+?>
+
+<section>
+  <h2 class="f25 mb20">マイページ</h2>
+  <div class="ml20 mr20">
+    <div class="black waku01 mt20">販売者用</div>
+    <table class="table03 mt10 black">
+      <tbody>
+        <tr>
+          <th>商品管理　&#8230;</th>
+          <td><a href="/mypage/item">＋ 商品を出品する</a></td>
+        </tr>
+        <tr>
+          <th>&nbsp;</th>
+          <td><a href="/mypage/item_list">＋ 商品リスト／登録した商品を編集する</a></td>
+        </tr>
+        <tr>
+          <th>売上管理　&#8230;</th>
+          <td><a href="/mypage/sales_report">＋ 売り上げ状況を確認する</a></td>
+        </tr>
+        <tr>
+          <th>&nbsp;</th>
+          <td><a href="/mypage/cashing">＋ 換金申請をする</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="black waku01 mt30 width200p">換金申請（申請完了）</div>
+    <p class="mt10 red">換金申請が完了いたしました。支払について後日ご連絡が行きますので少々お待ちください。</p>
+    <table class="table05 mt20">
+      <tbody>
+        <tr>
+          <th>現在の保有ポイント数　</th>
+          <td><?php echo number_format($arrData['Member']['point']) ?></td>
+        </tr>
+        <tr>
+          <th>換金申請できる金額（円）　</th>
+          <td><?php echo number_format($cashingPossible) ?></td>
+        </tr>
+        <tr>
+          <th>最低換金額（円）　</th>
+          <td><?php echo number_format($cashingMinMoney) ?></td>
+        </tr>
+        <tr>
+          <th>現在の換金申請している金額　</th>
+          <td>
+            <?php echo number_format($arrCashingData['CashingData']['total_money']) ?>
+            <?php if(!empty($arrCashingData['CashingData']['total_money'])) echo '（換金申請手数料 '.number_format($arrCashingData['CashingData']['total_fee']).'）' ?>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</section>

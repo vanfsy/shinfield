@@ -1,0 +1,116 @@
+<style>
+    .imgPreview {
+        max-width: 150px;
+    }
+</style>
+<script>
+    var parts = <?php echo $jsonStr; ?>;
+    function changeType(slt) {
+        var txt = parts[slt.value].html;
+        if (txt == "") {
+            txt = parts[slt.value].defHtml;
+        }
+        $('#htmlEditArea').val(txt);
+    }
+    function updateHtml() {
+        if ($('#htmlPartType').val() != "") {
+            $('#part_type').val($('#htmlPartType').val());
+            $('#part_html').val($('#htmlEditArea').val());
+            $('#html_edit').submit();
+        }
+    }
+    function updateProgress(e) {
+        if (e.lengthComputable) {
+            var percent = e.loaded / e.total;
+            $("progress").attr("value", percent * 100);
+        }
+    }
+    function uploadStart() {
+        var fileUpForm = document.getElementById('FileUpForm');
+        var formData = new FormData(fileUpForm);
+        $('#progress').val(0);
+        $('#progress').show();
+        $.ajax({
+            url: fileUpForm.action,
+            method: 'post',
+            data: formData,
+            processData: false,
+            contentType: false,
+            xhr: function(){
+                XHR = $.ajaxSettings.xhr();
+                if(XHR.upload){
+                    XHR.upload.addEventListener("progress", updateProgress, false);
+                }
+                return XHR;
+            }
+        }).done(function( res ) {
+            console.log('SUCCESS', res);
+            $('#progress').hide();
+            if (res.substr(0, 1) === "1") {
+                var imgPath = res.substr(2);
+                $("#uploadedImageList").append("<img class='imgPreview' src='" + imgPath + "'/><span>" + imgPath + "</span>");
+            } else if(res.substr(0, 1) === "0") {
+                alert(res.substr(2));
+            } else {
+                alert('アップロードに失敗しました。');
+            }
+        }).fail(function( jqXHR, textStatus, errorThrown ) {
+            console.log('ERROR', jqXHR, textStatus, errorThrown);
+            alert('アップロードに失敗しました。');
+            $('#progress').hide();
+        });
+    }
+</script>
+<h1 class="page-header">ページ・CSS編集</h1>
+<?php echo $this->element('alert'); ?>
+<div class="row placeholders">
+    <div class="table-responsive">
+        <table id="main_tbl" class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th align="left">区分</th>
+                    <td align="left">
+                        <select id="htmlPartType" onchange="changeType(this)" class="form-control">
+                            <?php if(!empty($arrData)): ?>
+                            <?php foreach($arrData as $part): ?>
+                            <?php if($part['selected']): ?>
+                            <option value="<?php echo $part['type'];?>" selected><?php echo $part['desc'];?></option>
+                            <?php else: ?>
+                            <option value="<?php echo $part['type'];?>"><?php echo $part['desc'];?></option>
+                            <?php endif; ?>
+                            <?php endforeach; ?>
+                            <?php endif; ?>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th align="left">HTML・CSS</th>
+                    <td align="left">
+                        <textarea id="htmlEditArea" name="htmlEditArea" class="form-control" rows="20"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th align="left">画像アップロード</th>
+                    <td align="left">
+                        <?php echo $this->Form->create('HtmlPart',
+                            array('id' => 'FileUpForm',
+                            'url' => '/html_part/upload_file',
+                            'type' => 'file',
+                        )); ?>
+                        <?php echo $this->Form->input('file',array('type'=>'file','label'=>false,'div' => false,'class'=>'aligncenter', 'accept'=>'image/jpeg,image/png,image/gif', 'id'=>'fileInput', 'onChange' => 'uploadStart()')) ?>
+                        <?php echo $this->Form->end(); ?>
+                        <div id="uploadedImageList"></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <progress value="0" style="display: none;width: 80%;" id="progress"></progress>
+        <div class="submitButton"><button class="btn btn-lg btn-primary btnW200" onclick="updateHtml()">更新</button></div>
+        <?php echo $this->Form->create('HtmlPart', array('id' => 'html_edit', 'url' => '/html_part/update',)); ?>
+        <?php echo $this->Form->input('part_type', array('id' => 'part_type', 'label' => false, 'type' => 'hidden', 'value' => '')) ?>
+        <?php echo $this->Form->input('part_html', array('id' => 'part_html', 'label' => false, 'type' => 'hidden', 'value' => '')) ?>
+        <?php echo $this->Form->end(); ?>
+    </div>
+</div>
+
+<?php echo $this->Html->script('htmlpart.js', array('inline' => false)); ?>

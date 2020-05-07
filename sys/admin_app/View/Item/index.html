@@ -1,0 +1,151 @@
+<?php
+// エリア
+$arrArea = Configure::read('arrArea');
+
+// 公開・非公開
+$arrPublicFlg = array('-1' => '未選択','0' => '非公開','1' => '公開');
+
+?>
+<h1 class="page-header">商品情報</h1>
+
+<?php echo $this->element('alert'); ?>
+
+<h2 class="sub-header">商品情報 一覧</h2>
+
+<!-- Button trigger modal -->
+<div class="col-sm-8 text-left"><?php echo $strSearchParam ?></div>
+<button type="button" class="btn btn-primary btn-lg mBottom20" data-toggle="modal" data-target="#myModal">
+    検索条件
+</button> &nbsp;&nbsp;&nbsp;
+<a href="/admin/item/edit"><button type="button" class="btn btn-primary btn-lg mBottom20">商品新規登録</button></a>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">検索条件</h4>
+            </div>
+            <div class="modal-body">
+                <?php echo $this->Form->create('SearchParam',array('url' => '/item/','class' => 'form-horizontal','role'=>'form')); ?>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">ユーザー名</label>
+                    <div class="col-sm-9">
+                        <?php echo $this->Form->input('member_no',array('label'=>false, 
+                            'id'=>'inp_member_id', 'placeholder' => 'ユーザー名またはユーザー番号',
+                            'class'=>'form-control','value' => $arrSearchParam['member_no'])) ?>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">商品番号</label>
+                    <div class="col-sm-9">
+                        <?php echo $this->Form->input('id',array('label'=>false, 'id'=>'inp_id', 'class'=>'form-control','value' => $arrSearchParam['id'])) ?>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">商品タイトル</label>
+                    <div class="col-sm-9">
+                        <?php echo $this->Form->input('title',array('label'=>false, 'id'=>'inp_title', 'class'=>'form-control','value' => $arrSearchParam['title'])) ?>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">キーワード</label>
+                    <div class="col-sm-9">
+                        <?php echo $this->Form->input('keywords',array('label'=>false, 'id'=>'inp_keywords','class'=>'form-control','value' => $arrSearchParam['keywords'])) ?>
+                    </div>
+                </div>
+
+                <div class="submitButton"><button class="btn btn-lg btn-primary btnW200" type="submit">検索</button> <button class="btn btn-lg btn-primary btnW200" type="button" onClick="searchClear()">クリア</button></div>
+
+                <?php echo $this->Form->end(); ?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <?php echo $this->Session->flash('auth'); ?>
+    <?php echo $this->Form->create('Item', array('url' => array('controller' => 'item', 'action' => 'item_all_del'), 'type' => 'post')); ?>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <tr>
+                <th class="w50">選択</th>
+                <th class="w50">登録日</th>
+                <th class="w50">商品番号</th>
+                <th class="w400">タイトル</th>
+                <th class="w120">カテゴリ</th>
+                <th class="w100">価格</th>
+            </tr>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($arrItem['list'] as $row): ?>
+            <tr>
+                <td><?php echo $this->Form->checkbox('delete_id_' . $row['Item']['id'], array('class' => 'delete-check', 'hiddenField' => false, 'value' => $row['Item']['id'])); ?></td>
+                <td align="left"><?php echo date('Y.m.d',strtotime($row['Item']['created'])) ?></td>
+                <td align="left"><?php echo $row['Item']['id'] ?></td>
+                <td align="left"><?php echo $row['Item']['title'] ?><br>
+                    <a href="/admin/item/detail/<?php echo $row['Item']['id'] ?>"><span class="label label-info">詳細・編集</span></a>
+                    <a href="javascript:void(0)" onClick="delConfirm('/admin/item/del/<?php echo $row['Item']['id'] ?>')"><span class="label label-danger">削　除</span></a>
+                </td>
+                <td align="left"><?php echo $row['Item']['category'] ?></td>
+                <td align="left"><?php echo number_format($row['Item']['price']) ?></td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <div class="form-group" style="margin-top:15px;">
+        <?php echo $this->Form->button('全選択', array('type' => 'button', 'id' => 'select-delete', 'style' => 'margin-right:10px;', 'class' => 'btn btn-info btn-sm pull-left')); ?>
+        <?php echo $this->Form->button('選択した商品を削除', array('type' => 'submit', 'id' => 'select-delete', 'class' => 'btn btn-warning btn-sm pull-left')); ?>
+    </div>
+    <?php echo $this->Form->end(); ?>
+    <!-- ページネーション -->
+    <?php echo $this->Paging->list_navi($arrItem,$url,5); ?>
+    <!-- ページネーション -->
+
+</div>
+<script>
+    function pickupChange(id) {
+        target = $("#pickup_" + id);
+        mode = 'off';
+        if (target.hasClass('label-default')) {
+            mode = 'on';
+        }
+        $.ajax({
+            type: "POST",
+            url: "/admin/event/pickup_change/" + id + "/" + mode + "/",
+            dataType: "html",
+            success: function (request) {
+                if (request == 'OK') {
+                    pickupViewChange(id, mode);
+                }
+            }
+        });
+    }
+
+    function pickupViewChange(id, mode) {
+        target = $("#pickup_" + id);
+        if (mode == 'on') {
+            target.removeClass('label-default');
+            target.addClass('label-warning');
+        } else {
+            target.removeClass('label-warning');
+            target.addClass('label-default');
+        }
+    }
+
+    function searchClear() {
+        $("#inp_id").val('');
+        $("#inp_member_id").val('');
+        $("#inp_title").val('');
+        $("#inp_keywords").val('');
+        $(".inp_public").removeAttr('checked');
+    }
+
+</script>

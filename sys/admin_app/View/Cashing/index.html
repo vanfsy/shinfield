@@ -1,0 +1,104 @@
+<?php
+// 換金申請ステータス
+$arrCashingStatus = Configure::read('arrCashingStatus');
+
+?>
+<h1 class="page-header">換金情報管理</h1>
+
+<?php echo $this->element('alert'); ?>
+
+<h2 class="sub-header">換金申請 一覧</h2>
+
+<!-- Button trigger modal -->
+<div class="col-sm-8 text-left"><?php echo $strSearchParam ?></div>
+
+<button type="button" class="btn btn-primary btn-lg mBottom20" data-toggle="modal" data-target="#myModal">
+    検索条件
+</button> &nbsp;&nbsp;&nbsp;
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">検索条件</h4>
+            </div>
+            <div class="modal-body">
+                <?php echo $this->Form->create('SearchParam',array('url' => '/cashing/','class' =>
+                'form-horizontal','role'=>'form')); ?>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">ユーザー名</label>
+
+                    <div class="col-sm-9">
+                        <?php echo $this->Form->input('name',array('label'=>false,'class'=>'form-control','value' =>
+                        $arrSearchParam['name'])) ?>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">換金番号</label>
+
+                    <div class="col-sm-9">
+                        <?php echo $this->Form->input('id',array('label'=>false,'class'=>'form-control','value' =>
+                        $arrSearchParam['id'])) ?>
+                    </div>
+                </div>
+
+                <div class="submitButton">
+                    <button class="btn btn-lg btn-primary btnW200" type="submit">検索</button>
+                </div>
+
+                <?php echo $this->Form->end(); ?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+        <tr>
+            <th class="w50">換金番号</th>
+            <th class="w50">申請日</th>
+            <th class="w400">ユーザ名</th>
+            <th class="w120">ステータス</th>
+            <th class="w100">申請金額</th>
+        </tr>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach($arrData['list'] as $row): ?>
+        <tr>
+            <td align="left"><?php echo $row['CashingData']['id'] ?></td>
+            <td align="left"><?php echo date('Y.m.d',strtotime($row['CashingData']['created'])) ?></td>
+            <td align="left"><?php echo $row['Member']['company'] ?>　<?php echo $row['Member']['name'] ?><br>
+                <a href="/admin/cashing/detail/<?php echo $row['CashingData']['id'] ?>"><span class="label label-info">詳細・編集</span></a>
+                <a href="javascript:void(0)"
+                   onClick="delConfirm('/admin/cashing/del/<?php echo $row['CashingData']['id'] ?>')"><span
+                        class="label label-danger">削　除</span></a>
+            </td>
+            <td align="left"><?php echo $arrCashingStatus[$row['CashingData']['status']] ?></td>
+            <td align="left">
+                <?php echo number_format($row['CashingData']['money']+$row['CashingData']['fee']) ?> 円
+                <p>
+                    手数料：<?php echo number_format($row['CashingData']['fee']) ?> 円<br>
+                    振込金額：<?php echo number_format($row['CashingData']['money']); ?> 円
+                </p>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <!-- ページネーション -->
+    <?php echo $this->Paging->list_navi($arrData,$url,5); ?>
+    <!-- ページネーション -->
+
+</div>

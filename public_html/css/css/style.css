@@ -1,0 +1,37 @@
+@charset "utf-8";
+
+/*------メイン------------------*/
+.category{
+	width:100%;
+}
+.category p{
+	float:left;
+}
+
+.category ul.cate_menu li{
+	float:right;
+	margin-left:15px;
+}
+.category ul.cate_menu li.current{
+	font-weight:bold;
+}
+dl.follow{
+	width:100%;
+	background:red;
+	padding:0 20px;
+
+}
+dl.follow dt{
+	width:25%;
+	float:left;
+}
+dl.follow dd{
+	width:75%;
+	float:right;
+}
+/*-----------------------*/
+#side dl.pickUp{
+	width:80%;
+	margin:0 auto;
+
+}

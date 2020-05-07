@@ -1,0 +1,295 @@
+<?php
+/**
+ *
+ *
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
+ * @package       app.View.Layouts
+ * @since         CakePHP(tm) v 0.10.0.1076
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ */
+ if(!isset($strCategory)){
+    $strCategory = null;
+ }
+?>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<!--[if lt IE 9]><meta http-equiv="X-UA-Compatible" content="IE=edge"></script><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title><?php echo $title_for_layout; ?></title>
+<?php echo $this->fetch('meta'); ?>
+
+<!-- css -->
+<link href="/css/common.css?<?= rand(); ?>" rel="stylesheet">
+<link href="/css/main.css?<?= rand(); ?>" rel="stylesheet">
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/slider-pro.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/magnific-popup.css" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+<?php echo $this->fetch('css'); ?><?php echo $this->element('googl_tracking');?>
+<script>
+function onImgErr(elm) {
+    elm.src = "/img/front.png";
+}
+</script>
+</head>
+
+<body>
+<a id="top"></a> 
+
+<!-- ヘッダここから -->
+<header>
+<div class="header">
+<div class="header_naka">
+  <div class="top clearfix">
+    <div class="header_logo_box">
+        <!--
+        <p><a href="/"><img src="/img/logo.png" alt="<?php echo Configure::read('info.siteName'); ?>" class="header-logo" width="350"></a></p>
+        <h1 class="header_top">CtoC・ECマッチングサイト構築CMS</h1>
+        -->
+        <?php echo $HTML_HEADER_LOGO ?>
+    </div>
+    <?php if(!empty($loginname)): ?>
+    <ul class="header_menu pt10">
+        <li><a href="/mypage/logout" class="mybtn mybtn01">ログアウト</a></li>
+        <li><a href="/mypage" class="mybtn mybtn02">マイページ</a></li>
+      <!--<li><a href="/mypage/logout" class="button_style_orange lh60 width150p">ログアウト</a></li>
+      <li><a href="/mypage/" class="button_style_blue lh60 width150p lh40">マイページ</a></li>-->
+    </ul>
+    <?php else: ?>
+    <ul class="header_menu pt10">
+        <li><a href="/mypage/" class="mybtn mybtn01">ログイン</a></li>
+        <li><a href="/member_regist" class="mybtn mybtn02">新規登録</a></li>
+      <!--<li><a href="/mypage/"class="button_style_orange lh60 width150p">ログイン</a></li>
+      <li><a href="/member_regist"class="button_style_blue lh60 width150p lh40">新規登録</a></li>-->
+    </ul>
+    <?php endif; ?>
+    <div id="sp_menu_btn"> <span class="strong f12">MENU</span> </div>
+    <div class="sp_menu_box"></div>
+    <nav>
+      <ul id="menu" class="clearfix">
+        <?php if($strCategory == '行きます（国内）'): ?>
+        <li class="current"><a href="/item/category/行きます（国内）">行きます（国内）</a></li>
+        <?php else: ?>
+        <li><a href="/item/category/行きます（国内）">行きます（国内）</a></li>
+        <?php endif; ?>
+        <?php if($strCategory == '行きます（海外）'): ?>
+        <li class="current"><a href="/item/category/行きます（海外）外">行きます（海外）</a></li>
+        <?php else: ?>
+        <li><a href="/item/category/行きます（海外）">行きます（海外）</a></li>
+        <?php endif; ?>
+        <?php if($strCategory == '行きます（国内）'): ?>
+        <li class="current"><a href="/item/category/行きます（国内）">行きます（国内）</a></li>
+        <?php else: ?>
+        <li><a href="/item/category/あります（国内）">あります（国内）</a></li>
+        <?php endif; ?>
+        <?php if($strCategory == 'あります（国内）'): ?>
+        <li class="current"><a href="/item/category/あります（海外）">あります（海外）</a></li>
+        <?php else: ?>
+        <li><a href="/item/category/あります（海外）">あります（海外）</a></li>
+        <?php endif; ?>
+        <?php if($strCategory == 'さがしてます（国内）'): ?>
+        <li class="current"><a href="/item/category/さがしてます（国内）">さがしてます（国内）</a></li>
+        <?php else: ?>
+        <li><a href="/item/category/さがしてます（国内）">さがしてます（国内）</a></li>
+        <?php endif; ?>
+        <?php if($strCategory == 'さがしてます（海外）'): ?>
+        <li class="current"><a href="/item/category/さがしてます（海外）">さがしてます（海外）</a></li>
+        <?php else: ?>
+        <li><a href="/item/category/さがしてます（海外）">さがしてます（海外）</a></li>
+        <?php endif; ?>
+        <?php if($strCategory == 'その他'): ?>
+        <li class="current"><a href="/item/category/その他">その他</a></li>
+        <?php else: ?>
+        <li><a href="/item/category/その他">その他</a></li>
+        <?php endif; ?>
+      </ul>
+    </nav>
+  </div>
+</div>
+</header>
+<!-- ヘッダここまで -->
+<div class="sp_side_header">
+  <form class="mb10" action="/item/search/" enctype="text/plain" method="get">
+    <div class="search_box">
+      <input type="search" name="keyword" placeholder="検索する">
+      <button class="search_btn"><span class="search_mark"></span></button>
+    </div>
+  </form>
+  <div class="side_banner">
+    <ul class="sp_side_header_btn row" style="padding-left: 0px;">
+      <!--
+      <li class="col-xs-6 col-sm-6"><a href="/cart"><img src="/img/cartBtn.png" alt="カートを見る"></a></li>
+      <li class="col-xs-6 col-sm-6"><a href="/mypage/item"><img src="/img/exhibitBtn.png" alt="商品を出品する"></a></li>
+      -->
+      <li class="col-xs-6 col-sm-6"><a href="/cart" class="side_cart_btn">カートを見る</a></li>
+      <li class="col-xs-6 col-sm-6"><a href="/mypage/item" class="side_exhibit_btn">商品を出品する</a></li>
+      
+      
+    </ul>
+<!-- 20170729追加 start -->
+<div class="hide_500">
+<!-- 20170729追加 end -->
+    <p><a href="#"><img src="/img/cm_01.png" alt="無料でデジタルフリマ"></a></p>
+<!-- 20170729追加 start -->
+</div>
+<!-- 20170729追加 end -->
+  </div>
+</div>
+
+<!-- コンテンツここから -->
+<div class="container">
+  <div id="g">
+<!-- 20170730 mod -->
+<!--    <div class="row row--nopadding"> -->
+    <div class="row">
+      <!-- コンテンツメイン -->
+<!-- 20170730 class pl05-sp 削除 -->
+      <div id="main" class="col-xs-12 col-sm-12 col-md-9 col-md-push-3 mt20 "> <?php echo $this->fetch('content'); ?> </div>
+      <!-- 左メニュー -->
+      <div id="side" class="col-xs-12 col-sm-12 col-md-3 col-md-pull-9 mt40">
+        <div class="side_header spnone">
+          <div class="side_banner">
+            <p><!--<a href="#"><img src="/img/cm_01.png" alt="無料でデジタルフリマ" class="img-responsive"></a>--><?php echo $HTML_LEFT_TOP ?></p>
+            <p><a href="/cart" class="side_cart_btn">カートを見る</a></p>
+            <p><a href="/mypage/item" class="side_exhibit_btn">商品を出品する</a></p>
+          </div>
+          <form class="mb10" action="/item/search/" enctype="text/plain" method="get">
+            <div class="search_box">
+              <input type="search" name="keyword" placeholder="検索する">
+              <button class="search_btn"><span class="search_mark"></span></button>
+            </div>
+          </form>
+        </div>
+        <a href="/item/category/"><h3 class="f20 mover border-radius">ジャンル一覧</h3></a>
+        <div class="genre clearfix">
+          <ul class="box_l pl10 categories">
+            <li><a href="/item/category/行きます（国内）">行きます（国内）</a></li>
+            <li><a href="/item/category/行きます（海外）">行きます（海外）</a></li>
+            <li><a href="/item/category/あります（国内）">あります（国内）</a></li>
+            <li><a href="/item/category/あります（海外）">あります（海外）</a></li>
+          <!--</ul>
+          <ul class="box_r pr10">-->
+            <li><a href="/item/category/さがしてます（国内）">さがしてます（国内）</a></li>
+            <li><a href="/item/category/さがしてます（海外）">さがしてます（海外）</a></li>
+            <li><a href="/item/category/その他">その他</a></li>
+          </ul>
+          <div class="clear"></div>
+          <ul class="guide pl10">
+            <li class="text-right"><a href="/item/category/">全ジャンル一覧</a></li>
+          </ul>
+        </div>
+        <a href="/item/tag/"><h3 class="f20 mover border-radius">人気タグ一覧</h3></a>
+        <?php if (count($arrTagList) > 0) : ?>
+        <div class="genre clearfix popular_tags">
+          <ul class="box_l pl10">
+<?php for($i = 0; $i < count($arrTagList); $i++): ?>
+            <li><a href="/item/tag/<?php echo h($arrTagList[$i]) ?>"><?php echo h(mb_strimwidth($arrTagList[$i],0,14,'...')) ?></a></li>
+<?php endfor; ?>
+          </ul>
+        </div>
+        <?php endif; ?>
+
+<?php if(!empty($arrPickUp) && $this->here != '/'): ?>
+        <section class="side">
+          <h3 class="f20 deco_none border-radius">オススメPICK UP!!</h3>
+          <div style="margin-top: 20px;" class="row item">
+<?php foreach($arrPickUp as $row): ?>
+<?php
+$img_url = $this->Upload->uploadUrl($row,'Item.main_image',array('style'=>'list_s'));
+$img_path = str_replace('//','/',WWW_ROOT.$img_url);
+if(!file_exists($img_path)){
+  $img_url = "/img/front_s.png";
+}
+?>
+            <dl class="col-xs-6 col-sm-3 col-md-12 ">
+              <a href="/item/detail/<?php echo $row['Item']['id'] ?>">
+              <dt class="width150p aligncenter"><img src="<?php echo $img_url ?>" alt="" onerror="onImgErr(this)"></dt>
+<!-- 20170730 text-center 削除 -->
+              <dd class="aligncenter mt10 "><p class="no-uline"><?php echo mb_strimwidth($row['Item']['title'], 0, 30, '...') ?></p>
+              </a>
+            </dl>
+<?php endforeach; ?>
+          </div>
+        </section>
+<?php endif; ?>
+
+        <h3 class="f20 border-radius">ご利用案内</h3>
+        <ul class="guide pl10">
+          <li><a href="/aboutus/guide/buy">購入者ガイド</a></li>
+          <li><a href="/aboutus/guide/sale">出品者ガイド</a></li>
+          <li><a href="/aboutus/faq">よくある質問</a></li>
+          <li><a href="/aboutus/whatnew">運営からお知らせ</a></li>
+        </ul>
+        <h3 class="f20 border-radius">お問い合わせ</h3>
+        <ul class="guide pl10">
+          <li><a href="/aboutus/law">特定商法取引に基づく表記</a></li>
+          <li><a href="/aboutus/privacy">個人情報保護について</a></li>
+          <li><a href="/aboutus/">運営会社</a></li>
+          <li><a href="/aboutus/contact">お問い合わせ</a></li>
+        </ul>
+      </div>
+      <!-- 左メニュー --> 
+    </div>
+    <!-- /row --> 
+  </div>
+  <!-- /g --> 
+</div>
+<!-- /container --> 
+<!-- コンテンツここまで --> 
+
+<!-- フッター-->
+<footer> 
+  <!-- フッタ -->
+  <div id="c">
+    <div class="c_naka pt10"> <small>Copyright (C) Mallento All Rights Reserved.</small> </div>
+  </div>
+</footer>
+
+<!-- js --> 
+<script src="/js/respond.src.js"></script> 
+
+<!--[if lte IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]--> 
+<!--[if IE 6]>
+<script type="text/javascript" src="/js/minmax.js"></script>
+<![endif]--> 
+
+<!-- PageTop --> 
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script> 
+<script src="//code.jquery.com/ui/1.9.2/jquery-ui.js"></script> 
+<script type="text/javascript" src="/js/to-top.js"></script> 
+<script type="text/javascript" src="/js/accordion_menu.js"></script> 
+<script type="text/javascript" src="/js/jquery.magnific-popup.min.js"></script> 
+<script type="text/javascript" src="/js/lightbox.js"></script> 
+<?php echo $this->fetch('script'); ?> 
+<script type="text/javascript">
+<?php echo $this->fetch('script_area'); ?>
+</script> 
+
+<script type="text/javascript">
+jQuery(document).ready(function($){
+    $('.auto_linker').each(function(){
+        
+        //var html = $(this).html();
+        //var linked = html.replace(/(http(s)?:\/\/[\x21-\x7e]+)/gi, "<a href='$1' target='_blank'>$1</a>");
+        //$(this).html(linked);
+        //console.log('html', html);
+        $(this).html( $(this).html().replace(/((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g, '<a href="$1" target="_blank">$1</a> ') );
+    });
+});
+</script>
+
+<?php echo $this->element('sql_dump'); ?>
+</body>
+</html>

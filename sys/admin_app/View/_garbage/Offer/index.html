@@ -1,0 +1,40 @@
+          <h1 class="page-header">イベント提案情報</h1>
+
+<?php echo $this->element('alert'); ?>
+
+          <h2 class="sub-header">イベント提案 一覧</h2>
+
+<!-- Button trigger modal -->
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                <tr>
+                  <th class="w30">提案日</th>
+                  <th class="w100">ユーザ名</th>
+                  <th class="w200">内容</th>
+                  <th class="w100">メール</th>
+                </tr>
+                </tr>
+              </thead>
+              <tbody>
+<?php foreach($arrData['list'] as $row): ?>
+                <tr>
+                  <td align="left"><?php echo date('Y.m.d',strtotime($row['OfferEventData']['created'])) ?></td>
+                  <td align="left">
+                  <?php echo $row['OfferEventData']['name'] ?>
+                  <p><a href="/admin/offer/detail/<?php echo $row['OfferEventData']['id'] ?>"><span class="label label-info">詳細</span></a>
+                  <a href="javascript:void(0)" onClick="delConfirm('/admin/offer/del/<?php echo $row['OfferEventData']['id'] ?>')"><span class="label label-danger">削　除</span></a></p>
+                  </td>
+                  <td align="left"><?php echo $row['OfferEventData']['summary'] ?></td>
+                  <td align="left"><?php echo $row['OfferEventData']['email'] ?></td>
+                </tr>
+<?php endforeach; ?>
+              </tbody>
+            </table>
+
+<!-- ページネーション -->
+<?php echo $this->Paging->list_navi($arrData,$url,5); ?>
+<!-- ページネーション -->
+
+          </div>

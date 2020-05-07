@@ -1,0 +1,312 @@
+<?php
+$arrItem = $arrItemDetail['Item'];
+$arrMember = $arrItemDetail['Member'];
+
+// 性別
+$arrGender = Configure::write('arrGender');
+
+// メルマガ希望
+$arrMailMagFlg = Configure::write('arrMailMagFlg');
+
+$arrCategory = Configure::read('arrCategory');
+$arrSelling = Configure::read('arrSelling');
+$arrMemberList = array('' => '選択して下さい') + $arrMemberList;
+?>
+
+<h1 class="page-header">商品情報</h1>
+<?php echo $this->element('alert'); ?>
+
+<?php if(empty($arrItemDetail['Item']['id'])): ?>
+          <h2 class="sub-header">新規登録</h2>
+<?php else: ?>
+          <h2 class="sub-header">編集更新</h2>
+<?php endif; ?>
+
+<?php echo $this->Form->create('Item',array('url' => '/item/edit/'.$arrItemDetail['Item']['id'],'class' => 'form-horizontal','role'=>'form','type'=>'file')); ?>
+
+          <?php echo $this->Form->input('id',
+                array('type'=>'hidden',
+                      'value' => $arrItemDetail['Item']['id']
+                      )) ?>
+
+          <?php echo $this->Form->input('save_flg',
+                array('type'=>'hidden',
+                      'value' => 1
+                      )) ?>
+
+          <?php echo $this->Form->input('file_name',
+                array('type'=>'hidden',
+                      'value' => $arrItemDetail['Item']['file_name']
+                      )) ?>
+
+          <?php echo $this->Form->input('mode',
+                array('type'=>'hidden',
+                      'value' => $mode
+                      )) ?>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">ユーザ名<span class="red">*</span></label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('member_id',
+                array('label'=>false,
+                      'div' => false,
+                      'type' => 'select', 
+                      'class'=>'form-control',
+                      'value' => $arrItemDetail['Item']['member_id'],
+                      'options'=> $arrMemberList,
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">状況<span class="red">*</span></label>
+            <div class="col-sm-5">
+              <?php echo $this->Form->input('selling',
+                            array('label' => false,
+                                  'div' => false,
+                                  'type' => 'select',
+                                  'class'=>'form-control',
+                                  'options' => $arrSelling,
+                                  'value' => $arrItemDetail['Item']['selling'],
+              )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">タイトル<span class="red">*</span></label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('title',
+                array('label'=>false,
+                      'div' => false,
+                      'rows'=>'2',
+                      'class'=>'form-control',
+                      'value' => $arrItemDetail['Item']['title']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">ジャンル<span class="red">*</span></label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('category',
+                array('label'=>false,
+                      'div' => false,
+                      'type' => 'select', 
+                      'class'=>'form-control',
+                      'value' => $arrItemDetail['Item']['category'],
+                      'options'=>$arrCategory,
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">商品説明</label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('discription',
+                array('label'=>false,
+                      'div' => false,
+                      'rows'=>'2',
+                      'class'=>'form-control',
+                      'value' => $arrItemDetail['Item']['discription']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">購入者へのメッセージ</label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('message',
+                array('label'=>false,
+                      'div' => false,
+                      'rows'=>'2',
+                      'class'=>'form-control',
+                      'value' => $arrItemDetail['Item']['message']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">価格</label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('price',
+                array('label'=>false,
+                      'div' => false,
+                      'type'=> 'text',
+                      'class'=>'form-control',
+                      'value' => $arrItemDetail['Item']['price']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">紹介料</label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('fee',
+                array('label'=>false,
+                      'div' => false,
+                      'type'=> 'text',
+                      'class'=>'form-control',
+                      'value' => $arrItemDetail['Item']['fee']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">レビュー　投稿者名</label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('review_auther',
+                array('label'=>false,
+                      'div' => false,
+                      'type'=> 'text',
+                      'class'=>'form-control',
+                      'value' => $arrItemDetail['Item']['review_auther']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">レビュー　本文</label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('review',
+                array('label'=>false,
+                      'div' => false,
+                      'rows'=>'2',
+                      'class'=>'form-control',
+                      'value' => $arrItemDetail['Item']['review']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">キーワードタグ 1</label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('tag1',
+                array('label'=>false,
+                      'div' => false,
+                      'type'=> 'text',
+                      'class'=>'form-control',
+                      'value' => $arrItemDetail['Item']['tag1']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">キーワードタグ 2</label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('tag2',
+                array('label'=>false,
+                      'div' => false,
+                      'type'=> 'text',
+                      'class'=>'form-control',
+                      'value' => $arrItemDetail['Item']['tag2']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">キーワードタグ 3</label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('tag3',
+                array('label'=>false,
+                      'div' => false,
+                      'type'=> 'text',
+                      'class'=>'form-control',
+                      'value' => $arrItemDetail['Item']['tag3']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">キーワードタグ 4</label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('tag4',
+                array('label'=>false,
+                      'div' => false,
+                      'type'=> 'text',
+                      'class'=>'form-control',
+                      'value' => $arrItemDetail['Item']['tag4']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">キーワードタグ 5</label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('tag5',
+                array('label'=>false,
+                      'div' => false,
+                      'type'=> 'text',
+                      'class'=>'form-control',
+                      'value' => $arrItemDetail['Item']['tag5']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">メイン画像</label>
+            <div class="col-sm-9">
+<?php if(!empty($arrItemDetail['Item']['main_image_file_name'])): ?>
+              <p><?php echo str_replace('/admin','',$this->Upload->uploadImage($arrItemDetail,'Item.main_image',array('style'=>'thumb')));?></p>
+<?php endif; ?>
+<?php echo $this->Form->input('main_image',array('type'=>'file','label'=>false,'div' => false,'class'=>'form-control')) ?>
+<?php echo $this->Form->input('main_image_file_name',array('type'=>'hidden','label'=>false,'div' => false,'value' => $arrItemDetail['Item']['main_image_file_name'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">サブ画像1</label>
+            <div class="col-sm-9">
+<?php if(!empty($arrItemDetail['Item']['sub_image1_file_name'])): ?>
+              <p><?php echo str_replace('/admin','',$this->Upload->uploadImage($arrItemDetail,'Item.sub_image1',array('style'=>'thumb')));?></p>
+<?php endif; ?>
+<?php echo $this->Form->input('sub_image1',array('type'=>'file','label'=>false,'div' => false,'class'=>'form-control')) ?>
+<?php echo $this->Form->input('sub_image1_file_name',array('type'=>'hidden','label'=>false,'div' => false,'value' => $arrItemDetail['Item']['sub_image1_file_name'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">サブ画像2</label>
+            <div class="col-sm-9">
+<?php if(!empty($arrItemDetail['Item']['sub_image2_file_name'])): ?>
+              <p><?php echo str_replace('/admin','',$this->Upload->uploadImage($arrItemDetail,'Item.sub_image2',array('style'=>'thumb')));?></p>
+<?php endif; ?>
+<?php echo $this->Form->input('sub_image2',array('type'=>'file','label'=>false,'div' => false,'class'=>'form-control')) ?>
+<?php echo $this->Form->input('sub_image2_file_name',array('type'=>'hidden','label'=>false,'div' => false,'value' => $arrItemDetail['Item']['sub_image2_file_name'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">サブ画像3</label>
+            <div class="col-sm-9">
+<?php if(!empty($arrItemDetail['Item']['sub_image3_file_name'])): ?>
+              <p><?php echo str_replace('/admin','',$this->Upload->uploadImage($arrItemDetail,'Item.sub_image3',array('style'=>'thumb')));?></p>
+<?php endif; ?>
+<?php echo $this->Form->input('sub_image3',array('type'=>'file','label'=>false,'div' => false,'class'=>'form-control')) ?>
+<?php echo $this->Form->input('sub_image3_file_name',array('type'=>'hidden','label'=>false,'div' => false,'value' => $arrItemDetail['Item']['sub_image3_file_name'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">サブ画像4</label>
+            <div class="col-sm-9">
+<?php if(!empty($arrItemDetail['Item']['sub_image4_file_name'])): ?>
+              <p><?php echo str_replace('/admin','',$this->Upload->uploadImage($arrItemDetail,'Item.sub_image4',array('style'=>'thumb')));?></p>
+<?php endif; ?>
+<?php echo $this->Form->input('sub_image4',array('type'=>'file','label'=>false,'div' => false,'class'=>'form-control')) ?>
+<?php echo $this->Form->input('sub_image4_file_name',array('type'=>'hidden','label'=>false,'div' => false,'value' => $arrItemDetail['Item']['sub_image4_file_name'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">商品ファイルアップロード</label>
+            <div class="col-sm-9">
+<?php echo $this->Form->input('item_file',array('type'=>'file','label'=>false,'div' => false,'class'=>'aligncenter')) ?>
+            </div>
+          </div>
+
+          <div class="submitButton">
+            <a href="/item/detail/<?php echo $arrItemDetail['Item']['id'] ?>"><button class="btn btn-lg btn-primary btnW200" type="button">キャンセル</button></a>
+            <button class="btn btn-lg btn-primary btnW200" type="submit">登録・更新</button>
+          </div>
+    
+<?php echo $this->Form->end(); ?>

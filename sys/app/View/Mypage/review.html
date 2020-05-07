@@ -1,0 +1,45 @@
+<?php
+$meta_title = Configure::read('html.mypage');
+$meta_keywords = Configure::read('html.mypage');
+$meta_description = Configure::read('html.mypage');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$arrTopicPath[] = array('マイページ' => '/mypage/');
+$arrTopicPath[] = array('デスクトップ' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$this->Html->css('/css/main02.css', null, array('inline' => false));
+$this->Html->script('/js/page.js', array('inline' => false));
+$arrSelling = Configure::read('arrSelling');
+
+$code_area = <<< EOF
+EOF;
+$this->assign('code_area', $code_area);
+?>
+<section>
+  <h2 class="f25 mb20">アイテムレビュー</h2>
+  <?php echo $this->Session->flash('auth'); ?>
+  <div class="mypage_row ml20 mr20">
+    <table class="table04">
+      <thead>
+        <tr>
+          <th>コメント</th>
+          <th>評価</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php if(isset($reviews)): ?>
+            <?php foreach($reviews as $row): ?>
+                <tr>
+                  <td><?= h($row['Review']['comment']) ?></td>
+                  <td><?= h(Configure::read('rating')[$row['Review']['rating']]) ?></td>
+                </tr>
+            <?php endforeach; ?>
+        <?php endif; ?>
+      </tbody>
+    </table>
+  </div>
+</section>

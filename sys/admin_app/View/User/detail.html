@@ -1,0 +1,202 @@
+<?php
+// 性別
+$arrGender = Configure::write('arrGender');
+
+// メルマガ希望
+$arrMailMagFlg = Configure::write('arrMailMagFlg');
+
+// 販売者ステータス
+$arrSellerStatus = Configure::read('arrSellerStatus');
+
+// 会員ランク
+$arrUserRank = Configure::read('arrUserRank');
+?>
+
+<h1 class="page-header">ユーザ情報</h1>
+<h2 class="sub-header">ユーザ詳細情報</h2>
+<?php echo $this->element('alert'); ?>
+<table class="table table-hover">
+    <tbody>
+    <tr>
+        <th>会員ランク</th>
+        <td>
+            <p><?php echo $arrUserRank[$arrMemberDetail['Member']['user_rank']]; ?></p>
+        </td>
+    </tr>
+    <tr>
+        <th>ポイント</th>
+        <td>
+            <p><?php echo number_format($arrMemberDetail['Member']['point']); ?> pt</p>
+        </td>
+    </tr>
+    <tr>
+        <th>氏名</th>
+        <td>
+            <p><?php echo h($arrMemberDetail['Member']['name']); ?></p>
+        </td>
+    </tr>
+    <tr>
+        <th>氏名(フリガナ)</th>
+        <td>
+            <p><?php echo h($arrMemberDetail['Member']['name_kana']); ?></p>
+        </td>
+    </tr>
+    <tr>
+        <th>会社名</th>
+        <td>
+            <p><?php echo h($arrMemberDetail['Member']['company']); ?></p>
+        </td>
+    </tr>
+    <tr>
+        <th>郵便番号</th>
+        <td>
+            <p><?php echo h($arrMemberDetail['Member']['postcode']); ?></p>
+        </td>
+    </tr>
+    <tr>
+        <th>住所</th>
+        <td>
+            <p><?php echo h($arrMemberDetail['Member']['address']); ?></p>
+        </td>
+    </tr>
+    <tr>
+        <th>電話番号</th>
+        <td>
+            <p><?php echo h($arrMemberDetail['Member']['phone']); ?></p>
+        </td>
+    </tr>
+    <tr>
+        <th>性別</th>
+        <td>
+            <p><?php echo $arrGender[$arrMemberDetail['Member']['gender']]; ?></p>
+        </td>
+    </tr>
+    <tr>
+        <th>生年月日</th>
+        <td>
+            <p><?php echo h($arrMemberDetail['Member']['birthday']); ?></p>
+        </td>
+    </tr>
+    <tr>
+        <th>ニックネーム</th>
+        <td>
+            <p><?php echo h($arrMemberDetail['Member']['nickname']); ?></p>
+        </td>
+    </tr>
+    <tr>
+        <th>メールアドレス</th>
+        <td>
+            <p><?php echo h($arrMemberDetail['Member']['email']); ?></p>
+        </td>
+    </tr>
+    <tr>
+        <th>メールマガジン</th>
+        <td>
+            <p><?php echo h($arrMemberDetail['Member']['email']); ?></p>
+        </td>
+    </tr>
+    <tr>
+        <th>ユーザーレベル</th>
+        <td>
+            <p><?php echo h($ratingAve); ?></p>
+        </td>
+    </tr>
+    <tr>
+        <th>管理者設定レベル</th>
+        <td>
+            <p><?php echo h($arrMemberDetail['Member']['admin_level']); ?></p>
+        </td>
+    </tr>
+    <tr>
+        <th>銀行名</th>
+        <td>
+            <p><?php echo $arrMemberDetail['Member']['bank_name']; ?></p>
+        </td>
+    </tr>
+    <tr>
+        <th>支店名</th>
+        <td>
+            <p><?php echo h($arrMemberDetail['Member']['branch_name']); ?></p>
+        </td>
+    </tr>
+    <tr>
+        <th>支店コード</th>
+        <td>
+            <p><?php echo h($arrMemberDetail['Member']['branch_code']); ?></p>
+        </td>
+    </tr>
+    <tr>
+        <th>銀行口座</th>
+        <td>
+            <p><?php echo h($arrMemberDetail['Member']['account_no']); ?></p>
+        </td>
+    </tr>
+    <tr>
+        <th>口座名義</th>
+        <td>
+            <p><?php echo h($arrMemberDetail['Member']['deposit_name']); ?></p>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div class="submitButton">
+    <a href="/admin/user/edit/<?php echo $arrMemberDetail['Member']['id']; ?>">
+        <button class="btn btn-lg btn-primary btnW200" type="button">編集</button>
+    </a>
+</div>
+
+<h2 class="sub-header">ステータス変更</h2>
+<?php echo $this->Form->create('Member',
+array('url' => '/user/detail/'.$arrMemberDetail['Member']['id'],
+'class' => 'form-horizontal',
+'role'=>'form'
+)); ?>
+<?php echo $this->Form->input('id',
+array('label' => false,
+'type' => 'hidden',
+'value' => $arrMemberDetail['Member']['id'],
+)) ?>
+<table class="table table-hover">
+    <tbody>
+    <tr>
+        <th>ステータス</th>
+        <td>
+            <p><?php echo $arrSellerStatus[$arrMemberDetail['Member']['status']]; ?></p>
+        </td>
+    </tr>
+    <tr>
+        <th>ステータス変更</th>
+        <td>
+            <?php echo $this->Form->input('status',
+            array('label'=>false,
+            'div' => false,
+            'type' => 'select',
+            'options' => $arrSellerStatus,
+            'class'=>'form-control w200 fl_l mr10 mt5',
+            'value' => $arrMemberDetail['Member']['status']
+            )) ?>
+        </td>
+    </tr>
+    <tr>
+        <th>マイページお知らせ</th>
+        <td>
+            <?php echo $this->Form->input('admin_message',
+            array('label'=>false,
+            'div' => false,
+            'type' => 'text',
+            'cols' => 30,
+            'rows' => 5,
+            'class'=>'form-control',
+            'value' => $arrMemberDetail['Member']['admin_message']
+            )) ?>
+            <p>マイページのトップに表示されます。<br>ログイン制限した場合はマイページトップまでは閲覧できますので、制限をかけた際のお知らせにお使い下さい。<br>なお、強制退会した場合はログインも出来なくなります。
+            </p>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div class="submitButton">
+    <button class="btn btn-lg btn-primary btnW200" type="submit">更新</button>
+</div>
+
+<?php echo $this->Form->end(); ?>

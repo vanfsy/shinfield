@@ -1,0 +1,58 @@
+<?php $arrData = $arrData['Review']; ?>
+<style>
+    .radioinput {
+        text-align: left;
+        font-weight: normal;
+    }
+
+    .radioinput input {
+        display: block;
+        float: left;
+        font-weight: normal;
+        width: 1em;
+        margin-right: 6px;
+    }
+
+    .radioinput label {
+        display: block;
+        width: 80px;
+        float: left;
+        margin-top: 10px !important;
+        font-weight: normal;
+    }
+
+</style>
+<h1 class="page-header">レビュー情報</h1>
+<h2 class="sub-header">レビュー登録・変更</h2>
+<p class="textRed"><?php echo $this->Session->flash('auth'); ?></p>
+<?php echo $this->Form->create('Review',array('method' => 'post',  'id' => 'ReviewForm', 'url' => '/review/edit/'.$arrData['id'],'class' => 'form-horizontal','role'=>'form')); ?>
+<?php echo $this->Form->input('id', array('type'=>'hidden', 'value' => $arrData['id'])); ?>
+<?php echo $this->Form->input('mode', array('type'=>'hidden', 'value' => $mode)); ?>
+<div class="form-group">
+    <label class="col-sm-3 control-label">レビューID</label>
+    <div class="col-sm-1">
+        <?php echo $arrData['id'];?>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">コメント<span class="red">*</span></label>
+    <div class="col-sm-6">
+        <?php echo $this->Form->input('comment', array('label'=>false, 'div' => false, 'type' => 'textarea', 'class'=>'form-control', 'value' => $arrData['comment'])); ?>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">評価<span class="red">*</span></label>
+    <div class="col-sm-6">
+        <?php echo $this->Form->input('rating',array('type' => 'select', 'options' => Configure::read('rating'), 'label'=>false, 'class'=>'form-control', 'value'=>$arrData['rating'])); ?>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">削除フラグ<span class="red">*</span></label>
+    <div class="col-sm-6">
+        <?php echo $this->Form->input('del_flg',array('type' => 'select', 'options' => Configure::read('del_flg'), 'label'=>false,'class'=>'form-control','value'=>$arrData['del_flg'] )); ?>
+    </div>
+</div>
+<div class="submitButton">
+    <button class="btn btn-lg btn-primary btnW200" type="submit">登録・変更</button>
+</div>
+<?php echo $this->Form->end(); ?>

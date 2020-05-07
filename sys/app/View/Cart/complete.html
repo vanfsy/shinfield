@@ -1,0 +1,32 @@
+<?php
+$meta_title = Configure::read('html.cart');
+$meta_keywords = Configure::read('html.cart');
+$meta_description = Configure::read('html.cart');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$this->Html->css('/css/style.css', null, array('inline' => false));
+
+$referer = @$_SERVER["HTTP_REFERER"];
+if(empty($referer) || strpos($referer,'/cart') !== false){
+  $referer = '/item/category';
+}
+
+$arrTopicPath[] = array('商品一覧' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$code_area = <<< EOF
+EOF;
+$this->assign('script_area', $code_area);
+?>
+
+<section>
+  <h2 class="f25 mb40">カート</h2>
+  <h3 class="ml30 mb30 mt40"><span>クレジット決済完了</span></h3>
+
+      <h4 class="ml30">ポイントのご購入ありがとうございます！</h4>
+      <p class="ml30 mt50"><a href="<?php echo FULL_BASE_URL ?>">トップページに戻ります</a></p>
+
+</section>

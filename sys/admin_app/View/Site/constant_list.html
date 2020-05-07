@@ -1,0 +1,62 @@
+	<form action="<!--{$param.fm_action}-->" name="form1" method="post" >
+			<p style="text-align:right;"><input type="button" value="新規登録" class="btn" onclick="location.href = '<!--{$param.add_url}-->'" />&nbsp;<input type="submit" value="チェックを削除する" class="btn" onclick="confirmDel();return false" />&nbsp;&nbsp;&nbsp;&nbsp;表示数
+<label>
+	<select name="select" id="select" onchange="chgDispNum(this)"> 
+		<!--{html_options options=$disp_numbers selected=$current_disp_num}-->
+	</select> 
+</label></p>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table1">
+		<tr>
+			<th width="25%" align="center">設定名</th>
+			<th width="13%" align="center">パラメータ名</th>
+			<th width="30%" align="center">説明</th>
+			<th width="12%" align="center">有効・無効</th>
+			<th width="15%" align="center">アクション</th>
+			<th width="5%" align="center"></th>
+		</tr>
+<!--▲サンプル-->
+<!--{ section name=i loop=$param.entity.list }-->
+<!--{assign var=list value=$param.entity.list[i]}-->
+
+		<tr>
+			<td><!--{$list.caption|escape}--></td>
+			<td><!--{$list.const_name|escape}--></td>
+			<td><!--{$list.description|escape|nl2br}--></td>
+			<td align="center"><!--{if $list.active_flg == '1'}-->有効<!--{else}-->無効<!--{/if}--></td>
+			<td align="center"><a href="<!--{$home_url}-->admin/site/constants/detail/<!--{$list.id}-->">リスト詳細</a>・<a href="<!--{$home_url}-->admin/site/constants/mod/<!--{$list.id}-->">編集</a></td>
+			<td align="center"><input type="checkbox" name="data[del][<!--{$smarty.section.i.index}-->]" value="<!--{$list.id}-->"></td>
+		</tr>
+<!--{ /section }-->
+
+			</table><p style="text-align:right;"><input type="submit" value="チェックを削除する" class="btn" onclick="confirmDel();return false" />&nbsp;&nbsp;&nbsp;&nbsp;表示数
+<label><select name="select" id="select" onchange="chgDispNum(this)"> 
+<!--{html_options options=$disp_numbers selected=$current_disp_num}-->
+</select> 
+</label></p>
+	</form>
+<!-- 以下は実装後、有効にしてください
+<div class="pager">
+<ul> 
+<!--{if $param.entity.prev == 0}-->
+<li class="prev"></li> 
+<!--{else}-->
+<li class="prev"><a href="<!--{$home_url}-->admin/site/constants/list/<!--{$param.entity.prev}-->">&laquo; PREV</a></li> 
+<!--{/if}-->
+<!--{section name=i loop=$param.entity.pg_list}-->
+<!--{if $param.entity.current_pg == $param.entity.pg_list[i]}-->
+<li><em><!--{$param.entity.pg_list[i]}--></em></li> 
+<!--{else}-->
+<li><a href="<!--{$home_url}-->admin/site/constants/list/<!--{$param.entity.pg_list[i]}-->"><!--{$param.entity.pg_list[i]}--></a></li> 
+<!--{/if}-->
+<!--{/section}-->
+<!--{if $param.entity.next == 0}-->
+<li class="next"></li> 
+<!--{else}-->
+<li class="next"><a href="<!--{$home_url}-->admin/site/constants/list/<!--{$param.entity.next}-->">NEXT &raquo;</a></li> 
+<!--{/if}-->
+</ul> 
+</div>
+-->
+<form action="<!--{$home_url}-->admin/site/addresses/list/" name="form2" method="post" >
+<input type="hidden" id="disp_num" name="data[disp_num]" value="">
+</form>

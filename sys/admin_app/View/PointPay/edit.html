@@ -1,0 +1,467 @@
+<?php
+// エリア
+$arrArea = array('' => '選択する') + Configure::read('arrArea');
+
+// 時間リスト
+$arrTime = Configure::read('arrTime');
+
+// カテゴリリスト
+$arrCategory = Configure::read('arrCategory');
+
+// 募集中・開催決定・キャンセルの切り替え
+$arrHoldStatus = Configure::read('arrHoldStatus');
+
+// 公開・非公開
+$arrPublicFlg = array('0' => '非公開','1' => '公開');
+
+// カテゴリの配列化
+$array_category = null;
+if(!empty($arrEventDataDetail['EventData']['category'])){
+  $array_category_val = explode(';',$arrEventDataDetail['EventData']['category']);
+  foreach($array_category_val as $val){
+    $array_category[$val] = $val;
+  }
+}
+
+// タグ
+$arrValueTags = null;
+if(!empty($arrEventDataDetail['EventData']['tags'])){
+  $arrValueTags = explode(';',$arrEventDataDetail['EventData']['tags']);
+}
+
+$this->Html->css('/datapicker/datepicker.css', null, array('inline' => false));
+$this->Html->script('/datapicker/bootstrap-datepicker.js', array('inline' => false));
+$this->Html->script('/datapicker/bootstrap-datepicker.ja.js', array('inline' => false));
+?>
+<style>
+.checkboxArea div label{
+  margin-left:5px;
+  font-weight:normal;
+}
+.checkboxArea fieldset{
+  display: block;
+  margin-bottom:20px;
+}
+legend{
+  font-size:14px;
+/*  float:left;*/
+  text-align:left;
+  margin-top:6px;
+  display: block;
+  max-width: 85%;
+  padding:6px;
+  line-height: 140%;
+  color: #000000;
+  border-bottom: 1px solid #e5e5e5;
+  background-color:#EFEFEF;
+}
+</style>
+
+          <h1 class="page-header">イベント情報</h1>
+
+<?php echo $this->element('alert'); ?>
+
+<?php if(empty($arrEventDataDetail['EventData']['id'])): ?>
+          <h2 class="sub-header">新規登録</h2>
+<?php else: ?>
+          <h2 class="sub-header">編集更新</h2>
+<?php endif; ?>
+
+<?php echo $this->Form->create('EventData',array('id' => 'EventDataForm', 'url' => '/event/edit/'.$arrEventDataDetail['EventData']['id'],'class' => 'form-horizontal','role'=>'form','type'=>'file')); ?>
+
+          <?php echo $this->Form->input('id',
+                array('type'=>'hidden',
+                      'value' => $arrEventDataDetail['EventData']['id']
+                      )) ?>
+
+          <?php echo $this->Form->input('mode',
+                array('type'=>'hidden',
+                      'value' => $mode
+                      )) ?>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">公開・非公開<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php foreach($arrPublicFlg as $id => $val){ ?>
+<div class="checkbox"><label><input type="radio" name="data[EventData][public_flg]" value="<?php echo $id ?>" <?php if($arrEventDataDetail['EventData']['public_flg'] == $id) echo 'checked=checked' ?> ><?php echo $val ?></label></div>
+<?php } ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">進捗ステータス<span class="red">*</span></label>
+            <div class="col-sm-4">
+              <?php echo $this->Form->input('hold_status',
+                array('label'=>false,
+                      'div' => false,
+                      'type' => 'select', 
+                      'options' => $arrHoldStatus,
+                      'class' => 'form-control',
+                      'value' => $arrEventDataDetail['EventData']['hold_status']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">タイトル<span class="red">*</span></label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('title',
+                array('label'=>false,
+                      'div' => false,
+                      'rows'=>'2',
+                      'class'=>'form-control',
+                      'value' => $arrEventDataDetail['EventData']['title']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">キャッチコピー<span class="red">*</span></label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('headline',
+                array('label'=>false,
+                      'div' => false,
+                      'rows'=>'2',
+                      'class'=>'form-control',
+                      'value' => $arrEventDataDetail['EventData']['headline']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">開催日<span class="red">*</span></label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('event_date',
+                array('label'=>false,
+                      'div' => false,
+                      'type' => 'text',
+                      'class'=>'form-control date_input w140',
+                      'value' => $arrEventDataDetail['EventData']['event_date']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">開始時間<span class="red">*</span></label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('start_time',
+                array('label'=>false,
+                      'div' => false,
+                      'type' => 'select',
+                      'class'=>'form-control w100 fl_l',
+                      'options'=>$arrTime,
+                      'value' => $arrEventDataDetail['EventData']['start_time']
+                      )) ?> <p class="fl_l">&nbsp;&nbsp;～</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">募集期間<span class="red">*</span></label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('entry_start_date',
+                array('label'=>false,
+                      'div' => false,
+                      'type' => 'text',
+                      'class'=>'form-control date_input w140 fl_l',
+                      'value' => $arrEventDataDetail['EventData']['entry_start_date']
+                      )) ?> <p class="fl_l">&nbsp;&nbsp;～&nbsp;&nbsp;</p>
+              <?php echo $this->Form->input('entry_end_date',
+                array('label'=>false,
+                      'div' => false,
+                      'type' => 'text',
+                      'class'=>'form-control date_input w140 fl_l',
+                      'value' => $arrEventDataDetail['EventData']['entry_end_date']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">エリア<span class="red">*</span></label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('area',
+                array('label'=>false,
+                      'div' => false,
+                      'type' => 'select',
+                      'class'=>'form-control w200',
+                      'options' => $arrArea,
+                      'value' => $arrEventDataDetail['EventData']['area']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">カテゴリ<span class="red">*</span></label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('category',
+                array('label'=>false,
+                      'div' => 'checkboxArea',
+                      'legend' => false,
+                      'type' => 'select', 
+                      'multiple'=> 'checkbox',
+                      'class'=>'fl_l ml10',
+                      'options'=>$arrCategory,
+                      'value' => $array_category
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">タグ</label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('tags',
+                array('label'=>false,
+                      'div' => 'checkboxArea',
+                      'legend' => false,
+                      'type' => 'select', 
+                      'multiple'=> 'checkbox',
+                      'class'=>'fl_l ml10',
+                      'options'=> $arrTagData,
+                      'value' => $arrValueTags
+                      )) ?>
+              <br class="clear">
+              <?php echo $this->Form->input('add_tag',
+                array('label' => false,
+                      'div' => false,
+                      'type' => 'text',
+                      'class' => 'form-control w150',
+                      'value' => ''
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">料金<span class="red">*</span></label>
+            <div class="col-sm-3">
+              <span class="fl_l pt5">男性&nbsp;</span>
+              <?php echo $this->Form->input('fee_male',
+                array('label'=>false,
+                      'div' => false,
+                      'class'=>'form-control fl_l w100',
+                      'value' => $arrEventDataDetail['EventData']['fee_male']
+                      )) ?><span class="fl_l pt5">&nbsp;円</span>
+            </div>
+            <div class="col-sm-4">
+              <span class="fl_l pt5">女性&nbsp;</span>
+              <?php echo $this->Form->input('fee_female',
+                array('label'=>false,
+                      'div' => false,
+                      'class'=>'form-control fl_l w100',
+                      'value' => $arrEventDataDetail['EventData']['fee_female']
+                      )) ?><span class="fl_l pt5">&nbsp;円</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">参加定員<span class="red">*</span></label>
+            <div class="col-sm-3">
+              <span class="fl_l pt5">男性&nbsp;</span>
+              <?php echo $this->Form->input('quorum_male',
+                array('label'=>false,
+                      'div' => false,
+                      'class'=>'form-control fl_l w100',
+                      'value' => $arrEventDataDetail['EventData']['quorum_male']
+                      )) ?><span class="fl_l pt5">&nbsp;名</span>
+            </div>
+            <div class="col-sm-4">
+              <span class="fl_l pt5">女性&nbsp;</span>
+              <?php echo $this->Form->input('quorum_female',
+                array('label'=>false,
+                      'div' => false,
+                      'class'=>'form-control fl_l w100',
+                      'value' => $arrEventDataDetail['EventData']['quorum_female']
+                      )) ?><span class="fl_l pt5">&nbsp;名</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">参加条件</label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('precondition',
+                array('label'=>false,
+                      'div' => false,
+                      'rows'=>'2',
+                      'class'=>'form-control',
+                      'value' => $arrEventDataDetail['EventData']['precondition']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">会場名・店舗名<span class="red">*</span></label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('place',
+                array('label'=>false,
+                      'div' => false,
+                      'class'=>'form-control',
+                      'value' => $arrEventDataDetail['EventData']['place']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">会場住所<span class="red">*</span></label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('place_address',
+                array('label'=>false,
+                      'div' => false,
+                      'class'=>'form-control',
+                      'value' => $arrEventDataDetail['EventData']['place_address']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">会場アクセス</label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('place_access',
+                array('label'=>false,
+                      'div' => false,
+                      'class'=>'form-control',
+                      'value' => $arrEventDataDetail['EventData']['place_access']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">会場会場連絡先電話番号</label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('place_phone',
+                array('label'=>false,
+                      'div' => false,
+                      'class'=>'form-control',
+                      'value' => $arrEventDataDetail['EventData']['place_phone']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">会場連絡先メール</label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('place_email',
+                array('label'=>false,
+                      'div' => false,
+                      'class'=>'form-control',
+                      'value' => $arrEventDataDetail['EventData']['place_email']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">会場　ホームページ</label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('place_url',
+                array('label'=>false,
+                      'div' => false,
+                      'class'=>'form-control',
+                      'PlaceHolder' => 'http://',
+                      'value' => $arrEventDataDetail['EventData']['place_url']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">会場googleマップ</label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('place_map',
+                array('label'=>false,
+                      'div' => false,
+                      'class'=>'form-control',
+                      'value' => $arrEventDataDetail['EventData']['place_map']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">メイン画像</label>
+            <div class="col-sm-9">
+<p><?php echo $this->Upload->uploadImage($arrEventDataDetail,'EventData.main_image',array('style'=>'thumb'));?></p>
+<?php echo $this->Form->input('main_image',array('type'=>'file','label'=>false,'div' => false,'class'=>'form-control')) ?>
+<?php echo $this->Form->input('main_image_file_name',array('type'=>'hidden','label'=>false,'div' => false,'value' => $arrEventDataDetail['EventData']['main_image_file_name'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">内容・説明（1<span class="red">*</span></label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('description1',
+                array('label'=>false,
+                      'div' => false,
+                      'rows'=>'4',
+                      'class'=>'form-control',
+                      'value' => $arrEventDataDetail['EventData']['description1']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">サブ画像１</label>
+            <div class="col-sm-9">
+<p><?php echo $this->Upload->uploadImage($arrEventDataDetail,'EventData.sub_image1',array('style'=>'thumb'));?></p>
+<?php echo $this->Form->input('sub_image1',array('type'=>'file','label'=>false,'div' => false,'class'=>'form-control')) ?>
+<?php echo $this->Form->input('sub_image1_file_name',array('type'=>'hidden','label'=>false,'div' => false,'value' => $arrEventDataDetail['EventData']['sub_image1_file_name'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">内容・説明（2</label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('description2',
+                array('label'=>false,
+                      'div' => false,
+                      'rows'=>'4',
+                      'class'=>'form-control',
+                      'value' => $arrEventDataDetail['EventData']['description2']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">サブ画像２</label>
+            <div class="col-sm-9">
+<p><?php echo $this->Upload->uploadImage($arrEventDataDetail,'EventData.sub_image2',array('style'=>'thumb'));?></p>
+<?php echo $this->Form->input('sub_image2',array('type'=>'file','label'=>false,'div' => false,'class'=>'form-control')) ?>
+<?php echo $this->Form->input('sub_image2_file_name',array('type'=>'hidden','label'=>false,'div' => false,'value' => $arrEventDataDetail['EventData']['sub_image2_file_name'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">内容・説明（3</label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('description3',
+                array('label'=>false,
+                      'div' => false,
+                      'rows'=>'4',
+                      'class'=>'form-control',
+                      'value' => $arrEventDataDetail['EventData']['description3']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">サブ画像３</label>
+            <div class="col-sm-9">
+<p><?php echo $this->Upload->uploadImage($arrEventDataDetail,'EventData.sub_image3',array('style'=>'thumb'));?></p>
+<?php echo $this->Form->input('sub_image3',array('type'=>'file','label'=>false,'div' => false,'class'=>'form-control')) ?>
+<?php echo $this->Form->input('sub_image3_file_name',array('type'=>'hidden','label'=>false,'div' => false,'value' => $arrEventDataDetail['EventData']['sub_image3_file_name'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">内容・説明（4</label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('description4',
+                array('label'=>false,
+                      'div' => false,
+                      'rows'=>'4',
+                      'class'=>'form-control',
+                      'value' => $arrEventDataDetail['EventData']['description4']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="submitButton">
+            <a href="/event/detail/<?php echo $arrEventDataDetail['EventData']['id'] ?>"><button class="btn btn-lg btn-primary btnW200" type="button">キャンセル</button></a>
+            <button class="btn btn-lg btn-primary btnW200" type="submit">登録・更新</button>
+          </div>
+    
+<?php echo $this->Form->end(); ?>

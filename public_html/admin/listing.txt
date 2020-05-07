@@ -1,0 +1,6 @@
+drwxr-xr-x    5 500      500          4096 May 03 00:37 .
+drwxr-xr-x   11 0        0            4096 May 14 07:12 ..
+drwxr-xr-x    2 500      500          4096 May 03 00:37 css
+drwxr-xr-x    2 500      500          4096 May 03 00:37 images
+-rw-r--r--    1 500      500            39 May 03 00:37 index.php
+drwxr-xr-x    6 500      500          4096 May 03 00:37 js

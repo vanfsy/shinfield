@@ -1,0 +1,89 @@
+<!--{assign var=date_coefficients value=$param.entity.date_coefficients}-->
+<!--{assign var=form value=$param.form.data_leaves}-->
+
+<form action="<!--{$param.fm_action}--><!--{$param.ym}-->" name="form3" method="post" >
+  <input name="data[data_leaves][id]" type="hidden" value="<!--{$param.form.data_leaves.id}-->" />
+  <input name="data[mode]" type="hidden" value="coefficient_upd" />
+  <input name="data[data_leaves][level]" type="hidden" value="<!--{$param.form.data_leaves.level}-->" />
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table1">
+		<tr>
+			<th width="20%">基本係数</th>
+			<td>
+				<input name="data[data_leaves][value]" type="text" value="<!--{$param.form.data_leaves.value}-->" id="base_coefficient" style="width:100px;" />
+				<div class="error"><!--{$param.error.data_leaves.value}--></div>
+			</td>
+		    <td align="center"><input name="submit2" type='submit' value='登録・更新' class="btn" /></td>
+		</tr>
+	</table>
+</form><br />
+
+	<form action="<!--{$param.fm_action}--><!--{$param.ym}-->" name="form1" method="post" >
+		<input name="data[mode]" id="mode" type="hidden" value="massup" />
+        <div>
+			<p style="float:left;">
+				<select name="data[date_coefficients][year]" onchange="chgDate('<!--{$param.fm_action}-->')" id="year">
+					<!--{html_options options=$calendar->arrYearList(-1,5) selected=$date_coefficients.year}-->
+				</select> 年
+				<select name="data[date_coefficients][month]" onchange="chgDate('<!--{$param.fm_action}-->')" id="month">
+					<!--{html_options options=$calendar->arrMonthList() selected=$date_coefficients.month}-->
+				</select> 月
+				<!--{if $param.is_date_save == false}--><font color="#FF0000">係数未設定</font><!--{/if}-->
+			</p>
+			<p style="float:right;"><input type="button" value="基本係数に更新" class="btn" onclick="chgCoefficientValue();" />&nbsp;&nbsp;<input type="submit" value="登録・更新" class="btn" /></p>
+		</div><br />
+
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table1">
+		<tr>
+			<th width="10%" align="center">日付</th>
+			<th width="20%" align="center">曜日</th>
+			<th width="70%" align="center">係数</th>
+		</tr>
+
+<!--{ section name=i loop=$date_coefficients.list }-->
+<!--{assign var=list value=$date_coefficients.list[i]}-->
+
+		<tr>
+			<td align="center"><!--{$list.day}--></td>
+<!--{if $list.day_week_disp == "日曜"}-->
+			<td align="center"><font color="#FF0000"><!--{$list.day_week_disp}--></font></td>
+<!--{elseif $list.day_week_disp == "土曜"}-->
+			<td align="center"><font color="#0033FF"><!--{$list.day_week_disp}--></font></td>
+<!--{else}-->
+			<td align="center"><!--{$list.day_week_disp}--></td>
+<!--{/if}-->
+			<td><input name="data[date_coefficients][list][<!--{$smarty.section.i.index}-->][coefficient]" type="text" value="<!--{$list.coefficient}-->" class="coefficient_val" style="width:100px;" />
+				<input name="data[date_coefficients][list][<!--{$smarty.section.i.index}-->][day]" type="hidden" value="<!--{$list.day}-->" />
+				<input name="data[date_coefficients][list][<!--{$smarty.section.i.index}-->][day_week]" type="hidden" value="<!--{$list.day_week}-->" />
+				<input name="data[date_coefficients][list][<!--{$smarty.section.i.index}-->][id]" type="hidden" value="<!--{$list.id}-->" />
+			</td>
+		</tr>
+<!--{ /section }-->
+<!--リスト処理-->
+
+			</table>
+	</form><br />
+
+<script type="text/javascript">
+	function chgCoefficientValue(){
+		base_coefficient = $('#base_coefficient').val();
+		$('.coefficient_val').val(base_coefficient);
+	}
+/*
+	$('.radio_style_id').change(function(event){
+		radio_style_id = $('input[class=radio_style_id]:checked').val();
+		jumpForm(radio_style_id,'merch_style_id','<!--{$param.self_action}-->');
+	});
+	int = 0;
+	if($('img#list_image').attr("src")) ++int;
+	if($('img#image_01').attr("src")) ++int;
+	if($('img#image_02').attr("src")) ++int;
+	if($('img#image_03').attr("src")) ++int;
+	if($('img#image_04').attr("src")) ++int;
+	if($('img#floor_image').attr("src")) ++int;
+	img_h = int * 200;
+	h = document.body.clientHeight + img_h;
+	$('#main', parent.document).css('height',h);
+
+var base_path = '<!--{$home_url}-->admin/js/fckeditor/';
+*/
+</script>

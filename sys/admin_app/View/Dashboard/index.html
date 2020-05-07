@@ -1,0 +1,64 @@
+<style>
+.table .d{
+  width:50px !important;
+  border:2px solid red;
+}
+</style>
+     <h1 class="page-header">ダッシュボード</h1>
+
+<?php echo $this->element('alert'); ?>
+
+<?php if(!empty($arrWhatNews)): ?>
+    <div class="row placeholders">
+        <h2 class="sub-header">新着情報</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>日付</th>
+                  <th style="width:500px !important">コメント</th>
+                </tr>
+              </thead>
+              <tbody>
+<?php foreach($arrWhatNews as $row){ ?>
+                <tr>
+                  <td align="left"><span id="comment_date_<?php echo $row['Whatsnews']['id'] ?>"><?php echo date('Y.m.d',strtotime($row['Whatsnews']['comment_date'])) ?></span></td>
+                  <td align="left" style="width:500px !important"><span id="comment_<?php echo $row['Whatsnews']['id'] ?>"><?php echo $row['Whatsnews']['comment'] ?></span></td>
+                </tr>
+<?php } ?>
+              </tbody>
+            </table>
+        </div>
+        <div class="submitButton"><a href="/admin/whatnews"><button class="btn btn-lg btn-primary btnW200" type="button">新着情報管理へ</button></a></div>
+    </div>
+<?php endif; ?>
+
+    <div class="row placeholders">
+          <h2 class="sub-header">新着 商品情報 一覧</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th class="w50">登録日</th>
+                  <th class="w400">タイトル</th>
+                  <th class="w120">カテゴリ</th>
+                  <th class="w100">価格</th>
+                </tr>
+              </thead>
+              <tbody>
+<?php foreach($arrNewDatas as $row){ ?>
+                <tr>
+                  <td align="left"><?php echo date('Y.m.d',strtotime($row['Item']['created'])) ?></td>
+                  <td align="left"><?php echo $row['Item']['title'] ?><br>
+                  <a href="/admin/item/detail/<?php echo $row['Item']['id'] ?>"><span class="label label-info">詳細・編集</span></a>
+                  <a href="javascript:void(0)" onClick="delConfirm('/admin/item/del/<?php echo $row['Item']['id'] ?>')"><span class="label label-danger">削　除</span></a>
+                  </td>
+                  <td align="left"><?php echo $row['Item']['category'] ?></td>
+                  <td align="left"><?php echo number_format($row['Item']['price']) ?></td>
+                </tr>
+<?php } ?>
+              </tbody>
+            </table>
+          </div>
+        <div class="submitButton"><a href="/admin/item"><button class="btn btn-lg btn-primary btnW200" type="button">商品情報管理へ</button></a></div>
+    </div>

@@ -1,0 +1,44 @@
+<?php
+$meta_title = Configure::read('html.member');
+$meta_keywords = Configure::read('html.member');
+$meta_description = Configure::read('html.member');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+?>
+
+<h2 class="form-signin-heading">パスワード再発行</h2>
+<p class="textRed"><?php echo $this->Session->flash('auth'); ?></p>
+<p class="textRed"><?php echo $this->Session->flash('flash'); ?></p>
+<?= $this->Form->create('Member', array('url' => '/member_regist/reissue','class' => 'form-horizontal login', 'type' => 'post')) ?>
+
+<div class="form-group">
+    <label class="col-sm-3 control-label">メールアドレス<span class="red">*</span></label>
+    <div class="col-sm-6">
+        <?= $this->Form->input('email',array('label'=>false,'class'=>'form-control','placeholder' => 'yourmail@mail.com')) ?>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">新規パスワード<span class="red">*</span></label>
+    <div class="col-sm-6">
+        <?= $this->Form->input('password',array('label'=>false,'class'=>'form-control','placeholder' => 'Password')) ?>
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-3 control-label">新規パスワード(確認)<span class="red">*</span></label>
+    <div class="col-sm-6">
+        <?= $this->Form->input('password_confirm',array('label'=>false,'class'=>'form-control','placeholder' => 'Password')) ?>
+    </div>
+</div>
+<div class="form-group">
+    <div class="text-center">
+        <button class="mybtn mybtn01" type="submit" style="border:0;">送信する</button>
+    </div>
+</div>
+<div class="form-group">
+    <div class="text-center">
+        <div>※入力頂いたアドレス宛に再認証用のメールをお送りいたします。</div>
+    </div>
+</div>
+<?php echo $this->Form->end(); ?>

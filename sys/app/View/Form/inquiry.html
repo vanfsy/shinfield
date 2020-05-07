@@ -1,0 +1,121 @@
+<?php
+$this->set('title_for_layout','お問い合わせ | エスグラフィック');
+
+$this->Html->meta('keywords', 'お問い合わせ', array('inline' => false));
+$this->Html->meta('description', 'お問い合わせ クラスや文化祭・イベント等のオリジナルTシャツをどこよりも安く、最高品質でお届けします！オリジナルデザインTシャツプリントはエスグラフィックへ！', array('inline' => false));
+
+$arrTopicPath[] = array('お問い合わせ' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$code_area = <<< EOF
+<!-- Google Code for &#12522;&#12510;&#12540;&#12465;&#12486;&#12451;&#12531;&#12464; &#12479;&#12464; -->
+<!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide: google.com/ads/remarketingsetup -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 992548227;
+var google_conversion_label = "AZxSCM3xqQQQg6uk2QM";
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/992548227/?value=0&amp;label=AZxSCM3xqQQQg6uk2QM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+<!-- TransCosmos リターゲティングタグ 2014.09.12-->
+<script type="text/javascript">var smnAdvertiserId = '00001783';</script><script type="text/javascript" src="//cd-ladsp-com.s3.amazonaws.com/script/pixel.js"></script>
+
+<!-- TransCosmos YDNリタゲタグ 2014.10.06-->
+<script type="text/javascript" language="javascript">
+/* <![CDATA[ */
+var yahoo_retargeting_id = 'UD8Y2WVECU';
+var yahoo_retargeting_label = '';
+/* ]]> */
+</script>
+<script type="text/javascript" language="javascript" src="//b92.yahoo.co.jp/js/s_retargeting.js"></script>
+EOF;
+$this->assign('code_area', $code_area);
+?>
+
+<!-- コンテンツ -->
+<section class="container">
+<div id="g">
+
+<h2 class="toptitle01"><img src="/img/subtitle_inquiry.png"  class="img-responsive" alt="お問い合せ"/></h2>
+
+<div class="row">
+
+<!-- 右メイン -->
+<div class="col-md-9 col-md-push-3 right_main inquiry">
+
+    <h3 class="toptitle02"><img src="/img/subtitle_inquiry01.png" alt="入力フォーム" /></h3>
+      <div class="onebox">
+        <p>オリジナルプリントのご相談、ご質問などエスグラフィックへのお問い合せは、下のフォームに必要事項をご入力後、「確認画面に進む」ボタンを押してください。</p>
+        <p>緊急時を除き、お電話でのご連絡はご遠慮頂いております。必須事項は必ずご入力下さい。</p>
+        <form name="form1" method="post" action="<?= $form_url ?>">
+        <table class="form">
+          <tbody>
+            <tr>
+              <th>会社/部署名</th>
+              <td><input type="text" name="data[company]" class="b_box1" value="<?= $param['company'] ?>" />
+                  <p>※ 個人のお客様は入力不要</p>
+              </td>
+            </tr>
+            <tr>
+              <th>お名前&nbsp;<span>（必須）</span></th>
+              <td><input type="text" name="data[name]" class="b_box1" value="<?= $param['name'] ?>" />
+                <p class="fontcolor-red"><?= $error['name'] ?></p></td>
+            </tr>
+            <tr>
+              <th>ふりがな</th>
+              <td><input type="text" name="data[name_kana]" class="b_box1" value="<?= $param['name_kana'] ?>" />
+                  <p>※ ひらがなでご入力ください</p><p class="fontcolor-red"><?= $error['name_kana'] ?></p>
+              </td>
+            </tr>
+            <tr>
+              <th>お電話番号</th>
+              <td><input type="text" name="data[tel]" class="b_box1" value="<?= $param['tel'] ?>" />
+                  <p>※市外局番からご入力下さい</p><p class="fontcolor-red"><?= $error['tel'] ?></p>
+              </td>
+            </tr>
+            <tr>
+              <th>E-mail&nbsp;<span>（必須）</span></th>
+              <td><input type="text" name="data[email]" class="b_box1" value="<?= $param['email'] ?>" />
+                <p class="fontcolor-red"><?= $error['email'] ?></p></td>
+            </tr>
+            <tr>
+              <th>ご相談・ご質問&nbsp;<br><span>（必須）</span></th>
+              <td><textarea name="data[body]" id="comennt" class="comennt b_box1" ><?= $param['body'] ?></textarea>
+                <p class="fontcolor-red"><?= $error['body'] ?></p></td>
+            </tr>
+          </tbody>
+        </table>
+        
+
+        <h4 class="png margin-top-20">個人情報の取り扱いについて</h4>
+        <p>お客様からお預かりする個人情報は、お客様のお問合せに対するご連絡にのみ活用させていただくものです。<br />
+          それ以外の目的で使用することはありません。詳しくは&nbsp;<a href="/info/privacy" target="_blank">個人情報保護方針</a>&nbsp;をご覧ください。</p>
+        <div class="center margin-top-40">
+            <input type="submit" class="btn btn-warning" value="確認画面に進む" />
+        </div>
+      </div>
+</form>
+
+</div>
+<!-- 右メイン -->
+
+<!-- 左　メニュー -->
+<?php echo $this->element('side_nav');?> 
+<!-- 左　メニュー -->
+
+
+</div>
+
+</div>
+</section>
+
+<!-- コンテンツ -->

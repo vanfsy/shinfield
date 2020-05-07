@@ -1,0 +1,54 @@
+         <h1 class="page-header">応募者管理</h1>
+
+<?php echo $this->element('alert'); ?>
+
+          <h2 class="sub-header">応募情報 一覧</h2>
+          <div class="table-responsive">
+<?php if ($user_role == 'admin'): ?>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th width='20%'>応募者名</th>
+                  <th width='20%'>求人会社</th>
+                  <th width='50%'>コメント</th>
+                  <th width='10%'>日時</th>
+                </tr>
+              </thead>
+              <tbody>
+<?php foreach($arrJobDatas as $row){ ?>
+                <tr>
+                  <td align="left"><?php echo $row['JobEntry']['name'] ?><br>
+                  <a href="/admin/job_entry/detail/<?php echo $row['JobEntry']['id'] ?>"><span class="label label-info">詳　細</span></a>
+                  <a href="javascript:void(0)" onClick="delConfirm('/admin/job_entry/del/<?php echo $row['JobEntry']['id'] ?>')"><span class="label label-danger">削　除</span></a>
+                  </td>
+                  <td align="left"><?php echo $row['CompanyProfile']['company'] ?></td>
+                  <td align="left"><?php echo $row['JobEntry']['comment'] ?></td>
+                  <td align="left"><?php echo date("Y年 n月 j日" , strtotime($row['JobEntry']['entry_date'])) ?></td>
+                </tr>
+<?php } ?>
+              </tbody>
+            </table>
+<?php else: ?>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th width='20%'>応募者名</th>
+                  <th width='65%'>コメント</th>
+                  <th width='15%'>日時</th>
+                </tr>
+              </thead>
+              <tbody>
+<?php foreach($arrJobDatas as $row){ ?>
+                <tr>
+                  <td align="left"><?php echo $row['JobEntry']['name'] ?><br>
+                  <a href="/admin/job_entry/detail/<?php echo $row['JobEntry']['id'] ?>"><span class="label label-info">詳　細</span></a>
+                  <a href="javascript:void(0)" onClick="delConfirm('/admin/job_entry/del/<?php echo $row['JobEntry']['id'] ?>')"><span class="label label-danger">削　除</span></a>
+                  </td>
+                  <td align="left"><?php echo $row['JobEntry']['comment'] ?></td>
+                  <td align="left"><?php echo date("Y年 n月 j日" , strtotime($row['JobEntry']['entry_date'])) ?></td>
+                </tr>
+<?php } ?>
+              </tbody>
+            </table>
+<?php endif; ?>
+          </div>

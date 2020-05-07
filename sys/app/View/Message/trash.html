@@ -1,0 +1,176 @@
+<?php
+$meta_title = Configure::read('html.mypage');
+$meta_keywords = Configure::read('html.mypage');
+$meta_description = Configure::read('html.mypage');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$arrTopicPath[] = array('マイページ' => '/mypage/');
+$arrTopicPath[] = array('デスクトップ' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$this->Html->css('/css/main02.css', null, array('inline' => false));
+$arrMember = $arrMemberInfo['Member'];
+
+$code_area = <<< EOF
+EOF;
+$this->assign('script_area', $code_area);
+?>
+
+		<section>
+		<h2 class="f25 mb40">マイページ</h2>
+		<h3 class="ml30 mb20 mt20"><span><a href="/message/">メッセージ管理</a></span></h3>
+		<dl class="follow clearfix black ml40"> 
+			<dt>総合管理　　・・・</dt>
+			<dd><a href="/message/new_message/"><img src="/img/plus.png" alt="プラスマーク" class="pb05 pr05">新規作成</a></dd>
+			<dd><a href="/message/sendinglist/"><img src="/img/plus.png" alt="プラスマーク" class="pb05 pr05">受信メール一覧</a></dd>
+			<dd><a href="/message/receivedlist/"><img src="/img/plus.png" alt="プラスマーク" class="pb05 pr05">送信メール一覧</a></dd>
+			<dd><a href="/message/draftlist/"><img src="/img/plus.png" alt="プラスマーク" class="pb05 pr05">下書き一覧</a></dd>
+			<dd><a href="/message/trashlist/"><img src="/img/plus.png" alt="プラスマーク" class="pb05 pr05">ゴミ箱</a></dd>
+		 </dl>
+		<h3 class="ml30 mb30 mt40"><span>ゴミ箱</span><span class="f17">(120/20件表示)</span></h3>
+		<table class="border-all-gray ml30 mb15 width100">
+			<tr>
+				<td class="pl10 pt05 pb05 border-all-gray width120p">送信日時</td>
+				<td class="pl10 pt05 pb05 border-all-gray width150p">会社名</td>
+				<td class="pl10 pt05 pb05 border-all-gray">件名</td>
+				<td class="pt05 pb05 border-all-gray width100p text-center">詳細リンク</td>
+			</tr>
+			<tr>
+				<td class="pl10 pt05 pb05 border-all-gray width120p">2016/0/0 10:00</td>
+				<td class="pl10 pt05 pb05 border-all-gray width150p">有限会社アイマックス</td>
+				<td class="pl10 pt05 pb05 border-all-gray">Re:ここに件名おはようございます。ここに件名おは...</td>
+				<td class="pt05 pb05 border-all-gray width100p text-center"><a href="/message/message_detail/">詳細を見る</td>
+			</tr>
+			<tr>
+				<td class="pl10 pt05 pb05 border-all-gray width120p">2016/0/0 10:00</td>
+				<td class="pl10 pt05 pb05 border-all-gray width150p">有限会社アイマックス</td>
+				<td class="pl10 pt05 pb05 border-all-gray">Re:ここに件名おはようございます。ここに件名おは...</td>
+				<td class="pt05 pb05 border-all-gray width100p text-center"><a href="/message/message_detail/">詳細を見る</td>
+			</tr>
+			<tr>
+				<td class="pl10 pt05 pb05 border-all-gray width120p">2016/0/0 10:00</td>
+				<td class="pl10 pt05 pb05 border-all-gray width150p">有限会社アイマックス</td>
+				<td class="pl10 pt05 pb05 border-all-gray">Re:ここに件名おはようございます。ここに件名おは...</td>
+				<td class="pt05 pb05 border-all-gray width100p text-center"><a href="/message/message_detail/">詳細を見る</td>
+			</tr>
+			<tr>
+				<td class="pl10 pt05 pb05 border-all-gray width120p">2016/0/0 10:00</td>
+				<td class="pl10 pt05 pb05 border-all-gray width150p">有限会社アイマックス</td>
+				<td class="pl10 pt05 pb05 border-all-gray">Re:ここに件名おはようございます。ここに件名おは...</td>
+				<td class="pt05 pb05 border-all-gray width100p text-center"><a href="/message/message_detail/">詳細を見る</td>
+			</tr>
+			<tr>
+				<td class="pl10 pt05 pb05 border-all-gray width120p">2016/0/0 10:00</td>
+				<td class="pl10 pt05 pb05 border-all-gray width150p">有限会社アイマックス</td>
+				<td class="pl10 pt05 pb05 border-all-gray">Re:ここに件名おはようございます。ここに件名おは...</td>
+				<td class="pt05 pb05 border-all-gray width100p text-center"><a href="/message/message_detail/">詳細を見る</td>
+			</tr>
+			<tr>
+				<td class="pl10 pt05 pb05 border-all-gray width120p">2016/0/0 10:00</td>
+				<td class="pl10 pt05 pb05 border-all-gray width150p">有限会社アイマックス</td>
+				<td class="pl10 pt05 pb05 border-all-gray">Re:ここに件名おはようございます。ここに件名おは...</td>
+				<td class="pt05 pb05 border-all-gray width100p text-center"><a href="/message/message_detail/">詳細を見る</td>
+			</tr>
+			<tr>
+				<td class="pl10 pt05 pb05 border-all-gray width120p">2016/0/0 10:00</td>
+				<td class="pl10 pt05 pb05 border-all-gray width150p">有限会社アイマックス</td>
+				<td class="pl10 pt05 pb05 border-all-gray">Re:ここに件名おはようございます。ここに件名おは...</td>
+				<td class="pt05 pb05 border-all-gray width100p text-center"><a href="/message/message_detail/">詳細を見る</td>
+			</tr>
+			<tr>
+				<td class="pl10 pt05 pb05 border-all-gray width120p">2016/0/0 10:00</td>
+				<td class="pl10 pt05 pb05 border-all-gray width150p">有限会社アイマックス</td>
+				<td class="pl10 pt05 pb05 border-all-gray">Re:ここに件名おはようございます。ここに件名おは...</td>
+				<td class="pt05 pb05 border-all-gray width100p text-center"><a href="/message/message_detail/">詳細を見る</td>
+			</tr>
+			<tr>
+				<td class="pl10 pt05 pb05 border-all-gray width120p">2016/0/0 10:00</td>
+				<td class="pl10 pt05 pb05 border-all-gray width150p">有限会社アイマックス</td>
+				<td class="pl10 pt05 pb05 border-all-gray">Re:ここに件名おはようございます。ここに件名おは...</td>
+				<td class="pt05 pb05 border-all-gray width100p text-center"><a href="/message/message_detail/">詳細を見る</td>
+			</tr>
+			<tr>
+				<td class="pl10 pt05 pb05 border-all-gray width120p">2016/0/0 10:00</td>
+				<td class="pl10 pt05 pb05 border-all-gray width150p">有限会社アイマックス</td>
+				<td class="pl10 pt05 pb05 border-all-gray">Re:ここに件名おはようございます。ここに件名おは...</td>
+				<td class="pt05 pb05 border-all-gray width100p text-center"><a href="/message/message_detail/">詳細を見る</td>
+			</tr>
+			<tr>
+				<td class="pl10 pt05 pb05 border-all-gray width120p">2016/0/0 10:00</td>
+				<td class="pl10 pt05 pb05 border-all-gray width150p">有限会社アイマックス</td>
+				<td class="pl10 pt05 pb05 border-all-gray">Re:ここに件名おはようございます。ここに件名おは...</td>
+				<td class="pt05 pb05 border-all-gray width100p text-center"><a href="/message/message_detail/">詳細を見る</td>
+			</tr>
+			<tr>
+				<td class="pl10 pt05 pb05 border-all-gray width120p">2016/0/0 10:00</td>
+				<td class="pl10 pt05 pb05 border-all-gray width150p">有限会社アイマックス</td>
+				<td class="pl10 pt05 pb05 border-all-gray">Re:ここに件名おはようございます。ここに件名おは...</td>
+				<td class="pt05 pb05 border-all-gray width100p text-center"><a href="/message/message_detail/">詳細を見る</td>
+			</tr>
+			<tr>
+				<td class="pl10 pt05 pb05 border-all-gray width120p">2016/0/0 10:00</td>
+				<td class="pl10 pt05 pb05 border-all-gray width150p">有限会社アイマックス</td>
+				<td class="pl10 pt05 pb05 border-all-gray">Re:ここに件名おはようございます。ここに件名おは...</td>
+				<td class="pt05 pb05 border-all-gray width100p text-center"><a href="/message/message_detail/">詳細を見る</td>
+			</tr>
+			<tr>
+				<td class="pl10 pt05 pb05 border-all-gray width120p">2016/0/0 10:00</td>
+				<td class="pl10 pt05 pb05 border-all-gray width150p">有限会社アイマックス</td>
+				<td class="pl10 pt05 pb05 border-all-gray">Re:ここに件名おはようございます。ここに件名おは...</td>
+				<td class="pt05 pb05 border-all-gray width100p text-center"><a href="/message/message_detail/">詳細を見る</td>
+			</tr>
+			<tr>
+				<td class="pl10 pt05 pb05 border-all-gray width120p">2016/0/0 10:00</td>
+				<td class="pl10 pt05 pb05 border-all-gray width150p">有限会社アイマックス</td>
+				<td class="pl10 pt05 pb05 border-all-gray">Re:ここに件名おはようございます。ここに件名おは...</td>
+				<td class="pt05 pb05 border-all-gray width100p text-center"><a href="/message/message_detail/">詳細を見る</td>
+			</tr>
+			<tr>
+				<td class="pl10 pt05 pb05 border-all-gray width120p">2016/0/0 10:00</td>
+				<td class="pl10 pt05 pb05 border-all-gray width150p">有限会社アイマックス</td>
+				<td class="pl10 pt05 pb05 border-all-gray">Re:ここに件名おはようございます。ここに件名おは...</td>
+				<td class="pt05 pb05 border-all-gray width100p text-center"><a href="/message/message_detail/">詳細を見る</td>
+			</tr>
+			<tr>
+				<td class="pl10 pt05 pb05 border-all-gray width120p">2016/0/0 10:00</td>
+				<td class="pl10 pt05 pb05 border-all-gray width150p">有限会社アイマックス</td>
+				<td class="pl10 pt05 pb05 border-all-gray">Re:ここに件名おはようございます。ここに件名おは...</td>
+				<td class="pt05 pb05 border-all-gray width100p text-center"><a href="/message/message_detail/">詳細を見る</td>
+			</tr>
+			<tr>
+				<td class="pl10 pt05 pb05 border-all-gray width120p">2016/0/0 10:00</td>
+				<td class="pl10 pt05 pb05 border-all-gray width150p">有限会社アイマックス</td>
+				<td class="pl10 pt05 pb05 border-all-gray">Re:ここに件名おはようございます。ここに件名おは...</td>
+				<td class="pt05 pb05 border-all-gray width100p text-center"><a href="/message/message_detail/">詳細を見る</td>
+			</tr>
+			<tr>
+				<td class="pl10 pt05 pb05 border-all-gray width120p">2016/0/0 10:00</td>
+				<td class="pl10 pt05 pb05 border-all-gray width150p">有限会社アイマックス</td>
+				<td class="pl10 pt05 pb05 border-all-gray">Re:ここに件名おはようございます。ここに件名おは...</td>
+				<td class="pt05 pb05 border-all-gray width100p text-center"><a href="/message/message_detail/">詳細を見る</td>
+			</tr>
+			<tr>
+				<td class="pl10 pt05 pb05 border-all-gray width120p">2016/0/0 10:00</td>
+				<td class="pl10 pt05 pb05 border-all-gray width150p">有限会社アイマックス</td>
+				<td class="pl10 pt05 pb05 border-all-gray">Re:ここに件名おはようございます。ここに件名おは...</td>
+				<td class="pt05 pb05 border-all-gray width100p text-center"><a href="/message/message_detail/">詳細を見る</td>
+			</tr>
+			<tr>
+				<td class="pl10 pt05 pb05 border-all-gray width120p">2016/0/0 10:00</td>
+				<td class="pl10 pt05 pb05 border-all-gray width150p">有限会社アイマックス</td>
+				<td class="pl10 pt05 pb05 border-all-gray">Re:ここに件名おはようございます。ここに件名おは...</td>
+				<td class="pt05 pb05 border-all-gray width100p text-center"><a href="/message/message_detail/">詳細を見る</td>
+			</tr>
+		</table>
+            <ul class="aligncenter width200p">
+                <li class="alignleft ml10 mr10">1</li>
+                <li class="alignleft ml10 mr10"><a href="#">2</a></li>
+                <li class="alignleft ml10 mr10"><a href="#">3</a></li>
+                <li class="alignleft ml10 mr10"><a href="#">4</a></li>
+                <li class="alignleft ml10 mr10"><a href="#">5</a></li>
+                <li class="alignleft ml10 mr10"><a href="#">></a></li>
+            </ul>
+        </section>

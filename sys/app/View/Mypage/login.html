@@ -1,0 +1,56 @@
+<?php
+$meta_title = 'ログイン';
+$meta_keywords = Configure::read('html.login');
+$meta_description = Configure::read('html.login');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+?>
+
+<h2 class="form-signin-heading">ログイン</h2>
+<p class="textRed"><?php echo $this->Session->flash('auth'); ?></p>
+<p class="textRed"><?php echo $this->Session->flash('flash'); ?></p>
+
+<?= $this->Form->create('Member', array('url' => '/mypage/login/','class' => 'form-horizontal login')) ?>
+
+<div class="form-group">
+    <label class="col-sm-3 control-label">ユーザID<span class="red">*</span></label>
+    <div class="col-sm-6">
+        <?= $this->Form->input('user_id',array('label'=>false,'type' => 'text', 'class'=>'form-control','placeholder' => 'yourmail@mail.com')) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-3 control-label">パスワード<span class="red">*</span></label>
+    <div class="col-sm-6">
+        <?= $this->Form->input('password',array('label'=>false,'class'=>'form-control','placeholder' => 'Password','value' => '')) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <!--<div class="col-sm-3" style="margin:0 auto;float:none;">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
+    </div>-->
+    <div class="text-center">
+        <button class="mybtn mybtn01" type="submit" style="border:0;">ログイン</button>
+    </div>
+    
+</div>
+
+<?php echo $this->Form->end(); ?>
+<div class="form-group">
+    <div class="text-center">
+        <a href="/member_regist/reissue/">パスワードを忘れた方はこちら</a>
+    </div>
+</div>
+<hr />
+<div class="form-group">
+    <!--<div class="col-sm-3" style="margin:0 auto;float:none;">
+        <a href="/member_regist"><button class="btn btn-lg btn-info btn-block" type="button">新規登録</button></a>
+    </div>-->
+    <div class="text-center">
+        <a href="/member_regist" class="mybtn mybtn02">新規登録</a>
+    </div>
+</div>
+

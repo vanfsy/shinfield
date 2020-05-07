@@ -1,0 +1,128 @@
+<?php
+// エリア
+$arrArea = Configure::read('arrArea');
+
+// 会員ランク
+$arrreviewRank = Configure::read('arrUserRank');
+
+// 販売者ステータス
+$arrSellerStatus = Configure::read('arrSellerStatus');
+
+$arrGender = Configure::read('arrGender');
+?>
+<h1 class="page-header">レビュー情報</h1>
+<?php echo $this->element('alert'); ?>
+<h2 class="sub-header">レビュー情報 一覧</h2>
+<!-- Button trigger modal -->
+<div class="col-sm-9 text-left"></div>
+<button type="button" class="btn btn-primary btn-lg mBottom20" data-toggle="modal" data-target="#myModal">
+  検索条件
+</button> &nbsp;&nbsp;&nbsp;
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">検索条件</h4>
+            </div>
+            <div class="modal-body">
+                <?php echo $this->Form->create('SearchParam', array('url' => '/review/','class' => 'form-horizontal','role'=>'form')); ?>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">レビューID</label>
+                    <div class="col-sm-9">
+                        <?php echo $this->Form->input('id', array('label'=>false, 'id'=>'inp_id', 'class'=>'form-control form-text')) ?>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">アイテムID</label>
+                    <div class="col-sm-9">
+                        <?php echo $this->Form->input('item_id', array('type' => 'text', 'label'=>false, 'id'=>'inp_item_id', 'class'=>'form-control form-text')) ?>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">メンバーID</label>
+                    <div class="col-sm-9">
+                        <?php echo $this->Form->input('member_id', array('type' => 'text', 'label'=>false, 'id'=>'inp_member_id', 'class'=>'form-control form-text')) ?>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">評価</label>
+                    <div class="col-sm-9">
+                        <?php
+                            echo $this->Form->input('rating',
+                                array('label' => false,
+                                    'div' => false,
+                                    'type' => 'select',
+                                    'options' => Configure::read('rating'),
+                                    'class'=>'form-control form-select',
+                                    'empty' => ''
+                                )
+                            );
+                        ?>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">コメント</label>
+                    <div class="col-sm-9">
+                        <?php echo $this->Form->input('comment',array('label'=>false, 'id'=>'inp_comment', 'class'=>'form-control form-text')) ?>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">削除フラグ</label>
+                    <div class="col-sm-9">
+                        <?php
+                            echo $this->Form->input('del_flg',
+                                array('label' => false,
+                                    'div' => false,
+                                    'type' => 'select',
+                                    'options' => Configure::read('del_flg'),
+                                    'class'=>'form-control form-select',
+                                    'empty' => ''
+                                )
+                            );
+                        ?>
+                    </div>
+                </div>
+                <div class="submitButton"><button class="btn btn-lg btn-primary btnW200" type="submit">検索</button> <button class="btn btn-lg btn-primary btnW200" type="button" onClick="searchClear()">クリア</button></div>
+                <?php echo $this->Form->end(); ?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="w30">レビューID</th>
+                <th class="w200">コメント</th>
+                <th class="w30">評価</th>
+                <th class="w30">削除フラグ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($arrData['list'] as $row): ?>
+                <tr>
+                    <td align="left"><?php echo h($row['Review']['id']); ?></td>
+                    <td align="left"><?php echo h($row['Review']['comment']); ?>
+                        <p><a href="/admin/review/detail/<?php echo $row['Review']['id'] ?>"><span class="label label-info">詳細・編集</span></a>
+                        <a href="javascript:void(0)" onClick="delConfirm('/admin/review/delete/<?php echo $row['Review']['id'] ?>')"><span class="label label-danger">削　除</span></a></p>
+                    </td>
+                    <td align="left"><?php echo h(Configure::read('rating')[$row['Review']['rating']]); ?></td>
+                    <td align="left"><?php echo h(Configure::read('del_flg')[$row['Review']['del_flg']]); ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <!-- ページネーション -->
+    <?php echo $this->Paging->list_navi($arrData,$url,5); ?>
+</div>
+<script>
+    function searchClear() {
+        $(".form-text").val('');
+        $(".form-select").val('');
+    }
+</script>

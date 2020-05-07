@@ -1,0 +1,27 @@
+<?php if(!empty($arrAuthCustomer['name'])): ?>
+        <div class="mypagespace">ようこそ！&nbsp;<span class="col"><?= h($arrAuthCustomer['name']) ?>&nbsp;さん</span>&nbsp;&nbsp;現在の所持ポイント&nbsp;：<span class="col"><?= $arrAuthCustomer['point'] ?>&nbsp;Pt</span></div>
+<?php endif; ?>
+
+<div id="mypage_head">
+<div class="mypage_head_elment">
+    <p><a href="<?= FULL_BASE_URL ?>/mypage/"><img src="<?= FULL_BASE_URL ?>/images/mypage_ico01.png" alt="デスクトップ" width="98%" /></a></p>
+    <p><a href="<?= FULL_BASE_URL ?>/mypage/">デスクトップ</a></p>
+</div>
+<div class="mypage_head_elment">
+    <p><a href="<?= FULL_BASE_URL ?>/mypage/history"><img src="<?= FULL_BASE_URL ?>/images/mypage_ico02.png" alt="購入履歴" width="98%" /></a></p>
+    <p><a href="<?= FULL_BASE_URL ?>/mypage/history">購入履歴</a></p>
+</div>
+<div class="mypage_head_elment">
+    <p><a href="<?= FULL_BASE_URL ?>/mypage/cust_detail"><img src="<?= FULL_BASE_URL ?>/images/mypage_ico03.png" alt="登録内容確認・変更" width="98%" /></a></p>
+    <p><a href="<?= FULL_BASE_URL ?>/mypage/cust_detail">登録内容確認・変更</a></p>
+</div>
+<div class="mypage_head_elment">
+    <p><a href="<?= FULL_BASE_URL ?>/mypage/address_detail"><img src="<?= FULL_BASE_URL ?>/images/mypage_ico04.png" alt="お届け先確認・変更" width="98%" /></a></p>
+    <p><a href="<?= FULL_BASE_URL ?>/mypage/address_detail">お届け先確認・変更</a></p>
+</div>
+<div class="mypage_head_elment">
+    <p><a href="<?= FULL_BASE_URL ?>/mypage/resign"><img src="<?= FULL_BASE_URL ?>/images/mypage_ico05.png" alt="退会手続き" width="98%" /></a></p>
+    <p><a href="<?= FULL_BASE_URL ?>/mypage/resign">退会手続き</a></p>
+</div>
+</div>
+<div class="clear"></div>

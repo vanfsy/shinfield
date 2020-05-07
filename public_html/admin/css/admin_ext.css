@@ -1,0 +1,56 @@
+.btnW200{
+  width: 200px;
+}
+.submitButton{
+  width: 100%;
+  text-align: center;
+}
+
+.textRed{
+  color: red;
+}
+
+.red{
+  color: red;
+}
+
+.datetimeStyle{
+  width: 100px;
+  float: left;
+}
+
+.datetimeLabel{
+  width: 50px;
+  float: left;
+  text-align: center;	
+}
+
+.noScroll{
+	overflow:hidden;
+}
+
+.unav li{
+  display: inline;
+  margin: 0 5px 5px 0;
+}
+
+div.checkbox{
+  float: left;
+  margin-left: 1em;
+}
+div.child{
+  overflow: hidden;
+  margin-bottom: 8px;
+  margin-left: 18px;
+}
+div.checkbox_parent{
+  overflow: hidden;
+  float: none;  
+}
+div.checkbox_parent label{
+  margin-left: 0.5em;
+  font-weight: normal;
+}
+.error-message{
+  color: red;
+}

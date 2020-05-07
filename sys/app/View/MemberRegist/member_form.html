@@ -1,0 +1,264 @@
+<?php
+$meta_title = Configure::read('html.member');
+$meta_keywords = Configure::read('html.member');
+$meta_description = Configure::read('html.member');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$this->Html->css('/css/style.css', null, array('inline' => false));
+
+$arrGender = Configure::read('arrGender');
+$arrMailMagFlg = Configure::read('arrMailMagFlg');
+
+$minYear = date('Y')-60;
+$maxYear = date('Y')-10;
+$defYear = date('Y')-20;
+$birthdayOption = array(
+  'minYear' => $minYear,
+  'maxYear' => $maxYear,
+  'separator' => array('<p class="alignleft mr10">年</p>','<p class="alignleft mr10">月</p>','<p class="alignleft mr10">日</p>'),
+  'default' => array('year' => $defYear,'month' => 1,'day' => 1),
+  'class'=>'datetimeStyle alignleft mr10',
+  'monthNames' => false
+);
+
+$arrTopicPath[] = array('商品一覧' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$code_area = <<< EOF
+EOF;
+$this->assign('code_area', $code_area);
+?>
+<style>
+.datetimeStyle{
+}
+</style>
+<section>
+  <h2 class="f25 mb40">新規会員登録</h2>
+
+<?php
+$msg = $this->Session->flash('auth');
+if(!empty($msg)):
+?>
+<div class="alert alert-danger alert-dismissible" role="alert">
+  <?php echo $msg; ?>
+</div>
+<?php endif; ?>
+
+  <h3 class="ml30 mb20 mt20"><span>会員情報入力</span></h3>
+  <p class="textleft ml30">※は必須項目</p>
+
+<?php echo $this->Form->create('Member',
+                            array('url' => '/member_regist/member_form',
+                                  'class' => 'form-horizontal',
+                                  'role'=>'form'
+)); ?>
+<?php echo $this->Form->input('agree',
+                            array('label' => false,
+                                  'type' => 'hidden',
+)) ?>
+<?php echo $this->Form->input('role',
+                            array('label' => false,
+                                  'type' => 'hidden',
+                                  'value' => $arrData['Member']['role'],
+)) ?>
+
+    <table class="ml30 mb30 table-res01">
+      <tr>
+        <th class="width20">氏　名※</th>
+        <td>
+<?php echo $this->Form->input('name',
+                            array('label' => false,
+                                  'div' => false,
+                                  'type' => 'text',
+                                  'size' => 50,
+								  'class' => 'sp_width90',
+                                  'value' => $arrData['Member']['name'],
+)) ?>
+        </td>
+      </tr>
+      <tr>
+        <th>氏　名（フリガナ）※</th>
+        <td>
+<?php echo $this->Form->input('name_kana',
+                            array('label' => false,
+                                  'div' => false,
+                                  'type' => 'text',
+                                  'size' => 50,
+								  'class' => 'sp_width90',
+                                  'value' => $arrData['Member']['name_kana'],
+)) ?>
+        </td>
+      </tr>
+      <tr>
+        <th>会社名</th>
+        <td>
+<?php echo $this->Form->input('company',
+                            array('label' => false,
+                                  'div' => false,
+                                  'type' => 'text',
+                                  'size' => 50,
+								  'class' => 'sp_width90',
+                                  'value' => $arrData['Member']['company'],
+)) ?>
+        </td>
+      </tr>
+      <tr>
+        <th>郵便番号※</th>
+        <td>
+<?php echo $this->Form->input('postcode',
+                            array('label' => false,
+                                  'div' => false,
+                                  'type' => 'text',
+                                  'value' => $arrData['Member']['postcode'],
+)) ?>
+        </td>
+      </tr>
+      <tr>
+        <th>住　所※</th>
+        <td>
+<?php echo $this->Form->input('address',
+                            array('label' => false,
+                                  'div' => false,
+                                  'type' => 'text',
+                                  'size' => 60,
+                                  'value' => $arrData['Member']['address'],
+)) ?>
+        </td>
+      </tr>
+      <tr>
+        <th>電話番号※</th>
+        <td>
+<?php echo $this->Form->input('phone',
+                            array('label' => false,
+                                  'div' => false,
+                                  'type' => 'text',
+                                  'value' => $arrData['Member']['phone'],
+                                  'placeholder' => '080-0000-0000',
+)) ?>
+        </td>
+      </tr>
+      <tr>
+        <th>性　別※</th>
+        <td>
+<?php echo $this->Form->radio('gender',$arrGender,
+                              array( 'legend'=>false,
+                                     'div' => false,
+                                     'label' => false,
+                                     'class' => 'ml10 mr05',
+                                     'value' => $arrData['Member']['gender'],
+)) ?>
+        </td>
+      </tr>
+      <tr>
+        <th>生年月日※</th>
+        <td class="overflow_clear">
+<?php echo $this->Form->dateTime('birthday','YMD','NONE',$birthdayOption); ?>
+        </td>
+      </tr>
+      <tr>
+        <th>ニックネーム※</th>
+        <td>
+<?php echo $this->Form->input('nickname',
+                            array('label' => false,
+                                  'div' => false,
+                                  'type' => 'text',
+                                  'value' => $arrData['Member']['nickname'],
+)) ?>
+        </td>
+      </tr>
+      <tr>
+        <th>プロフィール紹介文</th>
+        <td>
+<?php echo $this->Form->input('comment',
+                            array('label' => false,
+                                  'div' => false,
+                                  'type' => 'text',
+                                  'rows' => 5,
+                                  'value' => $arrData['Member']['comment'],
+)) ?>
+        </td>
+      </tr>
+      <tr>
+        <th>メールアドレス※</th>
+        <td>
+<?php echo $this->Form->input('email',
+                            array('label' => false,
+                                  'div' => false,
+                                  'type' => 'email',
+                                  'value' => $arrData['Member']['email'],
+)) ?>
+        </td>
+      </tr>
+      <tr>
+        <th>メールアドレス確認※</th>
+        <td>
+<?php echo $this->Form->input('email_confirm',
+                            array('label' => false,
+                                  'div' => false,
+                                  'type' => 'email',
+                                  'value' => $arrData['Member']['email_confirm'],
+)) ?>
+        </td>
+      </tr>
+      <tr>
+        <th>パスワード※</th>
+        <td>
+<?php echo $this->Form->input('password',
+                            array('label' => false,
+                                  'div' => false,
+                                  'type' => 'password',
+                                  'size' => 50,
+ 								  'class' => 'sp_width90',                                 
+                                  'value' => $arrData['Member']['password'],
+)) ?>
+        </td>
+      </tr>
+      <tr>
+        <th>パスワード確認※</th>
+        <td>
+<?php echo $this->Form->input('password_confirm',
+                            array('label' => false,
+                                  'div' => false,
+                                  'type' => 'password',
+                                  'size' => 50,
+								  'class' => 'sp_width90',                                  
+                                  'value' => $arrData['Member']['password_confirm'],
+)) ?>
+        </td>
+      </tr>
+      <tr>
+        <th>パスワードのヒント</th>
+        <td>
+<?php echo $this->Form->input('password_hint',
+                            array('label' => false,
+                                  'div' => false,
+                                  'type' => 'text',
+                                  'size' => 50,
+                                  'value' => $arrData['Member']['password_hint'],
+)) ?>
+        </td>
+      </tr>
+      <?php /*<tr>
+        <th>メールマガジン</th>
+        <td>
+<?php echo $this->Form->radio('mailmag_flg',$arrMailMagFlg,
+                              array( 'legend'=>false,
+                                     'div' => false,
+                                     'label' => false,
+                                     'class' => 'ml10 mr05',
+                                     'value' => $arrData['Member']['mailmag_flg'],
+)) ?>
+        </td>
+      </tr>*/ ?>
+    </table>
+    <input name="data[Member][mailmag_flg]" type="hidden" value="0">
+    
+
+    <p class="textcenter pt20">
+      <input type="submit" class="mybtn-bl mybtn-bl-md" value="確認ページへ" />
+    </p>
+<?php echo $this->Form->end(); ?>
+</section>

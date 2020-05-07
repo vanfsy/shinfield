@@ -1,0 +1,252 @@
+<?php
+$meta_title = Configure::read('html.mypage');
+$meta_keywords = Configure::read('html.mypage');
+$meta_description = Configure::read('html.mypage');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$arrTopicPath[] = array('マイページ' => '/mypage/');
+$arrTopicPath[] = array('デスクトップ' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$this->Html->css('/css/main02.css', null, array('inline' => false));
+$arrMember = $arrMemberInfo['Member'];
+
+$this->Html->css('/remodal/src/remodal.css', null, array('inline' => false));
+$this->Html->css('/remodal/src/remodal-default-theme.css', null, array('inline' => false));
+
+$this->Html->script('/remodal/src/remodal.js', array('inline' => false));
+$this->Html->script('/js/page.js', array('inline' => false));
+
+$code_area = <<< EOF
+    $('.curArea').click(function() {
+      $("#input_name").val($(this).attr("name"));
+    });
+EOF;
+$this->assign('script_area', $code_area);
+?>
+
+<section>
+  <h2 class="f25 mb20">マイページ</h2>
+    <?php
+    $msg = $this->Session->flash();
+    if(!empty($msg)):
+    ?>
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <?php echo $msg; ?>
+    </div>
+    <?php endif; ?>
+<?php if(!empty($arrMemberInfo)): ?>
+    <div class="row mypage_row">
+    <div class="col-xs-12 col-sm-3 col-md-3"> 　
+      <div class="aligncenter mypage_progimg">
+          <div class="block-apsect block-1x1">
+              <div class="block-content">
+            <?php
+            if(!empty($arrMember['image_file_name'])){
+              echo $this->Upload->uploadImage($arrMember,'Member.image',array('style'=>'list_l'), array('class'=>'block-img'));
+            }else{
+              echo '<img src="/img/front_s.png" alt="画像" class="block-img">';
+            }
+            ?>
+            </div>
+        </div>
+        <p class="item-p01"><a data-remodal-target="modal" class="curArea" name="image">画像を編集する</a></p>
+<?php if(!empty($arrMember['image_file_name'])): ?>
+          <p class="item-p01"><a class="image_del" href="javascript:void(0)" data-url="/mypage/member_image_del/">画像削除</a></p>
+<?php endif; ?>
+      </div>
+      <div class="mypage_sp_info">
+      <p class="strong mt30 f15">ポイント残高</p>
+      <span class="strong"><?php echo number_format($arrMember['point']) ?></span>ポイント
+      <p class="strong mt30 f15">ユーザーレベル</p>
+      <?php if (isset($ratingAve)) :?>
+        <span class="strong"><?php echo $ratingAve; ?></span>レベル
+      <?php else :?>
+        登録なし
+      <?php endif; ?>
+      <p class="strong mt30 f15">出品商品サマリー</p>
+      <table class="table02">
+        <tbody>
+          <tr>
+            <th>販売中</th>
+            <td><span class="strong"><?php echo $arrItemSummary['販売中'] ?></span>件</td>
+          </tr>
+          <tr>
+            <th>一時停止</th>
+            <td><span class="strong"><?php echo $arrItemSummary['一時停止'] ?></span>件</td>
+          </tr>
+          <tr>
+            <th>販売終了</th>
+            <td><span class="strong"><?php echo $arrItemSummary['販売終了'] ?></span>件</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="strong mt30 f15">購入商品サマリー</p>
+      <table class="table02">
+        <tbody>
+          <tr>
+            <th>購入済み</th>
+            <td><span class="strong"><?php echo $intOrderCount ?></span>件</td>
+          </tr>
+          <tr>
+            <th>お気に入り</th>
+            <td><span class="strong"><?php echo $intFavoriteCount ?></span>件</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="black strong mt30 f15">フォロー数</p>
+      <p><span class="strong"><?php echo $intFollowCount ?></span>人</p>
+      <p class="black strong mt30 f15">フォロワー数</p>
+      <p><span class="strong"><?php echo $intFollowerCount ?></span>人</p>
+      <p class="black strong mt30 f15">メッセージ</p>
+      <table class="table02 mb30">
+        <tbody>
+          <tr>
+            <th>受　信</th>
+            <td><span class="strong"><?php echo $intReceivedCount ?></span>件</td>
+          </tr>
+          <tr>
+            <th>未開封</th>
+            <td><span class="strong"><?php echo $intgetUnreadCount ?></span>件</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-9 col-md-9">
+      <div class="waku01">ユーザー名</div>
+      <p class="mypage_user_name"><?php echo $arrMember['company'] ?> [ <?php echo $arrMember['name'] ?> ]</p>
+      <p class="black alignright"><a href="/mypage/sellerinfo/<?php echo $arrMember['id'] ?>">販売者ページを確認する</a></p>
+
+<?php if($arrMember['status'] == 3 ): ?>
+      <div class="red mt50 mb20">ログイン制限がかかっています。詳細は管理者までお問い合わせください。</div>
+<?php endif; ?>
+
+<?php if(!empty($arrMember['admin_message'])): ?>
+      <div class="waku01 mt50">お知らせ</div>
+      <div class="mt20 mb20"><?php echo nl2br(h($arrMember['admin_message'])) ?></div>
+<?php endif; ?>
+
+<?php if($arrMember['status'] == 1 ): ?>
+      <div class="black waku01 mt50">販売者用</div>
+      <table class="table03 mt10 black">
+        <tbody>
+          <tr>
+            <th>商品管理　&#8230;</th>
+            <td><p class="item-p01"><a href="/mypage/item">商品を出品する</a></p></td>
+          </tr>
+          <tr>
+            <th>&nbsp;</th>
+            <td><p class="item-p01"><a href="/mypage/item_list">商品リスト／登録した商品を編集する</a></p></td>
+          </tr>
+          <tr>
+            <th>売上管理　&#8230;</th>
+            <td><p class="item-p01"><a href="/mypage/sales_report">売り上げ状況を確認する</a></p></td>
+          </tr>
+          <tr>
+            <th>&nbsp;</th>
+            <td><p class="item-p01"><a href="/mypage/cashing">換金申請をする</a></p></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="black waku01 mt30">購入者用</div>
+      <table class="table03 mt10 black">
+        <tbody>
+          <tr>
+            <th>購入商品　&#8230;</th>
+            <td><p class="item-p01"><a href="/cart">カートを見る</a></p></td>
+          </tr>
+          <tr>
+            <th>&nbsp;</th>
+            <td><p class="item-p01"><a href="/cart/buy_point">ポイントを買う</a></p></td>
+          </tr>
+          <tr>
+            <th>　</th>
+            <td><p class="item-p01"><a href="/mypage/favorite">お気に入り一覧</a></p></td>
+          </tr>
+          <tr>
+            <th>&nbsp;</th>
+            <td><p class="item-p01"><a href="/mypage/purchased">購入した商品を見る</a></p></td>
+          </tr>
+          <tr>
+            <th>&nbsp;</th>
+            <td><p class="item-p01"><a href="/mypage/purchased_point">ポイント購入履歴を見る</a></p></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="black waku01 mt30">登録情報</div>
+      <table class="table03 mt10 black">
+        <tbody>
+          <tr>
+            <th>登録情報　&#8230;</th>
+            <td><p class="item-p01"><a href="/mypage/profile">登録情報を変更する</a></p></td>
+          </tr>
+          <tr>
+            <th>&nbsp;</th>
+            <td><p class="item-p01"><a href="/message">メッセージ一覧</a></p></td>
+          </tr>
+          <tr>
+            <th>&nbsp;</th>
+            <td><p class="item-p01"><a href="/mypage/notice_mail">メール通知設定</a></p></td>
+          </tr>
+          <tr>
+            <th>&nbsp;</th>
+            <td><p class="item-p01"><a href="/mypage/followlist">フォロー一覧</a></p></td>
+          </tr>
+          <tr>
+            <th>&nbsp;</th>
+            <td><p class="item-p01"><a href="/mypage/followerlist">フォロワー一覧</a></p></td>
+          </tr>
+          <tr>
+            <th>&nbsp;</th>
+            <td><p class="item-p01"><a href="/mypage/withdrawal">退会する</a></p></td>
+          </tr>
+        </tbody>
+      </table>
+<?php endif; ?>
+
+    </div>
+
+  </div>
+  <!-- /row -->
+<?php endif; ?>
+
+</section>
+
+
+<div class="remodal" data-remodal-id="modal" data-remodal-options="hashTracking:false">
+<?php echo $this->Form->create('Member',
+                            array('id' => 'FileUpForm',
+                                  'url' => '/mypage/member_image_fileup',
+                                  'type' => 'file',
+)); ?>
+<?php echo $this->Form->input('id',
+                            array('label' => false,
+                                  'type' => 'hidden',
+                                  'value' => $arrMember['id'],
+)) ?>
+<?php echo $this->Form->input('input_name',
+                            array('label' => false,
+                                  'type' => 'hidden',
+                                  'id' => 'input_name',
+)) ?>
+<?php echo $this->Form->input('image_file_name',
+                            array('type'=>'hidden',
+                                  'label'=>false,
+                                  'div' => false,
+                                  'value' => $arrMember['image_file_name']
+)) ?>
+
+    <button data-remodal-action="close" class="remodal-close"></button>
+    <h2>ファイルアップロード</h2>
+    <p>画像ファイルをアップロードして下さい。</p>
+  <p class="m40">
+<?php echo $this->Form->input('file',array('type'=>'file','label'=>false,'div'=>false,'class'=>'aligncenter','accept'=>'image/jpeg,image/png,image/gif')) ?>
+  </p>
+    <button data-remodal-action="cancel" class="remodal-cancel">キャンセル</button>
+    <button id="fileup_submit" class="remodal-confirm">アップロード</button>
+<?php echo $this->Form->end(); ?>
+</div>

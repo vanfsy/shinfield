@@ -1,0 +1,151 @@
+<?php
+// エリア
+$arrArea = Configure::read('arrArea');
+
+// 職種・免許
+$arrJobCategory = Configure::read('arrJobCategory');
+
+// 雇用形態
+$arrEmployment = Configure::read('arrEmployment');
+
+// 条件
+$arrApplication = Configure::read('arrApplication');
+
+// 公開・非公開
+$arrPublicFlg = array('0' => '非公開','1' => '公開');
+
+$arrGender = Configure::read('arrGender');
+?>
+
+          <h1 class="page-header">応募者管理</h1>
+
+          <h2 class="sub-header">応募者詳細情報</h2>
+
+          <table class="table table-hover">
+            <tbody>
+              <tr>
+                <th>名前</th>
+                <td><p><?php echo nl2br(h($arrJobDataDetail['JobEntry']['name'])); ?>（<?php echo nl2br(h($arrJobDataDetail['JobEntry']['kana_name'])); ?>）</p></td>
+              </tr>
+              <tr>
+                <th>誕生日</th>
+                <td><p><?php echo date('Y年m月d日',strtotime($arrJobDataDetail['JobEntry']['birthday'])); ?></p></td>
+              </tr>
+              <tr>
+                <th>性別</th>
+                <td><p><?php echo $arrGender[$arrJobDataDetail['JobEntry']['gender']]; ?></p></td>
+              </tr>
+              <tr>
+                <th>住所</th>
+                <td><p>〒<?php echo $arrJobDataDetail['JobEntry']['postcode']; ?><?php echo $arrJobDataDetail['JobEntry']['address']; ?></p></td>
+              </tr>
+              <tr>
+                <th>電話番号</th>
+                <td><p><?php echoh($arrJobDataDetail['JobEntry']['phone']); ?></p></td>
+              </tr>
+              <tr>
+                <th>Eメール</th>
+                <td><p><?php echo nl2br(h($arrJobDataDetail['JobEntry']['email'])); ?></p></td>
+              </tr>
+              <tr>
+                <th>コメント</th>
+                <td><p><?php echo nl2br(h($arrJobDataDetail['JobEntry']['comment'])); ?></p></td>
+              </tr>
+              <tr>
+                <th>応募日時</th>
+                <td><p><?php echo date('Y年m月d日',strtotime($arrJobDataDetail['JobEntry']['entry_date'])); ?></p></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="submitButton mBottom50"><a href="/admin/job_entry"><button class="btn btn-lg btn-primary btnW200" type="button">一覧へ戻る</button></a></div>
+
+          <h2 class="sub-header">求人情報詳細</h2>
+
+          <table class="table table-hover">
+            <tbody>
+              <tr>
+                <th>タイトル</th>
+                <td><p><?php echo nl2br(h($arrJobDataDetail['JobData']['title'])); ?></p></td>
+              </tr>
+              <tr>
+                <th>公開・非公開</th>
+                <td><p><?php echo nl2br(h($arrPublicFlg[$arrJobDataDetail['JobData']['public_flg']])); ?></p></td>
+              </tr>
+              <tr>
+                <th>エリア</th>
+                <td><p><?php echo nl2br(h($arrJobDataDetail['JobData']['text_area'])); ?></p></td>
+              </tr>
+              <tr>
+                <th>職種・免許</th>
+                <td><p><?php echo nl2br(h($arrJobDataDetail['JobData']['text_job_category'])); ?></p></td>
+              </tr>
+              <tr>
+                <th>雇用形態</th>
+                <td><p><?php echo nl2br(h($arrJobDataDetail['JobData']['text_employment'])); ?></p></td>
+              </tr>
+              <tr>
+                <th>条件</th>
+                <td><p><?php echo nl2br(h($arrJobDataDetail['JobData']['text_application'])); ?></p></td>
+              </tr>
+              
+              <tr>
+                <th>求人番号</th>
+                <td><p><?php echo nl2br(h($arrJobDataDetail['JobData']['code'])); ?></p></td>
+              </tr>
+              <tr>
+                <th>詳細用説明文</th>
+                <td><p><?php echo nl2br(h($arrJobDataDetail['JobData']['head_description'])); ?></p></td>
+              </tr>
+              <tr>
+                <th>一覧用説明文</th>
+                <td><p><?php echo nl2br(h($arrJobDataDetail['JobData']['list_description'])); ?></p></td>
+              </tr>
+
+              <tr>
+                <th>募集職種</th>
+                <td><p><?php echo nl2br(h($arrJobDataDetail['JobData']['job_type'])); ?></p></td>
+              </tr>
+              <tr>
+                <th>給与</th>
+                <td><p><?php echo nl2br(h($arrJobDataDetail['JobData']['salary'])); ?></p></td>
+              </tr>
+              <tr>
+                <th>業務内容</th>
+                <td><p><?php echo nl2br(h($arrJobDataDetail['JobData']['description'])); ?></p></td>
+              </tr>
+              <tr>
+                <th>勤務時間</th>
+                <td><p><?php echo nl2br(h($arrJobDataDetail['JobData']['hours'])); ?></p></td>
+              </tr>
+              <tr>
+                <th>応募資格</th>
+                <td><p><?php echo nl2br(h($arrJobDataDetail['JobData']['applicant_eligibility'])); ?></p></td>
+              </tr>
+              <tr>
+                <th>待遇</th>
+                <td><p><?php echo nl2br(h($arrJobDataDetail['JobData']['benefit'])); ?></p></td>
+              </tr>
+              <tr>
+                <th>休日・休暇</th>
+                <td><p><?php echo nl2br(h($arrJobDataDetail['JobData']['holiday'])); ?></p></td>
+              </tr>
+              <tr>
+                <th>勤務地</th>
+                <td><p><?php echo nl2br(h($arrJobDataDetail['JobData']['location'])); ?></p></td>
+              </tr>
+
+              <tr>
+                <th>連絡先　電話番号</th>
+                <td><p><?php echo nl2br(h($arrJobDataDetail['JobData']['phone'])); ?></p></td>
+              </tr>
+              <tr>
+                <th>連絡先　メールアドレス</th>
+                <td><p><?php echo nl2br(h($arrJobDataDetail['JobData']['email'])); ?></p></td>
+              </tr>
+              <tr>
+                <th>メイン画像</th>
+                <td><p><?php echo $this->Upload->uploadImage($arrJobDataDetail,'JobData.main_image',array('style'=>'thumb'));?></p></td>
+              </tr>
+            </tbody>
+          </table>

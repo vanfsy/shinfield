@@ -1,0 +1,25 @@
+    <div class="container">
+
+        <h2 class="form-signin-heading">掲載企業の新規登録</h2>
+        <p class="textRed"><?php echo $this->Session->flash('auth'); ?></p>
+
+<?php echo $this->Form->create('CompanyProfile',array('id' => 'UserForm', 'url' => '/user/add/','class' => 'form-horizontal','role'=>'form')); ?>
+    <fieldset>
+        <legend><?php echo __('Add User'); ?></legend>
+
+        <?php echo $this->Form->input('username',array('class' => 'form-control','placeholder' => 'Email address')); ?>
+
+        <?php echo $this->Form->input('password',array('type' => 'password','class' => 'form-control','placeholder' => 'Password')); ?>
+
+    </fieldset>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登　録</button>
+
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me"> ログイン状態を保存する
+        </label>
+<?php echo $this->Form->end(); ?>
+
+    </div> <!-- /container -->
+
+<div class="users form">
+</div>

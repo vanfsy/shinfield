@@ -1,0 +1,85 @@
+#sideNav li a{
+    padding:12px !important;
+    text-align:left;
+}
+
+.textRed{
+  color: red;
+}
+
+.red{
+  color: red;
+}
+
+.Lfloat{
+    float:left;
+}
+.Rfloat{
+    float:right;
+}
+.TextCenter{
+    text-align:center;
+}
+
+.submitButton{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.profileSubmitButton{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.unav li{
+  display: inline;
+  margin: 0 5px 5px 0;
+}
+
+.radioInput label{
+	margin: 8px;
+}
+
+.datetimeStyle{
+  width: 100px;
+  float: left;
+}
+
+.datetimeStyleSmall{
+  width: 80px;
+  float: left;
+}
+
+.datetimeLabel{
+  width: 50px;
+  float: left;
+  text-align: center;	
+}
+
+.mypageSideNavi{
+  margin-top: 25px;
+}
+
+.container{
+    margin-bottom:20px;
+    max-width:1000px;
+}
+
+div.checkbox{
+  float: left;
+  margin-left: 1em;
+}
+div.child{
+  overflow: hidden;
+  margin-bottom: 8px;
+  margin-left: 18px;
+}
+div.checkbox_parent{
+  overflow: hidden;
+  float: none;  
+}
+div.checkbox_parent label{
+  margin-left: 0.5em;
+  font-weight: normal;
+}
+

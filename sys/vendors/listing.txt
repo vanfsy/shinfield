@@ -1,0 +1,6 @@
+drwxr-xr-x    6 500      500          4096 May 03 00:47 .
+drwxr-xr-x    5 500      500          4096 May 03 00:47 ..
+drwxr-xr-x    2 500      500          4096 May 03 00:47 css
+drwxr-xr-x    2 500      500          4096 May 03 00:47 js
+drwxr-xr-x    4 500      500          4096 May 03 00:47 shells
+drwxr-xr-x    5 500      500          4096 May 03 00:47 smarty

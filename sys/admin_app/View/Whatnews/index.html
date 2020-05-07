@@ -1,0 +1,68 @@
+<?php
+
+$this->Html->css('/datapicker/datepicker.css', null, array('inline' => false));
+$this->Html->script('/datapicker/bootstrap-datepicker.js', array('inline' => false));
+$this->Html->script('/datapicker/bootstrap-datepicker.ja.js', array('inline' => false));
+?>
+
+      <h1 class="page-header">新着情報管理</h1>
+
+<?php echo $this->element('alert'); ?>
+
+     <div class="row placeholders">
+          <h2 class="sub-header">新着情報 一覧・登録・編集</h2>
+
+<?php echo $this->Form->create('Whatsnews',array('url' => '/whatnews','class' => 'form-horizontal','role'=>'form')); ?>
+
+          <?php echo $this->Form->input('id',
+                array('type'=>'hidden',
+                      'id' => 'whatsnews_id',
+                      'value' => $arrDefWhatNews['Whatsnews']['id']
+                      )) ?>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">日付<span class="red">*</span></label>
+            <div class="col-sm-3">
+<?php echo $this->Form->input('comment_date',array('label'=>false,'type' => 'text','id' => 'comment_date','class'=>'form-control','value' => $arrDefWhatNews['Whatsnews']['comment_date'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">コメント<span class="red">*</span></label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('comment',
+                array('label'=>false,
+                      'id' => 'whatsnews_comment',
+                      'rows'=>'2',
+                      'class'=>'form-control',
+                      'value' => $arrDefWhatNews['Whatsnews']['comment']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="submitButton"><button class="btn btn-lg btn-primary btnW200" type="submit">登録・更新</button></div>
+
+<?php echo $this->Form->end(); ?>
+
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>日付</th>
+                  <th class="w500">コメント</th>
+                  <th>&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+<?php foreach($arrWhatNews as $row){ ?>
+                <tr>
+                  <td align="left"><span id="comment_date_<?php echo $row['Whatsnews']['id'] ?>"><?php echo date('Y.m.d',strtotime($row['Whatsnews']['comment_date'])) ?></span></td>
+                  <td align="left"><span id="comment_<?php echo $row['Whatsnews']['id'] ?>"><?php echo $row['Whatsnews']['comment'] ?></span></td>
+                  <td><a href="javascript:void(0)" onClick="setEditData('<?php echo $row['Whatsnews']['id'] ?>')"><span class="label label-info">詳細・編集</span></a>
+                  <a href="javascript:void(0)" onClick="delConfirm('/admin/whatnews/del/<?php echo $row['Whatsnews']['id'] ?>')"><span class="label label-danger">削　除</span></a></td>
+                </tr>
+<?php } ?>
+              </tbody>
+            </table>
+          </div>
+      </div>

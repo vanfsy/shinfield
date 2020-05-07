@@ -1,0 +1,109 @@
+<?php
+$meta_title = Configure::read('html.mypage');
+$meta_keywords = Configure::read('html.mypage');
+$meta_description = Configure::read('html.mypage');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$arrTopicPath[] = array('マイページ' => '/mypage/');
+$arrTopicPath[] = array('デスクトップ' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$this->Html->css('/css/main02.css', null, array('inline' => false));
+$this->Html->css('/css/style.css', null, array('inline' => false));
+
+$this->Html->script('/js/follower.js', array('inline' => false));
+
+$code_area = <<< EOF
+function post_message(url){
+    current_id = '$currentMemberId';
+    member_id = '$login_member_id';
+    if(current_id == member_id){
+      alert('自身へメッセージは送れません');
+    }else{
+      $(location).attr('href',url);
+    }
+}
+
+EOF;
+$this->assign('script_area', $code_area);
+?>
+<section>
+  <h2 class="f25 mb20">出品者詳細ページ</h2>
+  <div class="row mypage_row">
+    <div class="col-xs-12 col-sm-3 col-md-3"> 　
+      <div class="aligncenter mypage_progimg">
+      <?php
+      if(!empty($arrMemberInfo['Member']['image_file_name'])){
+        echo $this->Upload->uploadImage($arrMemberInfo,'Member.image',array('style'=>'thumb'));
+      }else{
+        echo '<img src="/img/front_s.png" alt="画像">';
+      }
+      ?>
+        <?php if ($sellerLevel > 0) : ?>
+        <span>ユーザーレベル:<?php echo $sellerLevel ?></span>
+        <?php endif; ?>
+<?php if(!empty($loginname)): ?>
+        <p class="item-p01"><a href="javascript:void(0)" onClick="add_follow('<?php echo $arrMemberInfo['Member']['id'] ?>');return false;">フォローする</a></p>
+        <p class="item-p01"><a href="javascript:void(0)" onClick="post_message('/message/new_message/<?php echo $arrMemberInfo['Member']['id'] ?>');return false;">メッセージを送る</a></p>
+<?php else: ?>
+        <p class="item-p01"><a href="javascript:void(0)" onclick="notlogin(); return false;">フォローする</a></p>
+        <p class="black item-p01"><a href="javascript:void(0)" onclick="notlogin(); return false;">メッセージを送る</a></p>
+<?php endif; ?>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-9 col-md-9 pl50 sppl_0 mt20">
+      <div class="waku01">販売者情報</div>
+      <div class="saller_prof mt20 ml30 spml_0 f14">
+          <p>
+              <?php echo h($arrMemberInfo['Member']['company']) ?> <?php echo h($arrMemberInfo['Member']['nickname']) ?>
+       <!-- <?php if(!empty($arrMemberInfo['Member']['company'])): ?>
+        <?php echo h($arrMemberInfo['Member']['company']) ?> <?php echo h($arrMemberInfo['Member']['nickname']) ?>
+        <?php else: ?>
+        <?php echo h($arrMemberInfo['Member']['nickname']) ?>
+        <?php endif; ?> -->
+        <?php if($arrMemberInfo['Member']['user_rank'] == 'official'): ?><img class="ml10" src="/img/seller_chk.png" alt="" /><?php endif; ?>
+        </p>
+        <p class="mt30 auto_linker"> <?= nl2br(h($arrMemberInfo['Member']['comment'])) ?></p>
+      </div>
+    </div>
+  </div>
+
+<?php if(!empty($arrSaleReport)): ?>
+  <h2 class="f25 mb20">この出品者の人気商品</h2>
+  <section class="item">
+    <div class="row row-eq-height d-flex">
+<?php foreach($arrSaleReport as $i => $row): ?>
+<?= $this->element('item_2col_only_title', ['row' => $row]) ?>
+<?php if($i%4 == 3) echo '</div><div class="row">' ?>
+<?php endforeach; ?>
+    </div>
+  </section>
+<?php endif; ?>
+
+<?php if(!empty($arrItemList)): ?>
+  <h2 class="f25 mb20">この出品者の商品一覧</h2>
+  <section class="item">
+    <div class="clearfix">
+      <p class="alignleft">全商品数：<span class="strong"><?= $arrItemCount ?></span>件</p>
+      <p class="alignright"><a href="/item/member/<?= $arrMemberInfo['Member']['id'] ?>">全て見る</a></p>
+    </div>
+    <div class="row row-eq-height">
+<?php foreach($arrItemList as $i => $row): ?>
+<?= $this->element('item_2col_only_title', ['row' => $row]) ?>
+<?php if($i%4 == 3) echo '</div><div class="row">' ?>
+<?php endforeach; ?>
+    </div>
+  </section>
+<?php else: ?>
+  <h2 class="f25 mb20">この出品者の商品一覧</h2>
+  <section class="item">
+    <div class="clearfix">
+      <p class="alignleft">全商品数：<span class="strong">0件</p>
+    </div>
+  </section>
+<?php endif; ?>
+
+</section>

@@ -1,0 +1,146 @@
+<?php
+$meta_title = Configure::read('html.mypage');
+$meta_keywords = Configure::read('html.mypage');
+$meta_description = Configure::read('html.mypage');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$arrTopicPath[] = array('マイページ' => '/mypage/');
+$arrTopicPath[] = array('デスクトップ' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$this->Html->css('/css/main02.css', null, array('inline' => false));
+$this->Html->css('/css/style.css', null, array('inline' => false));
+
+$code_area = <<< EOF
+$('#btnDraft').click(function() {
+$("#status").val(0);
+$("#formMessage").submit();
+});
+EOF;
+$this->assign('script_area', $code_area);
+?>
+
+<section>
+    <h2 class="f25 mb20">マイページ</h2>
+    <div class="mypage_row ml20 mr20">
+        <div class="black waku01 mt20"><a href="/message/">メッセージ管理</a></div>
+        <table class="table03 mt10 black">
+            <tbody>
+                <tr>
+                    <th>総合管理　&#8230;</th>
+                    <td>
+                        <p class="item-p01"><a href="/message/receivedlist">受信メール一覧</a></p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>&nbsp;</th>
+                    <td>
+                        <p class="item-p01"><a href="/message/sendinglist">送信メール一覧</a></p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>&nbsp;</th>
+                    <td>
+                        <p class="item-p01"><a href="/message/draftlist">下書き一覧</a></p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>&nbsp;</th>
+                    <td>
+                        <p class="item-p01"><a href="/message/trashlist">ゴミ箱</a></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="mb30 mt40"><span>メッセージ詳細</span></h3>
+        <table class="border-all-gray mb30 width100">
+            <tr>
+                <td>
+                <p class="p05 text-left" colspan="2"><strong><?php echo h($arrData['Message']['subject']) ?></strong></p>
+
+                <p class="p05 text-left">
+                    送信者：<?php echo h($arrData['FromMember']['company'].' '.$arrData['FromMember']['name']) ?>
+
+                </p>
+                <p class="p05 text-left">宛先：<?php echo h($arrData['ToMember']['company'].' '.$arrData['ToMember']['name']) ?></p>
+                <p class="p05 text-left">日付：<?php echo date('Y/m/d H:i',strtotime($arrData['Message']['created'])) ?></p>
+
+
+                <p class="p05 text-left" colspan="2">
+                    メッセージ：<br><?php echo nl2br(h($arrData['Message']['body'])) ?></p>
+
+                <p class="p05 text-right" colspan="2"><a href="/message/trash/<?php echo $arrData['Message']['id'] ?>">ゴミ箱へ</a></p>
+                </td>
+            </tr>
+        </table>
+
+        <?php if($arrData['Message']['member_id'] == $arrData['Message']['to_member_id']): ?>
+        <h3 class="mb30 mt40"><span>返信する</span></h3>
+        <?php echo $this->Form->create('Message', array('id' => 'formMessage', 'url' => '/message/message_detail/'.$intMessageId)); ?>
+
+        <?php echo $this->Form->input('to_member_id',
+        array('label' => false,
+        'type' => 'hidden',
+        'value' => $arrData['FromMember']['id'],
+        )) ?>
+        <?php echo $this->Form->input('from_member_id',
+        array('label' => false,
+        'type' => 'hidden',
+        'value' => $loginMember['id'],
+        )) ?>
+        <?php echo $this->Form->input('status',
+        array('id' => 'status',
+        'type' => 'hidden',
+        'value' => 1,
+        )) ?>
+        <table class="mb15 width100">
+            <tr>
+                <td>
+                <p  class="p05 text-left border-bottom-black">宛先：
+               <?php echo $arrData['FromMember']['company'] ?> <?php echo $arrData['FromMember']['name'] ?></p>
+
+                <p  class="p05 text-left border-bottom-black">件名：
+
+                    <?php echo $this->Form->input('subject',
+                    array('label' => false,
+                    'div' => false,
+                    'type' => 'text',
+                    'class' => 'border-none',
+                    'value' => $arrSendData['Message']['subject'],
+                    )) ?>
+                </p>
+
+                <p class="p05 text-left border-bottom-black">
+
+                    <?php echo $this->Form->input('body',
+                    array('label' => false,
+                    'div' => false,
+                    'type' => 'text',
+                    'class' => 're-width border-none',
+                    'rows' => 10,
+                    'cols' => 50,
+                    'value' => $arrSendData['Message']['body'],
+                    )) ?>
+                </p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="pt05 pb05 text-center"> 
+                    <p class="textcenter pt20">
+                        <input type="submit" value="送信" class="p10 mybtn-bl mybtn-bl-sm"  style="80px">
+                        <input type="reset" value="取り消し" class="p10  mybtn-bl mybtn-bl-sm" id="no_agree" style="120px">
+                        <input type="button" id="btnDraft" value="下書きに保存" class="p10  mybtn-bl mybtn-bl-sm" style="150px">
+                    </p>
+            </tr>
+        </table>				
+        <?php echo $this->Form->end(); ?>
+        <?php else: ?>
+        <h3 class="mb30 mt40"><span>返信する</span></h3>
+        <p class="mb15 width100"><a href="/message/new_message/<?php echo $arrData['Message']['to_member_id'] ?>"><?php echo h($arrData['ToMember']['company'].' '.$arrData['ToMember']['name']) ?>さんへメッセージを送る</a></p>
+        <?php endif; ?>
+
+</section>

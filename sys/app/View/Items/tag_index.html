@@ -1,0 +1,49 @@
+<?php
+$meta_title = Configure::read('html.tag');
+$meta_keywords = Configure::read('html.tag');
+$meta_description = Configure::read('html.tag');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$this->Html->css('/css/style.css', null, array('inline' => false));
+
+$this->Html->script('/js/page.js', array('inline' => false));
+
+$arrTopicPath[] = array('タグ一覧' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$code_area = <<< EOF
+EOF;
+$this->assign('script_area', $code_area);
+?>
+
+<section class="item">
+  <h2 class="f25 mb20">タグ一覧</h2>
+
+  <div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12">
+  <?php if(!empty($arrDatas)): ?>
+    <ul class="tag_list">
+  <?php foreach($arrDatas as $i => $tag): ?>
+  <?php if($i < 10): ?>
+      <li class="alignleft mr10"><a href="/item/tag/<?php echo h($tag) ?>" class="btn btn-default tag_button"><?php echo h($tag) ?></a></li>
+  <?php elseif($i < 20): ?>
+      <li class="alignleft mr10"><a href="/item/tag/<?php echo h($tag) ?>" class="btn btn-default tag_button"><?php echo h($tag) ?></a></li>
+  <?php elseif($i < 30): ?>
+      <li class="alignleft mr10"><a href="/item/tag/<?php echo h($tag) ?>" class="btn btn-default tag_button"><?php echo h($tag) ?></a></li>
+  <?php else: ?>
+      <li class="alignleft mr10"><a href="/item/tag/<?php echo h($tag) ?>" class="btn btn-default tag_button"><?php echo h($tag) ?></a></li>
+  <?php endif; ?>
+  <?php endforeach; ?>
+    </ul>
+
+  <?php else: ?>
+  <div class="ml15">該当する情報がありません。</div>
+  <?php endif; ?>
+  </div>
+  </div>
+
+</section>
+

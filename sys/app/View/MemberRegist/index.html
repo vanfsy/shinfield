@@ -1,0 +1,247 @@
+<?php
+$meta_title = Configure::read('html.member');
+$meta_keywords = Configure::read('html.member');
+$meta_description = Configure::read('html.member');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$this->Html->css('/css/style.css', null, array('inline' => false));
+
+$arrTopicPath[] = array('商品一覧' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$script_area = <<< EOF
+  $(function() {
+    $( "#dialog" ).hide();
+    $( "#no_agree" ).click(function(){
+      $( "#dialog" ).dialog();
+    });
+  });
+EOF;
+$this->assign('script_area', $script_area);
+?>
+
+<section>
+  <h2 class="f25 mb40">新規会員登録</h2>
+<?php
+$msg = $this->Session->flash('auth');
+if(!empty($msg)):
+?>
+<div class="alert alert-danger alert-dismissible" role="alert">
+  <?php echo $msg; ?>
+</div>
+<?php else : ?>
+  <h3 class="ml30 mb30 mt20"><span>会員利用規約</span></h3>
+  <div class="kiyaku">
+<p><?=Configure::read('info.siteName')?>利用規約</p>
+
+<p>第1条　ユーザーの皆様の利用資格</p>
+<ul>
+<li>1.ユーザーの皆様とは本規約を承認の上、インターネットを使って<?=Configure::read('info.siteName')?>（以下、「<?=Configure::read('info.siteName')?>」といいます。）が定めるURLにおいて運営するデジタルデータ売買サービス（以下、「本サービス」といいます。）利用のためにユーザーとして入会を申し込み、<?=Configure::read('info.siteName')?>が入会を認めた個人、法人のことを言います。</li>
+<li>2.ユーザーの皆様は、本規約に基づき、本サービスに、デジタルコンテンツ及びサービス（以下、「商品等」といいます。）を出品すること並びに出品された商品等を購入することができます。</li>
+</ul>
+
+<p>第2条　本規約の変更</p>
+<ul>
+<li><?=Configure::read('info.siteName')?>は、本規約を変更することができるものとします。本規約を変更した場合、料金その他の本サービスに関する一切の事項は変更後の規約によるものとします。</li>
+</ul>
+
+<p>第3条　<?=Configure::read('info.siteName')?>の役割</p>
+<ul>
+<li>1.<?=Configure::read('info.siteName')?>は、本サービスに出品された商品等に関する一切の事項について何らの責任を負いません。</li>
+<li>2.<?=Configure::read('info.siteName')?>は、本サービスにおける出品者、購入者に関する一切の事項について何らの責任を負いません。</li>
+<li>3.<?=Configure::read('info.siteName')?>は、本サービスに関して、出品者、購入者、その他の第三者との間で発生した一切のトラブルについて、関知しません。したがって、これらのトラブルについては、当事者間で話し合い、訴訟などにより解決するものとします。</li>
+</ul>
+
+<p>第4条　サービスのご利用にあたって</p>
+<ul>
+<li>本サービスを利用される方は、本規約を承認の上、<?=Configure::read('info.siteName')?>の所定の手続きにより利用開始されるものとします。</li>
+</ul>
+
+<p>第5条　会員登録について</p>
+<ul>
+<li>ユーザーの皆様は、<?=Configure::read('info.siteName')?>のサイト上の所定のフォームに必要事項を記入し<?=Configure::read('info.siteName')?>に送信することで、出品者、購入者として会員に登録することができます。</li>
+<li>出品者、購入者としての会員の登録は別個に行う必要があり、重複して登録することができます。</li>
+<li>会員登録を行う際に記入する必要事項に関しては、真実かつ正確な内容を記載する必要があります。</li>
+<li>ユーザーの皆様は<?=Configure::read('info.siteName')?>からのメールを受信できるよう、ご自身で設定する必要があります。また、メールが受信できないことによって生じた損害について、<?=Configure::read('info.siteName')?>は一切保証いたしません。</li>
+<li>ユーザーの皆様が以下の項目に該当する場合は、<?=Configure::read('info.siteName')?>は、ユーザーの皆様に事前の承諾を得ることなく、その会員登録を抹消し、法的処置をとる権利を有しています。</li>
+<li>（1）会員資格を不正に利用した場合</li>
+<li>（2）登録情報に虚偽の事実が認められた場合</li>
+<li>（3）未成年者で保護者の同意を得ていなかったことが発覚した場合</li>
+<li>（4）<?=Configure::read('info.siteName')?>のサービスの信用や社会的地位を脅かすおそれのある行為が発覚した場合</li>
+<li>（5）<?=Configure::read('info.siteName')?>のサービスまたはシステムを不正に利用した場合</li>
+<li>（6）<?=Configure::read('info.siteName')?>利用時における<?=Configure::read('info.siteName')?>または第三者への支払いを怠った場合</li>
+<li>（7）過去に<?=Configure::read('info.siteName')?>の会員登録抹消処分を受けていたことが発覚した場合</li>
+<li>（8）パスワードの不正使用が行われたと認められる場合</li>
+<li>（9）本規約に違反するおそれ、または明確な違反があると<?=Configure::read('info.siteName')?>が判断した場合</li>
+<li>（10）反社会勢力と取引がある場合、もしくは反社会勢力との取引を示唆した場合</li>
+<li>（11）前各号のほか、<?=Configure::read('info.siteName')?>が会員登録を適当でないと判断した場合</li>
+<li>会員登録を終えたユーザーは、会員登録の際に設定したメールアドレス、パスワードを自分自身で管理する必要があります。設定したメールアドレスおよびパスワードを利用して行われた行為の責任は当該メールアドレスおよびパスワードを保有しているユーザーの責任とみなします。</li>
+<li>万が一、許可なく自分のメールアドレスおよびパスワードが利用された場合、またはメールアドレスおよびパスワードが第三者に漏洩してしまった場合にはただちにパスワードを変更してください。<?=Configure::read('info.siteName')?>は、メールアドレスおよびパスワードの漏洩、不正使用などから生じた損害については一切保証いたしません。</li>
+<li>ユーザーが退会を希望する場合、所定のフォームから<?=Configure::read('info.siteName')?>に連絡をするものとします。それを受けて、<?=Configure::read('info.siteName')?>が退会処理を行います。</li>
+<li>ダウンロード会員を退会した場合、これまでに購入した商品を再ダウンロードすることはできません。</li>
+</ul>
+
+<p>第6条　出品</p>
+<ul>
+<li>1.出品者は、<?=Configure::read('info.siteName')?>所定の方式により出品を行うものとします。</li>
+<li>2.出品者は、出品を取り消すことができます。</li>
+<li>3.以下の商品等の出品を禁止します。</li>
+<li>a.覚せい剤、麻薬、向精神薬、大麻、あへん、毒物、劇物</li>
+<li>b.銃砲、刀剣類、武器、火薬類、化学兵器、毒性物質、サリン</li>
+<li>c.わいせつ物、児童ポルノ、アダルトグッズ、アダルトビデオ、アダルトゲーム、ブルセラ</li>
+<li>d.売春、児童売春</li>
+<li>e.賭博、富くじ</li>
+<li>f.無限連鎖講、マルチ商法</li>
+<li>g.偽造された通貨、有価証券、公正証書（免許証、旅券などを含む。）、文書、電磁的記録</li>
+<li>h.窃盗、強盗、詐欺、恐喝、横領、背任その他の犯罪により入手した商品等</li>
+<li>i.特許権、実用新案権、意匠権、商標権、著作権、肖像権その他の他人の権利を侵害する商品等（例　偽ブランド商品、違法コピー商品など）</li>
+<li>j.コンピューターウィルスを含むソフトウェア</li>
+<li>k.医薬品</li>
+<li>l.人体及び人体の一部</li>
+<li>m.個人情報、営業秘密その他一般に公開されていない情報</li>
+<li>o.商品等の販売・提供に免許、登録、届出等が法律上必要なもの（但し、<?=Configure::read('info.siteName')?>が特別に認めた場合を除く。）</li>
+<li>p.生物</li>
+<li>q.犯罪その他の法令違反行為</li>
+<li>r.その他取引することが法令に違反する商品等</li>
+<li>s.その他<?=Configure::read('info.siteName')?>が不適当と判断した商品等</li>
+<li>4.出品者は、出品した商品等の内容及び販売・提供条件について、文字及び画像により具体的かつ適切な説明を行うものとします。</li>
+<li>5.出品者は、出品した商品等についての説明が真実であることを保証するものとします。</li>
+<li>6.出品者が事業者である場合、出品に際して、特定商取引に関する法律、不当景品類及び不当表示防止法その他関係法令及び監督官庁の指示・指導を遵守するものとします。</li>
+<li>7.出品者が古物商である場合、出品に際して、古物営業法の規定を遵守するものとします。</li>
+<li>8.未成年者がご出品頂く場合、保護者又は親権者の同意を得なければいけません。</li>
+<li>9.出品者が本規約に違反した出品を行った場合、出品者が真に売買契約等を締結する意思のない出品を行ったと<?=Configure::read('info.siteName')?>が判断した場合、その他<?=Configure::read('info.siteName')?>が不適当と認める場合、<?=Configure::read('info.siteName')?>は出品を無効とすることができるものとします。出品が無効となった場合、当該出品に対する購入もすべて無効とします。</li>
+</ul>
+
+<p>第7条　料金の支払方法</p>
+<ul>
+<li>1.料金の支払いに関して本サービス上においては、本サービスに必要な費用に代わる単位として「<?=Configure::read('info.siteName')?>ポイント」を設けております。この <?=Configure::read('info.siteName')?>ポイント は本サービス内で商品等と交換できる有償で提供される仮想通貨です。<?=Configure::read('info.siteName')?>ポイントは<?=Configure::read('info.siteName')?>サイト内でのみ使用でき、購入者は、あらかじめ<?=Configure::read('info.siteName')?>ポイント を購入することによって、本サービスを利用することができます。</li>
+<li>2.<?=Configure::read('info.siteName')?>ポイントは以下の条件で購入することができます。</li>
+<li>(1)　本サービスを使用しているユーザーのみ<?=Configure::read('info.siteName')?>ポイント を購入することができます。</li>
+<li>(2)　<?=Configure::read('info.siteName')?>ポイントは、<?=Configure::read('info.siteName')?>が別途定める各単位で購入することができます。</li>
+<li>(3)　<?=Configure::read('info.siteName')?>ポイントを購入するユーザーが未成年（20歳未満）の場合は、保護者または親権者が同意の上、購入するものとします。</li>
+<li>(4)　本サービスを削除すると<?=Configure::read('info.siteName')?>ポイント は消滅するものとし、端末を変更すると<?=Configure::read('info.siteName')?>ポイント を引き継ぐことはできないものとします。</li>
+<li>(5)　<?=Configure::read('info.siteName')?>ポイント の購入に関する決済方法については、<?=Configure::read('info.siteName')?>が別に定める方法によるものとします。</li>
+<li>(6)　<?=Configure::read('info.siteName')?>は、<?=Configure::read('info.siteName')?>ポイント によって行われた代金決済について領収書等は発行いたしません。</li>
+<li><?=Configure::read('info.siteName')?>ポイント は以下の条件で使用することができます。</li>
+<li>(1)　オーブは<?=Configure::read('info.siteName')?>所定の方法で使用することができます。</li>
+<li>(2)　交換するコンテンツの必要<?=Configure::read('info.siteName')?>ポイント数はそれぞれ別に定めるものとします。</li>
+<li>(3)　<?=Configure::read('info.siteName')?>は、法律で定める場合を除き、いかなる理由であっても<?=Configure::read('info.siteName')?>ポイント の払い戻し等は一切行わないものとします。</li>
+<li>(4)　<?=Configure::read('info.siteName')?>ポイント を換金することまたはコンテンツ以外の財・サービスに交換することは<?=Configure::read('info.siteName')?>が別途認める場合を除きできません。</li>
+<li>3.<?=Configure::read('info.siteName')?>サイトで成立した売買に係る<?=Configure::read('info.siteName')?>ポイントの徴収は、出品者に代わって<?=Configure::read('info.siteName')?>が行います。</li>
+</ul>
+
+<p>第8条　使用料金等</p>
+<ul>
+<li>1.本サービスの使用は原則として無料とします。</li>
+<li>2.<?=Configure::read('info.siteName')?>が、本サービスの使用の対価を求める場合にはユーザーに事前に通知し同意を得るものとします。</li>
+</ul>
+
+<p>第9条　購入</p>
+<ul>
+<li>1.購入者は、<?=Configure::read('info.siteName')?>所定の方式により購入を行うものとします。</li>
+<li>2.購入者は、<?=Configure::read('info.siteName')?>が別途定める金額の決済代行手数料を<?=Configure::read('info.siteName')?>に対して支払わなければならないものとします。</li>
+<li>3.未成年者がご出品頂く場合、保護者又は親権者の同意を得なければいけません。 </li>
+</ul>
+
+<p>第10条　本規約の違反等について</p>
+<ul>
+<li>1.ユーザーの皆様が以下の各号のいずれかに該当した場合、<?=Configure::read('info.siteName')?>は、<?=Configure::read('info.siteName')?>の定める期間、出品又は購入その他の機能の利用を認めないこと、又は、本サービスを利用する資格を取り消すことができるものとします。</li>
+<li>a.規約に違反した場合</li>
+<li>b.ユーザーの皆様が真に売買契約を締結する意思のない出品あるいは購入を行ったと<?=Configure::read('info.siteName')?>が判断した場合</li>
+<li>c.他の利用者または第三者に不当に迷惑をかけたと<?=Configure::read('info.siteName')?>が判断した場合</li>
+<li>2.<?=Configure::read('info.siteName')?>の措置によりユーザーの皆様に損害が生じても、<?=Configure::read('info.siteName')?>は、一切損害を賠償しません。</li>
+</ul>
+
+<p>第11条　サービスの提供条件</p>
+<ul>
+<li>1.<?=Configure::read('info.siteName')?>は、メンテナンス等のために、ユーザーの皆様に通知することなく、本サービスを停止し、又は変更することがあります。</li>
+<li>2.本サービスの提供を受けるために必要な機器、通信手段などは、ユーザーの皆様の費用と責任で備えるものとします。</li>
+<li>3.<?=Configure::read('info.siteName')?>は、本サービスに中断、中止その他の障害が生じないことを保証しません。</li>
+</ul>
+
+<p>第12条　売上のお支払いについて</p>
+<ul>
+<li>1.<?=Configure::read('info.siteName')?>は出品者の方に対して<?=Configure::read('info.siteName')?>サイトにて購入された商品の売上金額をお支払いするものとします。</li>
+<li>2.売上は毎月末日締めで翌月末日にご指定の口座にお振込み致します。ただし、末日が金融機関の休日にあたる場合は翌営業日とします。また、各金融機関所定の振込手数料はユーザ様負担とします。</li>
+<li>3.銀行振込には口座の登録が必要となります。ユーザ様がお支払い口座を正しく指定しない場合、<?=Configure::read('info.siteName')?>は、未払報酬を支払わないことができるものとします。</li>
+<li>4.当月の売上が支払い金額(20,000円以上)に達しない場合は売上は翌月に繰越されます。</li>
+繰越された売上の累計売上が20,000円に達した月がお支払い対象月となります。</li>
+
+<li>5.売上支払対象となる本件取引の有無及び金額については、<?=Configure::read('info.siteName')?>が決定するものとします。なお<?=Configure::read('info.siteName')?>は、第9条における違反行為に該当する行為が含まれる場合、またはそのおそれがある場合、売上支払いの全部または一部の支払いを留保することができるものとします</li>
+<li>6.最後に売上が発生した日から１年以内に未払売上の累計額が<?=Configure::read('info.siteName')?>の定める金額を超えない場合、及び本規約が解除された時に未払売上の累計額が<?=Configure::read('info.siteName')?>の定める金額を超えていない場合には、未払報酬の請求権は消滅するものとします。いったん未払報酬の請求権が消滅した場合、その後に、報酬が発生しても、消滅した未払報酬の請求権は、復活しないものとします。</li>
+</ul>
+
+<p>第13条　著作権について</p>
+<ul>
+<li>1.本サービスを利用して出品されたデジタルコンテンツの著作権は出品者に帰属します。</li>
+<li>2.<?=Configure::read('info.siteName')?>は、出品者が出品したデジタルコンテンツ及び情報を本サービスの円滑な提供、<?=Configure::read('info.siteName')?>システムの構築、改良、メンテナンスに必要な範囲内で、使用及び改変することができるものとします。</li>
+<li>3.出品者は購入者に対して購入後の私的使用の範囲にて著作権の許諾を了承するとする。</li>
+<li>4.購入者は出品者の了承無しに当サイトにて購入した商品の複製、加工、公衆送信、頒布、販売、公表、2次的著作物の作成、またはそれに準ずる出品者及び<?=Configure::read('info.siteName')?>の権利を侵害する行為を禁止します。</li>
+</ul>
+
+<p>第14条　<?=Configure::read('info.siteName')?>の責任</p>
+<ul>
+<li>1.<?=Configure::read('info.siteName')?>は、本サービスに出品された商品等に関する一切の事項について何らの責任を負いません。</li>
+<li>2.<?=Configure::read('info.siteName')?>は、本サービスにおける出品者、購入者に関する一切の事項について何らの責任を負いません。</li>
+<li>3.ユーザーの皆様は法律の範囲内で本サービスをご利用ください。本サービスの利用に関連してユーザーの皆様が日本及び外国の法律に触れた場合でも、<?=Configure::read('info.siteName')?>は一切責任を負いません。</li>
+</ul>
+
+<p>第15条　サービス廃止</p>
+<ul>
+<li>1.<?=Configure::read('info.siteName')?>は<?=Configure::read('info.siteName')?>の都合によりいつでも本サービスを廃止できるものとします。</li>
+<li>2.<?=Configure::read('info.siteName')?>は、ユーザーの皆様が利用を中止およびアクセス禁止処分になった場合でも一度支払いを受けた料金を返還しません。</li>
+</ul>
+
+<p>第16条 本利用規約および本サービス付随規約の有効性</p>
+<ul>
+<li>1.本利用規約、本サービス付随規約の一部の規定が法令に基づいて無効と判断されても、当該条項の当該部分以外及び本利用規約および本サービス付随規約のその他の規定は有効とします。</li>
+<li>2.本利用規約および本サービス付随規約の規定の一部が、あるユーザーとの関係で無効とされ、または取り消された場合でも、当該一部はその他のユーザーの皆様との関係では有効とします。</li>
+</ul>
+
+<p>第１7条　完全合意</p>
+<ul>
+<li>本規約は、本規約に含まれる事項に関する本規約の当事者間の完全な合意を構成し、口頭又は書面を問わず、本規約に含まれる事項に関する当事者間の事前の合意、表明及び了解に優先します。</li>
+</ul>
+
+<p>第１8条　分離可能性</p>
+<ul>
+<li>本規約のいずれかの条項又はその一部が無効又は失効不能と判断された場合であっても、本規約の残りの規定及び一部が無効又は執行不能と判断された規定の残りの部分は、継続して完全に効力を有するものとします。</li>
+</ul>
+
+<p>第19条　準拠法及び管轄裁判所</p>
+<ul>
+<li>本サービスその他本規約に関する準拠法は日本法とします。ユーザーの皆様と<?=Configure::read('info.siteName')?>との間で訴訟が生じた場合、大阪地方裁判所を専属的管轄裁判所とします。</li>
+</ul>
+
+<p>第20条　協議解決</p>
+<ul>
+<li><?=Configure::read('info.siteName')?>及びユーザーは、本規約に定めない事項又は本規約の解釈の疑義が生じた場合には、互いに信義誠実の原則に従って協議の上速やかに解決を図るものとします。</li>
+</ul>
+<?=$HTML_PAGE_RULE?>
+  </div>
+<?php echo $this->Form->create('MemberEntry',
+                            array('url' => '/member_regist',
+                                  'class' => 'form-horizontal',
+                                  'role'=>'form'
+)); ?>
+<?php echo $this->Form->input('agree',
+                            array('label' => false,
+                                  'type' => 'hidden',
+                                  'class'=>'form-control'
+)) ?>
+
+    <div class="btn_area mt30 aligncenter width430p sp_width100 clearfix ml25-sp">
+      <p class="alignleft01 mr10 spmr_0"><input type="button" value="同意しない" class="mybtn-bl mybtn-bl-md" id="no_agree"></p>
+      <p class="alignleft01 mr10 spmr_0"><input type="submit" value="同意する" class="mybtn-bl mybtn-bl-md"></p>
+    </div>
+    
+<?php echo $this->Form->end(); ?>
+<?php endif; ?>
+</section>
+
+<div id="dialog" title="会員登録について">
+  <p>会員登録には会員利用規約の同意が必要です。</p>
+</div>

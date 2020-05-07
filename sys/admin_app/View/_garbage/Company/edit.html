@@ -1,0 +1,207 @@
+          <h1 class="page-header">求人情報</h1>
+
+<?php echo $this->element('alert'); ?>
+
+<?php if($user_role == 'admin' && empty($arrCompanyProfile['CompanyProfile']['id'])): ?>
+          <h2 class="sub-header">新規登録</h2>
+<?php else: ?>
+          <h2 class="sub-header">確認・編集</h2>
+<?php endif; ?>
+
+<?php echo  $this->Form->create('CompanyProfile',array('id' => 'CompanyProfileForm', 'url' => '/company/edit/'.$arrCompanyProfile['CompanyProfile']['id'],'class' => 'form-horizontal','role'=>'form')); ?>
+
+          <?php echo  $this->Form->input('mode',
+                array('type'=>'hidden',
+                      'value' => $mode
+                      )) ?>
+
+          <?php echo  $this->Form->input('id',
+                array('type'=>'hidden',
+                      'value' => $arrCompanyProfile['CompanyProfile']['id']
+                      )) ?>
+
+<?php if($user_role == 'admin' && empty($arrCompanyProfile['CompanyProfile']['id'])): ?>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">ユーザID<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php echo  $this->Form->input('username',array('label'=>false,'class'=>'form-control','value' => $arrCompanyProfile['CompanyProfile']['username'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">パスワード<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php echo  $this->Form->input('password',array('label'=>false,'class'=>'form-control')) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">パスワード（確認）<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php echo  $this->Form->input('password_confirm',array('label'=>false,'type' => 'password','class'=>'form-control')) ?>
+            </div>
+          </div>
+
+<?php endif; ?>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">会社名<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php echo  $this->Form->input('company',array('label'=>false,'class'=>'form-control','value' => $arrCompanyProfile['CompanyProfile']['company'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">郵便番号</label>
+            <div class="col-sm-9">
+<?php echo  $this->Form->input('postcode',array('label'=>false,'class'=>'form-control','value' => $arrCompanyProfile['CompanyProfile']['postcode'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">会社所在地</label>
+            <div class="col-sm-9">
+<?php echo  $this->Form->input('address',array('label'=>false,'class'=>'form-control','value' => $arrCompanyProfile['CompanyProfile']['address'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">連絡先　電話番号<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php echo  $this->Form->input('phone',array('label'=>false,'class'=>'form-control','value' => $arrCompanyProfile['CompanyProfile']['phone'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">連絡先　FAX番号</label>
+            <div class="col-sm-9">
+<?php echo  $this->Form->input('fax',array('label'=>false,'class'=>'form-control','value' => $arrCompanyProfile['CompanyProfile']['fax'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">連絡先　メールアドレス</label>
+            <div class="col-sm-9">
+<?php echo  $this->Form->input('email',array('label'=>false,'class'=>'form-control','value' => $arrCompanyProfile['CompanyProfile']['email'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">担当者名<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php echo  $this->Form->input('person',array('label'=>false,'class'=>'form-control','value' => $arrCompanyProfile['CompanyProfile']['person'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">設立年月日</label>
+            <div class="col-sm-9">
+<?php echo  $this->Form->input('establishment_date',array('label'=>false,'class'=>'form-control','value' => $arrCompanyProfile['CompanyProfile']['establishment_date'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">代表者名</label>
+            <div class="col-sm-9">
+<?php echo  $this->Form->input('representative',array('label'=>false,'class'=>'form-control','value' => $arrCompanyProfile['CompanyProfile']['representative'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">資本金</label>
+            <div class="col-sm-9">
+<?php echo  $this->Form->input('capital',array('label'=>false,'class'=>'form-control','value' => $arrCompanyProfile['CompanyProfile']['capital'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">従業員数</label>
+            <div class="col-sm-9">
+<?php echo  $this->Form->input('employee',array('label'=>false,'class'=>'form-control','value' => $arrCompanyProfile['CompanyProfile']['employee'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">事業内容</label>
+            <div class="col-sm-9">
+<?php echo  $this->Form->input('business_lineup',array('label'=>false,'class'=>'form-control','value' => $arrCompanyProfile['CompanyProfile']['business_lineup'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">ホームページ</label>
+            <div class="col-sm-9">
+<?php echo  $this->Form->input('url',array('label'=>false,'class'=>'form-control','value' => $arrCompanyProfile['CompanyProfile']['url'])) ?>
+            </div>
+          </div>
+
+          <div class="submitButton"><button class="btn btn-lg btn-primary btnW200" type="submit">登録・更新</button></div>
+    
+<?php echo $this->Form->end(); ?>
+
+<hr class="mBottom50">
+
+
+<?php if(!empty($arrCompanyProfile['CompanyProfile']['id'])): ?>
+          <h2 class="sub-header">ユーザID変更</h2>
+
+<?php echo  $this->Form->create('CompanyProfile',array('id' => 'CompanyProfileForm', 'url' => '/company/edit/'.$arrCompanyProfile['CompanyProfile']['id'],'class' => 'form-horizontal','role'=>'form')); ?>
+
+          <?php echo  $this->Form->input('id',
+                array('type'=>'hidden',
+                      'value' => $arrCompanyProfile['CompanyProfile']['id']
+                      )) ?>
+
+          <?php echo  $this->Form->input('mode',
+                array('type'=>'hidden',
+                      'value' => $mode
+                      )) ?>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">ユーザID<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php echo  $this->Form->input('username',array('label'=>false,'class'=>'form-control','value' => $arrCompanyProfile['CompanyProfile']['username'])) ?>
+            </div>
+          </div>
+
+          <div class="submitButton"><button class="btn btn-lg btn-primary btnW200" type="submit">登録・更新</button></div>
+    
+<?php echo $this->Form->end(); ?>
+
+<hr class="mBottom50">
+
+          <h2 class="sub-header">パスワード変更</h2>
+
+<?php echo  $this->Form->create('CompanyProfile',array('id' => 'CompanyProfileForm', 'url' => '/company/edit/'.$arrCompanyProfile['CompanyProfile']['id'],'class' => 'form-horizontal','role'=>'form')); ?>
+
+          <?php echo  $this->Form->input('id',
+                array('type'=>'hidden',
+                      'value' => $arrCompanyProfile['CompanyProfile']['id']
+                      )) ?>
+
+          <?php echo  $this->Form->input('mode',
+                array('type'=>'hidden',
+                      'value' => $mode
+                      )) ?>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">パスワード<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php echo  $this->Form->input('password',array('label'=>false,'class'=>'form-control')) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">パスワード（確認）<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php echo  $this->Form->input('password_confirm',array('label'=>false,'type' => 'password','class'=>'form-control')) ?>
+            </div>
+          </div>
+
+          <div class="submitButton"><button class="btn btn-lg btn-primary btnW200" type="submit">登録・更新</button></div>
+    
+<?php echo $this->Form->end(); ?>
+
+<?php endif; ?>
+

@@ -1,0 +1,19 @@
+          <h1 class="page-header">受信トレイ</h1>
+
+          <h2 class="sub-header">メール詳細</h2>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title ta_l"><?php echo h($arrInboxMail['EmailData']['subject']) ?></h3>
+            <div class="Rfloat">
+              差出人：<?php echo h($arrInboxMail['EmailData']['name']) ?>
+              日時：<?php echo h($arrInboxMail['EmailData']['send_date']) ?>
+            </div><br class="clear">
+          </div>
+          <div class="panel-body ta_l">
+            <?php echo nl2br(h($arrInboxMail['EmailData']['body'])) ?>
+            <div class="Rfloat"><a href="/admin/inbox/inbox_send/<?php echo $arrInboxMail['EmailData']['id'] ?>"><button type="button" class="btn btn-danger">返信</button></a></div>
+          </div>
+        </div>
+        <a href="/admin/inbox"><button type="button" class="btn btn-primary btn-lg">一覧へ戻る</button></a>
+      </div>

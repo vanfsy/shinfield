@@ -1,0 +1,42 @@
+<?php
+// エリア
+$arrArea = Configure::read('arrArea');
+
+// 公開・非公開
+$arrPublicFlg = array('-1' => '未選択','0' => '非公開','1' => '公開');
+
+?>
+          <h1 class="page-header">イベントレビュー情報</h1>
+
+<?php echo $this->element('alert'); ?>
+
+          <h2 class="sub-header">イベントレビュー情報 一覧</h2>
+
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                <tr>
+                  <th class="w50">開催日</th>
+                  <th class="w500">タイトル</th>
+                </tr>
+                </tr>
+              </thead>
+              <tbody>
+<?php foreach($arrEventReviewData['list'] as $row): ?>
+                <tr>
+                  <td align="left"><?php echo $row['EventReviewData']['event_date'] ?></td>
+                  <td align="left"><?php echo $row['EventReviewData']['title'] ?><br><?php if($row['EventReviewData']['public_flg']): ?><span class="label label-success">公開中</span><?php else: ?><span class="label label-default">非公開</span><?php endif; ?>
+                  <a href="/admin/event_review/detail/<?php echo $row['EventReviewData']['id'] ?>"><span class="label label-info">詳細・編集</span></a>
+                  <a href="javascript:void(0)" onClick="delConfirm('/admin/event_review/del/<?php echo $row['EventReviewData']['id'] ?>')"><span class="label label-danger">削　除</span></a>
+                  </td>
+                </tr>
+<?php endforeach; ?>
+              </tbody>
+            </table>
+
+<!-- ページネーション -->
+<?php echo $this->Paging->list_navi($arrEventReviewData,$url,5); ?>
+<!-- ページネーション -->
+
+          </div>

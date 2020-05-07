@@ -1,0 +1,310 @@
+<?php
+$meta_title = Configure::read('html.detail');
+$meta_keywords = Configure::read('html.detail');
+$meta_description = Configure::read('html.detail');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$this->Html->css('/css/style.css', null, array('inline' => false));
+$this->Html->script('/js/follower.js', array('inline' => false));
+$this->Html->script('/js/page.js', array('inline' => false));
+
+$arrTopicPath[] = array('商品詳細' => '/guide/');
+$arrTopicPath[] = array('商品詳細' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+
+if(!empty($favoriteCall)){
+  echo '<script>alert("お気に入りに登録しました");</script>';
+}
+
+$code_area = <<< EOF
+EOF;
+$this->assign('code_area', $code_area);
+$arrItem = $arrData['Item'];
+$arrMember = $arrData['Member'];
+$file_size = $arrItem['file_size'];
+$num_size = strlen($file_size);
+if($num_size <= 3){
+  $file_size = number_format($file_size).'byte';
+}else if($num_size <= 6){
+  $file_size = number_format(round(($file_size / 1024),2),2).'KB';
+}else if($num_size <= 9){
+  $file_size = number_format(round(($file_size / 1024 / 1024),2),2).'MB';
+}else{
+  $file_size = number_format(round(($file_size / 1024 / 1024 / 1024),2),2).'GB';
+}
+$main_img = $this->Upload->uploadUrl($arrItem,'Item.main_image',array('style'=>'list_l'));
+$sub_img1 = $this->Upload->uploadUrl($arrItem,'Item.sub_image1',array('style'=>'list_l'));
+$sub_img2 = $this->Upload->uploadUrl($arrItem,'Item.sub_image2',array('style'=>'list_l'));
+$sub_img3 = $this->Upload->uploadUrl($arrItem,'Item.sub_image3',array('style'=>'list_l'));
+$sub_img4 = $this->Upload->uploadUrl($arrItem,'Item.sub_image4',array('style'=>'list_l'));
+
+?>
+<!-- blue2 20170805 del -->
+<section class="">
+  <h2 class="f25 mb30"><?= h($arrItem['title']) ?></h2>
+  <div class="download width100 clearfix ml30 spml_0">
+    <p class="detail_main_img">
+    <a  class="pd_main_img" href="<?= $main_img ?>" title="<?= h($arrItem['title']) ?>"><img src="<?= $main_img ?>" alt="<?= h($arrItem['title']) ?>" onerror="onImgErr(this)"></a></p>
+    <div class="alignleft ml60">
+      <div class="above clearfix">
+        <!--<p class="red f30 strong">-->
+        <?php if($num_size !== 0) : ?>
+            <p class="f20">ダウンロード商品</p>
+        <?php endif; ?>
+        <p class="red f20"><?= number_format($arrItem['price']) ?>円<span class="f15">（税込）</span></p>
+      </div>
+<?php if($arrItem['selling'] == 1): ?>
+      <!--<div class="under clearfix sp_width180p ml-30-sp">-->
+      <div class="under clearfix ml-30-sp">
+        <a href="/cart/addItem/?item_id=<?= $arrItem['id'] ?>&quantity=1"><p class="alignleft mr10 button_style_cartIn">カートに入れる</p></a>
+        <a href="/item/favorite/<?= $arrItem['id'] ?>"><p class="alignright button_style_favorite">お気に入り</p></a>
+      </div>
+<?php endif; ?>
+<?php if($arrItem['selling'] == 0): ?>
+      <div class="under clearfix">
+        <p class="alignleft mr10">販売停止中</p>
+      </div>
+<?php endif; ?>
+<?php if($arrItem['selling'] == 2): ?>
+      <div class="under clearfix">
+        <p class="alignleft mr10">販売終了</p>
+      </div>
+<?php endif; ?>
+
+    </div>
+    <!--p class="alignright p00"><a href="#"><img src="/img/drBtn.png" alt="ダウンロードする"></a></p-->
+  </div>
+  <h3  class="mb30"><span class="border-radius">商品画像</span></h3>
+  <div id="pd_sub_img" class="product spml_0 clearfix">
+
+<?php if(!empty($arrItem['sub_image1_file_name'])): ?>
+    <!--<dl class="mr15">-->
+    <dl>
+      <dt><a href="<?= $sub_img1 ?>" class="pd_sub_img" title="<?= h($arrItem['title']) ?>"><img src="<?= $sub_img1 ?>" alt="" onerror="onImgErr(this)"></a></dt>
+      <dd></dd>
+    </dl>
+<?php endif; ?>
+
+<?php if(!empty($arrItem['sub_image2_file_name'])): ?>
+    <dl class="">
+      <dt><a href="<?= $sub_img2 ?>" class="pd_sub_img" title="<?= h($arrItem['title']) ?>"><img src="<?= $sub_img2 ?>" alt="" onerror="onImgErr(this)"></a></dt>
+      <dd></dd>
+    </dl>
+<?php endif; ?>
+
+<?php if(!empty($arrItem['sub_image3_file_name'])): ?>
+    <dl class="">
+      <dt><a href="<?= $sub_img3 ?>" class="pd_sub_img" title="<?= h($arrItem['title']) ?>"><img src="<?= $sub_img3 ?>" alt="" onerror="onImgErr(this)"></a></dt>
+      <dd></dd>
+    </dl>
+<?php endif; ?>
+
+<?php if(!empty($arrItem['sub_image4_file_name'])): ?>
+    <dl>
+      <dt><a href="<?= $sub_img4 ?>" class="pd_sub_img" title="<?= h($arrItem['title']) ?>"><img src="<?= $sub_img4 ?>" alt="" onerror="onImgErr(this)"></a></dt>
+      <dd></dd>
+    </dl>
+<?php endif; ?>
+
+  </div>
+  <h3 class="mb30"><span class="border-radius">商品詳細</span></h3>
+  <p class="pl20 pr20 mb30 auto_linker"><?= nl2br(h($arrItem['discription'])) ?></p>
+
+  <h3 class="mb30"><span class="border-radius">レビュー</span></h3>
+  <?php if(!empty($arrReview)): ?>
+    <table class="table mb30">
+      <thead>
+          <tr class="row">
+              <th class="col-xs-3">ユーザー</th>
+              <th class="col-xs-7">コメント</th>
+              <th class="col-xs-2">評価</th>
+          <tr>
+      </thead>
+      <tbody>
+          <?php foreach($arrReview as $row): ?>
+          <tr class="row">
+              <td><?= h($row['Member']['name']) ?></td>
+              <td><?= h($row['Review']['comment']) ?></td>
+              <td><?= h(Configure::read('rating')[$row['Review']['rating']]) ?></td>
+          </tr>
+          <?php endforeach; ?>
+      </tbody>
+    </table>
+  <?php endif; ?>
+  <h3 class="mb30"><span class="border-radius">総合評価</span></h3>
+  <p class="pl30 pr30 mb30 auto_linker">
+    <?php if(isset($ratingAve)) : ?>
+        <?= h($ratingAve) ?>ポイント/5ポイント
+    <?php else : ?>
+        <?= '登録なし' ?>
+    <?php endif; ?>
+  </p>
+
+  <?php if ($canWriteReview) : ?>
+<?= $this->Form->create('Review',
+                            array('url' => '/item/detail/'.$arrItem['id'],
+                                  'class' => 'form-horizontal',
+                                  'role'=>'form'
+)); ?>
+<?= $this->Form->input('item_id',
+                            array('label' => false,
+                                  'type' => 'hidden',
+                                  'value' => $arrItem['id'],
+)) ?>
+    <table class="table mb30 table-res01">
+        <tr class="row">
+            <th>メッセージ</th>
+            <td>
+                <?= $this->Form->input('comment',
+                    array('label' => false,
+                        'div' => false,
+                        'type' => 'text',
+                        'rows' => 2,
+                        'class' => 'width100',
+                    ));
+                ?>
+            </td>
+        </tr>
+        <tr class="row">
+            <th>評価</th>
+            <td>
+                <?= $this->Form->radio('rating', Configure::read('rating'),
+                    array(
+                        'legend' => false,
+                        'label' => 'radio-inline',
+                        'style' => array('margin-left:10px')
+                    ));
+                ?>
+            </td>
+        </tr>
+        <tr class="row">
+            <th style="border-style: none;"></th>
+            <td style="border-style: none;">
+                <?php if(!empty($loginname)): ?>
+                    <?php echo $this->Form->button('レビューを投稿', array('type' => 'submit', 'class' => 'btn btn-info pull-right')); ?>
+                <?php else: ?>
+                    <a href="/mypage/"><input type="button" class="mt10 aligncenter btn btn-default" value="レビュー投稿するにはログインしてください" /></a>
+                <?php endif; ?>
+            </td>
+        </tr>
+    </table>
+    <?= $this->Form->end(); ?>
+    <?php endif; ?>
+  <h3 class="mb30"><span class="border-radius">販売者</span></h3>
+    <p class="dash hide_500" style="left:206px;">&#8230;</p>
+  <dl class="follow clearfix">
+      <div class="col-xs-12 col-sm-3 col-md-3">
+          <div class="aligncenter mypage_progimg">
+              <?php
+          if(!empty($arrMemberInfo['Member']['image_file_name'])){
+            echo $this->Upload->uploadImage($arrMember,'Member.image',array('style'=>'thumb'));
+              }else{
+              echo '<img src="/img/front_s.png" alt="画像">';
+              }
+              ?>
+              <p class="item-p01"><a href="/mypage/sellerinfo/<?= h($arrMember['id']) ?>"><?= h($arrMember['company']) ?> <?= h($arrMember['nickname']) ?></a></p>
+          </div>
+      </div>
+    <!-- <dt><a href="/mypage/sellerinfo/<?= h($arrMember['id']) ?>"><?= h($arrMember['name']) ?></a></dt>-->
+
+<!--    <dd class="ml30 width70"> -->
+<dd class="ml10 p05-resp">
+<?php if(!empty($loginname)): ?>
+        <p class="item-p01"><a href="javascript:void(0)" onClick="add_follow('<?= $arrItem['member_id'] ?>');return false;">販売者をフォローする</a></p>
+<?php else: ?>
+        <p class="item-p01"><a href="javascript:void(0)" onclick="notlogin(); return false;">販売者をフォローする</a></p>
+<?php endif; ?>
+    </dd>
+
+    <dd class="ml10 p05-resp"><p class="item-p01"><a href="/message/new_message/<?= $arrItem['member_id'] ?>/<?= $arrItem['id'] ?>">販売者にこの商品についてメッセージを送る</a></p></dd>
+    <dd class="ml10 p05-resp"><p class="item-p01"><a href="/message/concern/<?= $arrItem['member_id'] ?>/<?= $arrItem['id'] ?>" class="concern">この商品について「気になる」を出品者に通知</a></p></dd>
+    <dd class="ml10 p05-resp"><p class="item-p01"><a href="javascript:void window.open('http://twitter.com/intent/tweet?text=<?= h($arrItem['title']) ?>&url=<?= (empty($_SERVER["HTTPS"]) ? "http://" : "https://") . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];?>','_blank','width=550,height=480,left=100,top=50,scrollbars=1,resizable=1',0);">Twitterでこの商品を紹介する</a></p></dd>
+    <dd class="ml10 p05-resp"><p class="item-p01"><a href="mailto:info@<?=Configure::read('info.domain')?>?subject=商品の通報&body=商品番号:<?= sprintf('%06d', $arrItem['id']) ?>%0d%0a<?= (empty($_SERVER["HTTPS"]) ? "http://" : "https://") . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];?>">この商品を通報する</a></p></dd>
+</a>
+  </dl>
+  <table class="detail">
+    <tr>
+      <th>商品番号</th>
+      <td><?= sprintf('%06d', $arrItem['id']) ?></td>
+    </tr>
+    <tr>
+      <th>登録日</th>
+      <td><?= date('Y年m月d日',strtotime($arrItem['created'])) ?></td>
+    </tr>
+    <tr>
+      <th>ファイル形式</th>
+      <td><?= h($arrItem['file_type']) ?>（<?= $file_size ?>）</td>
+    </tr>
+  </table>
+  <ul class="detail_tag_list width100 mt30 clearfix">
+    <?php if(!empty($arrItem['tag1'])): ?>
+    <li class="alignleft mr10">
+      <a href="/item/tag/<?= h($arrItem['tag1']) ?>"><button class="btn btn-default tag_button" type="button"><p class="btn-mover"><?= h($arrItem['tag1']) ?></p></button></a>
+    </li>
+    <?php endif; ?>
+    <?php if(!empty($arrItem['tag2'])): ?>
+    <li class="alignleft mr10">
+      <a href="/item/tag/<?= h($arrItem['tag2']) ?>"><button class="btn btn-default tag_button" type="button"><p class="btn-mover"><?= h($arrItem['tag2']) ?></p></button></a>
+    </li>
+    <?php endif; ?>
+    <?php if(!empty($arrItem['tag3'])): ?>
+    <li class="alignleft mr10">
+      <a href="/item/tag/<?= h($arrItem['tag3']) ?>"><button class="btn btn-default tag_button" type="button"><p class="btn-mover"><?= h($arrItem['tag3']) ?></p></button></a>
+    </li>
+    <?php endif; ?>
+    <?php if(!empty($arrItem['tag4'])): ?>
+    <li class="alignleft mr10">
+      <a href="/item/tag/<?= h($arrItem['tag4']) ?>"><button class="btn btn-default tag_button" type="button"><p class="btn-mover"><?= h($arrItem['tag4']) ?></p></button></a>
+    </li>
+    <?php endif; ?>
+    <?php if(!empty($arrItem['tag5'])): ?>
+    <li class="alignleft mr10">
+      <a href="/item/tag/<?= h($arrItem['tag5']) ?>"><button class="btn btn-default tag_button" type="button"><p class="btn-mover"><?= h($arrItem['tag5']) ?></p></button></a>
+    </li>
+    <?php endif; ?>
+  </ul>
+
+
+<?php if($arrItem['selling'] == 1): ?>
+        <!--<div class="under_btn clearfix">-->
+<!--
+      <div class="clearfix">
+        <a href="/cart/addItem/?item_id=<?= $arrItem['id'] ?>&quantity=1"><p class="alignleft mr10 button_style_cartIn">カートに入れる</p></a>
+        <a href="/item/favorite/<?= $arrItem['id'] ?>"><p class="alignright button_style_favorite">お気に入り</p></a>
+      </div>
+-->
+<?php endif; ?>
+
+  <h2 class="f25 mb20 mt50">この商品を買った人はこんな商品も買っています</h2>
+  <div class="row item clearfix">
+  <?php foreach($arrLikeData as $row): ?>
+  <?= $this->element('item_1col', ['row' => $row]) ?>
+  <?php endforeach; ?>
+  </div>
+
+  <h2 class="f25 mb20">この出品者の人気商品</h2>
+  <div class="row item clearfix">
+  <?php foreach($arrSaleRanking as $row): ?>
+  <?= $this->element('item_1col', ['row' => $row]) ?>
+  <?php endforeach; ?>
+  </div>
+
+  <h2 class="f25 mb20">商品ランキング</h2>
+  <div class="row item">
+  <?php foreach($arrSaleRank as $i => $row): ?>
+  <?= $this->element('item_1col', ['row' => $row]) ?>
+  <?php endforeach; ?>
+  </div>
+
+  <h2 class="f25 mb20">最近閲覧した商品</h2>
+  <div class="row item clearfix">
+  <?php foreach($arrBrowse as $i => $row): ?>
+  <?= $this->element('item_1col', ['row' => $row]) ?>
+  <?php if($i%4 == 3) echo '</div><div class="row item clearfix">' ?>
+  <?php endforeach; ?>
+  </div>
+</section>

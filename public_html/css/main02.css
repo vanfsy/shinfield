@@ -1,0 +1,254 @@
+@charset "utf-8";
+
+/* テーブル
+-------------------------------------------------- */
+.table02 {
+  background-color:#FFFFFF;
+  border:solid 0px #ffffff;
+  width:120px;  
+  margin-left: 0px;
+  margin-right: auto;
+}
+.table02 th {
+  background-color:#ffffff;
+  border:solid 0px #ffffff;
+  text-align: left;
+  font-weight: normal;
+}
+.table02 td {
+  border:solid 0px #ffffff;
+  text-align: right;
+  width: 50px;
+}
+
+.table03 {
+  background-color:#FFFFFF;
+  border:solid 0px #ffffff;
+  width:370px;  
+  margin-left: 50px;
+  margin-right: auto;
+}
+.table03 th {
+  background-color:#ffffff;
+  border:solid 0px #ffffff;
+  text-align: left;
+  font-weight: normal;
+}
+.table03 td {
+  border:solid 0px #ffffff;
+  text-align: left;
+  width: 75%;
+  padding: 2px;
+}
+@media screen and (max-width: 550px) {
+.table03 {
+  width:100%; 
+  margin-left: 10px;
+  margin-right: auto;
+}
+.table03 td {
+  width: 70%;
+  padding: 2px;
+}
+}
+
+.table04 {
+  background-color:#FFFFFF;
+  border:solid 1px #c5c5c5;
+  width:100%; 
+  margin-left: auto;
+  margin-right: auto;
+}
+.table04 th {
+  background-color:#f5f6f7;
+  border-bottom:solid 1px #c5c5c5;
+  border-right:solid 1px #c5c5c5;
+  text-align: center;
+  font-weight: normal;
+  padding:6px;
+}
+.table04 td {
+  border-bottom:solid 1px #c5c5c5;
+  border-right:solid 1px #c5c5c5;
+  text-align: center;
+  padding:6px;
+}
+
+@media screen and (max-width: 550px) {
+  .table04 td, .table04 th{
+    font-size:10px;
+    /* 20170730 del
+    display:block;
+    width:100%;
+    */
+  }
+}
+
+.td_gray{
+  background-color:#f5f6f7;
+}
+
+.tr_end{
+  border-bottom:solid 3px #c5c5c5;
+}
+.border_top{
+  border-top:solid 1px #c5c5c5;
+}
+.table05 {
+  background-color:#FFFFFF;
+  border:solid 1px #c5c5c5;
+  width:100%; 
+  margin-left: auto;
+  margin-right: auto;
+}
+.table05 th {
+  background-color:#f5f6f7;
+  border-bottom:solid 1px #c5c5c5;
+  border-right:solid 1px #c5c5c5;
+  text-align: right;
+  font-weight: normal;
+}
+.table05 td {
+  border-bottom:solid 1px #c5c5c5;
+  border-right:solid 1px #c5c5c5;
+  text-align: center;
+  padding: 2px;
+}
+
+@media screen and (max-width: 550px) {
+.table05 td, .table05 th{
+  display:block;
+  width:100%;
+}
+}
+
+.table06 {
+  background-color:#FFFFFF;
+  border:solid 1px #c5c5c5;
+  width:100%; 
+  margin-left: auto;
+  margin-right: auto;
+}
+.table06 th {
+  background-color:#FFFFFF;
+  border-bottom:solid 1px #c5c5c5;
+  border-right:solid 1px #c5c5c5;
+  text-align: right;
+  font-weight: normal;
+}
+.table06 td {
+  border-bottom:solid 1px #c5c5c5;
+  border-right:solid 1px #c5c5c5;
+  text-align: center;
+  padding: 2px;
+}
+
+.table07 {
+  background-color:#FFFFFF;
+  border:solid 1px #c5c5c5;
+  width:100%; 
+  margin-left: auto;
+  margin-right: auto;
+}
+.table07 th {
+  background-color:#f5f6f7;
+  border-bottom:solid 1px #c5c5c5;
+  border-right:solid 1px #c5c5c5;
+  text-align: center;
+  font-weight: normal;
+}
+.table07 td {
+  border-bottom:solid 1px #c5c5c5;
+  border-right:solid 1px #c5c5c5;
+  text-align: center;
+  padding: 3px;
+}
+
+@media screen and (max-width: 550px) {
+.table07 td, .table07 th{
+  font-size:10px;
+}
+}
+
+/* 文字枠
+-------------------------------------------------- */
+.waku01 {
+  background-color:#ffffff;
+  border:solid 1px #cccccc;
+  width: 130px; 
+  padding: 7px;
+  margin-left: 0px;
+  margin-right: auto;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.waku02 {
+  background-color:#ffffff;
+  border:solid 1px #cccccc;
+  width: 160px; 
+  padding: 7px;
+  margin-left: 0px;
+  margin-right: auto;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 550px) {
+.waku01 {
+  width:100%;
+}
+.waku02 {
+  width:100%;
+}
+}
+/* 横並びリスト
+-------------------------------------------------- */
+.sortlist li {
+  float: left;
+  display:inline-block;
+  padding: 0;
+  margin-left: 15px;
+  text-align: right;
+}
+
+
+input.re-width{ width: 80%; }
+input.border-none{ border: none; }
+
+@media screen and (max-width:480px){
+  input.re-width{ width: 100%; }
+}
+
+textarea.re-width{ width: 80%; }
+textarea.border-none{ border:none; }
+
+@media screen and (max-width:480px){
+  /*textarea.re-width{ width: 190px; }*/
+  textarea.re-width{ width: 100%; }
+}
+
+/* スマホ */
+@media screen and (max-width:571px) {
+#menu {
+  position: absolute;
+  top: 130px;
+  left: 0px;
+  
+}
+/* 20170727del
+#menu li {
+  width: 25%;
+}
+#menu li a {
+  font-size: 10px;
+}
+*/
+}
+
+.blue a{
+  color: #07397F!important;
+}

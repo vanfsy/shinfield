@@ -1,0 +1,84 @@
+<?php
+$meta_title = Configure::read('html.contact');
+$meta_keywords = Configure::read('html.contact');
+$meta_description = Configure::read('html.contact');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$this->Html->css('/css/style.css', null, array('inline' => false));
+
+$arrTopicPath[] = array('ショップガイド' => '/guide/');
+$arrTopicPath[] = array('送料・納期' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$code_area = <<< EOF
+EOF;
+$this->assign('code_area', $code_area);
+?>
+<div id="legal">
+  <section id="content">
+    <h2 class="f25 mb40">お問い合わせ</h2>
+    <!--
+    <h3 class="ml30 mb30 mt20"><span>お問い合わせ</span></h3>
+    
+      
+        <p class="title">運営サービス</p>
+        <p>FILL MALL</p>
+      
+      
+        <p class="title">運営統括サービス</p>
+        <p>FILL MALL</p>
+      
+      
+        <p class="title">所在地</p>
+        <p>〒525-0059 滋賀県草津市野路1-11-2</p>
+      
+      
+        <p class="title">URL</p>
+        <p>http://fillmall.com</p>
+      
+      
+        <p class="title">メールアドレス</p>
+        <p>info@fillmall.com</p>
+      
+      
+        <p class="title">返品・キャンセル等</p>
+        <p>サービスの性質上、返品・返金はお受けしておりません。</p>
+      
+      
+        <p class="title">商品の価格</p>
+        <p>商品ごとに表示された税込み価格に基づく。</p>
+      
+      
+        <p class="title">商品代金以外の必要金額</p>
+        <p>銀行振込手数料、通信料、出品者のみ事務手数料</p>
+      
+      
+        <p class="title">ご注文方法</p>
+        <p>オンラインでのみとさせていただきます。</p>
+      
+      
+        <p class="title">お支払い方法</p>
+        <p>銀行振込、クレジットカード決済<br>
+  銀行振込をご希望のお客様は着金後、即日〜2、3日営業日で反映されます。</p>
+      
+      
+        <p class="title">引渡し時期</p>
+        <p>ご入金確認後、クレジットの場合はシステムにより即時ポイント反映します。<br>
+  (ポイントがアカウントに反映された時点で、ポイント購入対象商品をポイント決済後、すぐにご利用が可能です)<br>
+  ダウンロード可能期間は、購入したその日を含む7日間です。<br>
+  スキル商品はポイント決済が完了した時点で着手可能となります。<br>
+  7日間を過ぎますとダウンロードはできませんので、お早めにダウンロードをお願いします。<br>
+  尚、ポイントの有効期限は無期限です。</p>
+      
+      
+        <p class="title">お問い合わせ</p>
+        <p>メールアドレスでお問い合わせください。</p>
+      -->
+    <?php echo $HTML_GUIDE_CONTACT ?>
+    
+    
+  </section>
+</div>

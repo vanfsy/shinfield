@@ -1,0 +1,114 @@
+<?php
+$meta_title = Configure::read('html.mypage');
+$meta_keywords = Configure::read('html.mypage');
+$meta_description = Configure::read('html.mypage');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$arrTopicPath[] = array('マイページ' => '/mypage/');
+$arrTopicPath[] = array('デスクトップ' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$this->Html->css('/css/main02.css', null, array('inline' => false));
+
+$arrSelling = Configure::read('arrSelling');
+
+$code_area = <<< EOF
+EOF;
+$this->assign('code_area', $code_area);
+?>
+
+<section>
+  <h2 class="f25 mb20">マイページ</h2>
+  <div class="ml20 mr20">
+    <div class="black waku01 mt20">販売者用</div>
+    <table class="table03 mt10 black">
+      <tbody>
+        <tr>
+          <th>商品管理　&#8230;</th>
+          <td><p class="item-p01"><a href="/mypage/item">商品を出品する</a></p></td>
+        </tr>
+        <tr>
+          <th>&nbsp;</th>
+          <td><p class="item-p01"><a href="/mypage/item_list">商品リスト／登録した商品を編集する</a></p></td>
+        </tr>
+        <tr>
+          <th>売上管理　&#8230;</th>
+          <td><p class="item-p01"><a href="/mypage/sales_report">売り上げ状況を確認する</a></p></td>
+        </tr>
+        <tr>
+          <th>&nbsp;</th>
+          <td><p class="item-p01"><a href="/mypage/cashing">換金申請をする</a></p></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="black waku01 width200p mt50 mb20"><?php echo $strYearMonth ?> 売上リスト</div>
+<?php if(!empty($arrData) && !$isMobile): ?>
+    <table class="table04">
+      <thead>
+        <tr>
+          <th>商品番号</th>
+          <th>タイトル名</th>
+          <th>販売額</th>
+          <th>状態</th>
+          <th>購入数</th>
+        </tr>
+      </thead>
+      <tbody>
+<?php foreach($arrData as $row): ?>
+        <tr>
+          <td><?php echo sprintf('%05d', $row['item_id']) ?></td>
+          <td><a href="/item/detail/<?php echo $row['item_id'] ?>"><?php echo h($row['title']) ?></a></td>
+          <td><?php echo number_format($row['total']) ?></td>
+          <td <?php if(!$row['selling']) echo 'class="red"' ?>><?php echo @$arrSelling[$row['selling']] ?></td>
+          <td><?php echo number_format($row['count']) ?></td>
+        </tr>
+<?php endforeach; ?>
+      </tbody>
+    </table>
+
+<?php else: ?>
+    <p>該当する情報はありません</p>
+<?php endif; ?>
+
+<?php if($isMobile): ?>
+<?php if(!empty($arrData)): ?>
+<?php foreach($arrData as $row): ?>
+    <table class="table04 mt20 sponly">
+      <tbody>
+        <tr>
+          <td class="td_gray">商品番号</td>
+          <td><?php echo sprintf('%05d', $row['Item']['id']) ?></td>
+        </tr>
+        <tr>
+          <td class="td_gray">タイトル名</td>
+          <td><a href="/item/detail/<?php echo $row['Item']['id'] ?>"><?php echo h($row['Item']['title']) ?></a></td>
+        </tr>
+        <tr>
+          <td class="td_gray">販売額</td>
+          <td><?php echo number_format($row['Item']['price']) ?></td>
+        </tr>
+        <tr>
+          <td class="td_gray">状態</td>
+          <td <?php if(!$row['Item']['selling']) echo 'class="red"' ?>><?php echo @$arrSelling[$row['Item']['selling']] ?></td>
+        </tr>
+        <tr>
+          <td class="td_gray">購入数</td>
+          <td><?php echo number_format($row['Item']['sale_count']) ?></td>
+        </tr>
+        <tr>
+          <td class="td_gray">編集</td>
+          <td><a href="/mypage/item/<?php echo $row['Item']['id'] ?>" class="black">編集</a></td>
+        </tr>
+      </tbody>
+    </table>
+<?php endforeach; ?>
+
+<?php else: ?>
+    <p>該当する情報はありません</p>
+<?php endif; ?>
+<?php endif; ?>
+
+</section>

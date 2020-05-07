@@ -1,0 +1,91 @@
+
+<!--{assign var=entity value=$param.entity}-->
+			<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table1">
+				<tr>
+					<th width="20%">パラメータ名</th>
+					<td>
+						<!--{$entity.constants.const_name|escape}-->
+					</td>
+				</tr>
+				<tr>
+					<th width="20%">設定名</th>
+					<td>
+						<!--{$entity.constants.caption|escape}-->
+					</td>
+				</tr>
+				<tr>
+					<th width="20%">有効・無効</th>
+					<td>
+						<!--{if $entity.constants.active_flg == '1'}-->有効<!--{else}-->無効<!--{/if}-->
+					</td>
+				</tr>
+				<tr>
+					<th width="20%">説明</th>
+					<td>
+						<!--{$entity.constants.description|escape|nl2br}-->
+					</td>
+				</tr>
+			</table>
+			<div class="submit_area">
+				<input name="submit" type='button' value='一覧に戻る' class="btn" onclick="location = '<!--{$home_url}-->admin/site/const_param/'" />　
+			</div>
+
+<!--{if $param.complete_url == ""}-->
+<form action="<!--{$param.fm_action}--><!--{$entity.constants.id}-->" name="form2" method="post" >
+	<input name="data[constants][id]" type="hidden" value="<!--{$param.form.constants.id}-->" />
+	<input name="data[constants][const_name]" type="hidden" value="<!--{$entity.constants.const_name}-->" />
+	<input name="data[constants][level]" type="hidden" value="1" />
+	<input name="data[mode]" type="hidden" value="entry" />
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table1">
+		<tr>
+			<th width="10%" rowspan="2" align="center">登録<br />更新</th>
+			<th width="40%" align="center">リスト名</th>
+			<th width="40%" align="center">リスト値</th>
+			<th width="10%" align="center">アクション</th>
+		</tr>
+		<tr>
+			<td>
+				<input name="data[constants][name]" type="text" value="<!--{$param.form.constants.name}-->" style="width:250px;" />
+				<div class="error"><!--{$param.error.constants.name}--></div>
+			</td>
+			<td>
+				<input name="data[constants][value]" type="text" value="<!--{$param.form.constants.value}-->" style="width:250px;" />
+				<div class="error"><!--{$param.error.constants.value}--></div>
+			</td>
+			<td align="center"><input name="submit2" type='submit' value='登録・更新' class="btn" /></td>
+		</tr>
+	</table>
+</form>
+
+<form action="<!--{$home_url}-->admin/site/const_param/del/<!--{$entity.constants.id}-->" name="form1" method="post" >
+	<input name="data[constants][id]" id="constants_id" type="hidden" value="" />
+	<input name="data[mode]" type="hidden" value="mod" />
+			<p style="text-align:right;"><input type="submit" value="チェックを削除する" class="btn" onclick="confirmDel();return false" /></p>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="table1">
+		<tr>
+			<th width="40%" align="center">リスト名</th>
+			<th width="40%" align="center">リスト値</th>
+			<th width="15%" align="center">アクション</th>
+			<th width="5%" align="center"></th>
+		</tr>
+
+<!--{ section name=i loop=$param.list }-->
+<!--{assign var=list value=$param.list[i].constants}-->
+
+		<tr>
+			<td><!--{$list.name}--></td>
+			<td><!--{$list.value}--></td>
+			<td align="center"><a href="#" onclick="submitUpdMode4(<!--{$list.id}-->);return false">編集</a></td>
+			<td align="center"><input type="checkbox" name="data[del][<!--{$smarty.section.i.index}-->]" value="<!--{$list.id}-->"></td>
+		</tr>
+<!--{ /section }-->
+<!--リスト処理-->
+
+			</table><p style="text-align:right;"><input type="submit" value="チェックを削除する" class="btn" onclick="confirmDel();return false" /></p>
+	</form>
+<!--{/if}-->
+
+<form action="<!--{$home_url}-->admin/site/const_param/detail/<!--{$entity.constants.id}-->" name="form3" method="post" >
+	<input name="data[mode]" id="mode" type="hidden" value="mod" />
+	<input name="data[constants][id]" id="constants_id" type="hidden" value="" />
+</form>

@@ -1,0 +1,61 @@
+<?php
+$meta_title = Configure::read('html.mypage');
+$meta_keywords = Configure::read('html.mypage');
+$meta_description = Configure::read('html.mypage');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$arrTopicPath[] = array('マイページ' => '/mypage/');
+$arrTopicPath[] = array('デスクトップ' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$this->Html->css('/css/style.css', null, array('inline' => false));
+$this->Html->css('/css/main02.css', null, array('inline' => false));
+
+$code_area = <<< EOF
+EOF;
+$this->assign('code_area', $code_area);
+?>
+
+<section>
+  <h2 class="f25 mb20">メール通知設定</h2>
+  <div class="mypage_row ml20 mr20">
+    <?php echo $this->Session->flash(); ?>
+    <div class="black waku01 mt20">メール通知ON・OFF</div>
+    <?= $this->Form->create('Member', array('url' => '/mypage/notice_mail/', 'method' => 'post','class' => 'form-horizontal', 'role'=>'form')); ?>
+    <table class="table04 mt10 black">
+      <tbody>
+        <tr>
+          <th>商品が気になるされた時のメール通知</th>
+          <td>
+            <?= $this->Form->radio('notification_to_saller_flag', Configure::read('notice'),
+                  array(
+                      'legend' => false,
+                      'label' => 'radio-inline',
+                      'style' => array('margin-left:10px'),
+                      'default' => $member['Member']['notification_to_saller_flag']
+                  ));
+            ?>
+          </td>
+        </tr>
+        <tr>
+          <th>商品が購入された時のメール通知</th>
+          <td>
+            <?= $this->Form->radio('purchased_to_saller_flag', Configure::read('notice'),
+                array(
+                    'legend' => false,
+                    'label' => 'radio-inline',
+                    'style' => array('margin-left:10px'),
+                    'default' => $member['Member']['purchased_to_saller_flag']
+                ));
+            ?>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <?php echo $this->Form->button('設定する', array('type' => 'submit', 'class' => 'btn btn-info pull-right', 'style' => 'margin-top:10px;')); ?>
+    <?= $this->Form->end(); ?>
+  </div>
+</section>

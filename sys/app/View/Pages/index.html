@@ -1,0 +1,77 @@
+<?php
+$meta_title = Configure::read('page.main');
+$meta_keywords = Configure::read('page.main');
+$meta_description = Configure::read('page.main');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$code_area = <<< EOF
+EOF;
+$this->assign('script_area', $code_area);
+?>
+<!-- 20170729追加 start -->
+<div class="hide_500" style="margin-top:20px;">
+<!-- 20170729追加 end -->
+<!--<ul class="product_nav clearfix" style="padding-left: 0px;">-->
+<!-- <li class="mr25"> 20170730 mod -->
+<!--
+  <li class="mr15"><a href="#"><img src="/img/business_s.png" alt="ビジネス文書作成" width="220px"></a></li>
+  <li class="mr15"><a href="#"><img src="/img/template_s.png" alt="ウェブテンプレート" width="220px" ></a></li>
+  <li><a href="#"><img src="/img/douga_s.png" alt="動画" width="220px"></a></li>
+</ul>
+-->
+<?php echo $HTML_TOP_BANNER ?>
+</div>
+<section>
+  <h2 class="f25 mb20" style="border-radius: 5px;">新着商品<span class="alignright mr05 f11 fw_normal no-uline"><a href="/item/newData_rank">もっと見る</a></span></h2>
+  <div class="row item">
+<?php foreach($arrNewDatas as $row): ?>
+<?= $this->element('item_1col', ['row' => $row]) ?>
+<?php endforeach; ?>
+  </div>
+</section>
+<section>
+  <h2 class="f25 mb20 border-radius">PICK UP !!<span class="alignright mr05 f11 fw_normal no-uline"><a href="/item/pickup_rank">もっと見る</a></span></h2>
+  <div class="row item">
+<?php foreach($arrPickUp as $i => $row): ?>
+<?= $this->element('item_1col', ['row' => $row]) ?>
+<?php endforeach; ?>
+  </div>
+</section>
+<section>
+  <h2 class="f25 mb20 border-radius">商品ランキング<span class="alignright mr05 f11 fw_normal no-uline"><a href="/item/sale_rank">もっと見る</a></span></h2>
+  <div class="row item">
+<?php foreach($arrSaleRank as $i => $row): ?>
+<?= $this->element('item_1col', ['row' => $row]) ?>
+<?php endforeach; ?>
+  </div>
+</section>
+<section>
+  <h2 class="f25 mb20 border-radius">出品者ランキング<span class="alignright mr05 f11 fw_normal no-uline"><a href="/item/seller_rank">もっと見る</a></span></h2>
+  <div class="row item">
+      <div class="col-md-12">
+<?php foreach($arrSellerRank as $i => $row): ?>
+<?php 
+$img_url = $this->Upload->uploadUrl($row,'Member.image',array('style'=>'list_s'));
+$img_path = str_replace('//','/',WWW_ROOT.$img_url);
+if(!file_exists($img_path)){
+  $img_url = "/img/front_s.png";
+}
+?>
+    <dl class="list-1-5">
+      <a href="/mypage/sellerinfo/<?php echo $row['Member']['id'] ?>">
+      <dt class="ranking"><div class="rank_tag rank<?php echo ($i+1); ?>"></div><img src="<?php echo $img_url ?>" alt="" class="item-border01" onerror="onImgErr(this)"></dt>
+      <dd class="mt05">
+      <?php if(!empty($row['Member']['company'])): ?>
+      <?php echo $row['Member']['company'] ?>
+      <?php else: ?>
+      <?php echo $row['Member']['nickname'] ?>
+      <?php endif; ?>
+      </dd>
+        </a>
+    </dl>
+<?php endforeach; ?>
+  </div>
+</section>

@@ -1,0 +1,715 @@
+2019-03-07 19:59:55 Notice: Notice (8): Undefined index: id in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 40]
+Trace:
+include - APP/View/User/index.html, line 40
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-07 19:59:55 Notice: Notice (8): Undefined index: name in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 47]
+Trace:
+include - APP/View/User/index.html, line 47
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-07 19:59:55 Notice: Notice (8): Undefined index: user_rank in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 55]
+Trace:
+include - APP/View/User/index.html, line 55
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-07 19:59:55 Notice: Notice (8): Undefined index: user_rank in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 55]
+Trace:
+include - APP/View/User/index.html, line 55
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-07 19:59:55 Notice: Notice (8): Undefined index: user_rank in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 68]
+Trace:
+include - APP/View/User/index.html, line 68
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-07 19:59:55 Notice: Notice (8): Undefined index: address in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 91]
+Trace:
+include - APP/View/User/index.html, line 91
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-07 20:00:08 Notice: Notice (8): Undefined variable: arrPublicFlg in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 46]
+Trace:
+include - APP/View/PointPay/index.html, line 46
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-07 20:00:08 Notice: Notice (8): Undefined variable: arrArea in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 55]
+Trace:
+include - APP/View/PointPay/index.html, line 55
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-07 20:00:08 Notice: Notice (8): Undefined variable: arrJobCategory in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 70]
+Trace:
+include - APP/View/PointPay/index.html, line 70
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-07 20:00:08 Notice: Notice (8): Undefined variable: arrLicence in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 85]
+Trace:
+include - APP/View/PointPay/index.html, line 85
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-07 20:00:08 Notice: Notice (8): Undefined variable: arrEmployment in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 100]
+Trace:
+include - APP/View/PointPay/index.html, line 100
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-08 01:26:04 Notice: Notice (8): Undefined variable: arrPublicFlg in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 46]
+Trace:
+include - APP/View/PointPay/index.html, line 46
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-08 01:26:04 Notice: Notice (8): Undefined variable: arrArea in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 55]
+Trace:
+include - APP/View/PointPay/index.html, line 55
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-08 01:26:04 Notice: Notice (8): Undefined variable: arrJobCategory in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 70]
+Trace:
+include - APP/View/PointPay/index.html, line 70
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-08 01:26:04 Notice: Notice (8): Undefined variable: arrLicence in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 85]
+Trace:
+include - APP/View/PointPay/index.html, line 85
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-08 01:26:04 Notice: Notice (8): Undefined variable: arrEmployment in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 100]
+Trace:
+include - APP/View/PointPay/index.html, line 100
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-08 11:46:39 Notice: Notice (8): Undefined variable: arrPublicFlg in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 46]
+Trace:
+include - APP/View/PointPay/index.html, line 46
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-08 11:46:39 Notice: Notice (8): Undefined variable: arrArea in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 55]
+Trace:
+include - APP/View/PointPay/index.html, line 55
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-08 11:46:39 Notice: Notice (8): Undefined variable: arrJobCategory in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 70]
+Trace:
+include - APP/View/PointPay/index.html, line 70
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-08 11:46:39 Notice: Notice (8): Undefined variable: arrLicence in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 85]
+Trace:
+include - APP/View/PointPay/index.html, line 85
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-08 11:46:39 Notice: Notice (8): Undefined variable: arrEmployment in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 100]
+Trace:
+include - APP/View/PointPay/index.html, line 100
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-25 15:16:22 Notice: Notice (8): Undefined variable: arrPublicFlg in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 46]
+Trace:
+include - APP/View/PointPay/index.html, line 46
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-25 15:16:22 Notice: Notice (8): Undefined variable: arrArea in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 55]
+Trace:
+include - APP/View/PointPay/index.html, line 55
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-25 15:16:22 Notice: Notice (8): Undefined variable: arrJobCategory in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 70]
+Trace:
+include - APP/View/PointPay/index.html, line 70
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-25 15:16:22 Notice: Notice (8): Undefined variable: arrLicence in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 85]
+Trace:
+include - APP/View/PointPay/index.html, line 85
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-25 15:16:22 Notice: Notice (8): Undefined variable: arrEmployment in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 100]
+Trace:
+include - APP/View/PointPay/index.html, line 100
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-25 15:16:28 Notice: Notice (8): Undefined index: id in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 40]
+Trace:
+include - APP/View/User/index.html, line 40
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-25 15:16:28 Notice: Notice (8): Undefined index: name in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 47]
+Trace:
+include - APP/View/User/index.html, line 47
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-25 15:16:28 Notice: Notice (8): Undefined index: user_rank in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 55]
+Trace:
+include - APP/View/User/index.html, line 55
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-25 15:16:28 Notice: Notice (8): Undefined index: user_rank in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 55]
+Trace:
+include - APP/View/User/index.html, line 55
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-25 15:16:28 Notice: Notice (8): Undefined index: user_rank in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 68]
+Trace:
+include - APP/View/User/index.html, line 68
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-25 15:16:28 Notice: Notice (8): Undefined index: address in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 91]
+Trace:
+include - APP/View/User/index.html, line 91
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-25 15:18:47 Notice: Notice (8): Undefined variable: arrPublicFlg in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 46]
+Trace:
+include - APP/View/PointPay/index.html, line 46
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-25 15:18:47 Notice: Notice (8): Undefined variable: arrArea in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 55]
+Trace:
+include - APP/View/PointPay/index.html, line 55
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-25 15:18:47 Notice: Notice (8): Undefined variable: arrJobCategory in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 70]
+Trace:
+include - APP/View/PointPay/index.html, line 70
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-25 15:18:47 Notice: Notice (8): Undefined variable: arrLicence in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 85]
+Trace:
+include - APP/View/PointPay/index.html, line 85
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-25 15:18:47 Notice: Notice (8): Undefined variable: arrEmployment in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 100]
+Trace:
+include - APP/View/PointPay/index.html, line 100
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-27 12:38:59 Notice: Notice (8): Undefined index: id in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 40]
+Trace:
+include - APP/View/User/index.html, line 40
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-27 12:38:59 Notice: Notice (8): Undefined index: name in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 47]
+Trace:
+include - APP/View/User/index.html, line 47
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-27 12:38:59 Notice: Notice (8): Undefined index: user_rank in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 55]
+Trace:
+include - APP/View/User/index.html, line 55
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-27 12:38:59 Notice: Notice (8): Undefined index: user_rank in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 55]
+Trace:
+include - APP/View/User/index.html, line 55
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-27 12:38:59 Notice: Notice (8): Undefined index: user_rank in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 68]
+Trace:
+include - APP/View/User/index.html, line 68
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-27 12:38:59 Notice: Notice (8): Undefined index: address in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 91]
+Trace:
+include - APP/View/User/index.html, line 91
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-27 12:39:04 Notice: Notice (8): Undefined variable: arrPublicFlg in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 46]
+Trace:
+include - APP/View/PointPay/index.html, line 46
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-27 12:39:04 Notice: Notice (8): Undefined variable: arrArea in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 55]
+Trace:
+include - APP/View/PointPay/index.html, line 55
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-27 12:39:04 Notice: Notice (8): Undefined variable: arrJobCategory in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 70]
+Trace:
+include - APP/View/PointPay/index.html, line 70
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-27 12:39:04 Notice: Notice (8): Undefined variable: arrLicence in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 85]
+Trace:
+include - APP/View/PointPay/index.html, line 85
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-27 12:39:04 Notice: Notice (8): Undefined variable: arrEmployment in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 100]
+Trace:
+include - APP/View/PointPay/index.html, line 100
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-27 12:39:08 Notice: Notice (8): Undefined variable: arrPublicFlg in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 46]
+Trace:
+include - APP/View/PointPay/index.html, line 46
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-27 12:39:08 Notice: Notice (8): Undefined variable: arrArea in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 55]
+Trace:
+include - APP/View/PointPay/index.html, line 55
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-27 12:39:08 Notice: Notice (8): Undefined variable: arrJobCategory in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 70]
+Trace:
+include - APP/View/PointPay/index.html, line 70
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-27 12:39:08 Notice: Notice (8): Undefined variable: arrLicence in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 85]
+Trace:
+include - APP/View/PointPay/index.html, line 85
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-27 12:39:08 Notice: Notice (8): Undefined variable: arrEmployment in [/home/mallento/ta-bi-to.com/sys/admin_app/View/PointPay/index.html, line 100]
+Trace:
+include - APP/View/PointPay/index.html, line 100
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-30 15:38:23 Notice: Notice (8): Undefined index: id in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 40]
+Trace:
+include - APP/View/User/index.html, line 40
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-30 15:38:23 Notice: Notice (8): Undefined index: name in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 47]
+Trace:
+include - APP/View/User/index.html, line 47
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-30 15:38:23 Notice: Notice (8): Undefined index: user_rank in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 55]
+Trace:
+include - APP/View/User/index.html, line 55
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-30 15:38:23 Notice: Notice (8): Undefined index: user_rank in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 55]
+Trace:
+include - APP/View/User/index.html, line 55
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-30 15:38:23 Notice: Notice (8): Undefined index: user_rank in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 68]
+Trace:
+include - APP/View/User/index.html, line 68
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-03-30 15:38:23 Notice: Notice (8): Undefined index: address in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 91]
+Trace:
+include - APP/View/User/index.html, line 91
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-04-28 13:57:50 Notice: Notice (8): Undefined index: id in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 40]
+Trace:
+include - APP/View/User/index.html, line 40
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-04-28 13:57:50 Notice: Notice (8): Undefined index: name in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 47]
+Trace:
+include - APP/View/User/index.html, line 47
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-04-28 13:57:50 Notice: Notice (8): Undefined index: user_rank in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 55]
+Trace:
+include - APP/View/User/index.html, line 55
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-04-28 13:57:50 Notice: Notice (8): Undefined index: user_rank in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 55]
+Trace:
+include - APP/View/User/index.html, line 55
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-04-28 13:57:50 Notice: Notice (8): Undefined index: user_rank in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 68]
+Trace:
+include - APP/View/User/index.html, line 68
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+
+2019-04-28 13:57:50 Notice: Notice (8): Undefined index: address in [/home/mallento/ta-bi-to.com/sys/admin_app/View/User/index.html, line 91]
+Trace:
+include - APP/View/User/index.html, line 91
+View::_evaluate() - CORE/Cake/View/View.php, line 934
+View::_render() - CORE/Cake/View/View.php, line 896
+View::render() - CORE/Cake/View/View.php, line 465
+Controller::render() - CORE/Cake/Controller/Controller.php, line 954
+Dispatcher::_invoke() - CORE/Cake/Routing/Dispatcher.php, line 192
+Dispatcher::dispatch() - CORE/Cake/Routing/Dispatcher.php, line 160
+[main] - /home/mallento/ta-bi-to.com/public_html/admin/index.php, line 111
+

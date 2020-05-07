@@ -1,0 +1,48 @@
+<style>
+.table .d{
+  width:50px !important;
+  border:2px solid red;
+}
+</style>
+    <h1 class="page-header">設定値管理</h1>
+
+<?php echo $this->element('alert'); ?>
+
+    <div class="row placeholders">
+        <h2 class="sub-header">設定値一覧</h2>
+        <div class="table-responsive">
+<?php if(!empty($arrData)): ?>
+<?php foreach($arrData as $row): ?>
+<?php $number = preg_replace("/\.?0+$/","",$row['Config']['number']); ?>
+<?php echo $this->Form->create('Config', array('url' => '/config/update',)); ?>
+
+<?php echo $this->Form->input('id',
+                        array('label' => false,
+                              'type' => 'hidden',
+                              'value' => $row['Config']['id'],
+)) ?>
+
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th align="center"><?php echo $row['Config']['name'] ?></th>
+                        <td align="center">
+                            <?php echo $this->Form->input('number',
+                                        array('label' => false,
+                                              'div' => false,
+                                              'type' => 'text',
+                                              'value' => $number,
+                            )) ?>
+                            <?php echo $row['Config']['unit_name'] ?>
+                        </td>
+                        <th align="center"> CODE </th>
+                        <td align="center"><?php echo $row['Config']['code'] ?></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="submitButton"><button class="btn btn-lg btn-primary btnW200" type="submit">更　新</button></div>
+<?php echo $this->Form->end(); ?>
+<?php endforeach; ?>
+<?php endif; ?>
+        </div>
+    </div>

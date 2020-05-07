@@ -1,0 +1,286 @@
+<?php
+// エリア
+$arrArea = Configure::read('arrArea');
+
+$arrEventReviewData = $arrEventDataDetail['EventReviewData'];
+$arrEventData = $arrEventDataDetail['EventData'];
+
+// 公開・非公開
+$arrPublicFlg = array('0' => '非公開','1' => '公開');
+
+?>
+
+<style>
+.checkboxArea div label{
+  margin-left:5px;
+  font-weight:normal;
+}
+.checkboxArea fieldset{
+  display: block;
+  margin-bottom:20px;
+}
+legend{
+  font-size:14px;
+/*  float:left;*/
+  text-align:left;
+  margin-top:6px;
+  display: block;
+  max-width: 85%;
+  padding:6px;
+  line-height: 140%;
+  color: #000000;
+  border-bottom: 1px solid #e5e5e5;
+  background-color:#EFEFEF;
+}
+</style>
+
+<h1 class="page-header">イベントレビュー情報</h1>
+
+<?php if(empty($arrEventDataDetail['EventData']['id'])): ?>
+          <h2 class="sub-header">新規登録</h2>
+<?php else: ?>
+          <h2 class="sub-header">編集更新</h2>
+<?php endif; ?>
+
+<?php echo $this->element('alert'); ?>
+
+<?php echo $this->Form->create('EventReviewData',array('id' => 'EventDataForm', 'url' => '/event_review/edit/'.$arrEventReviewData['id'],'class' => 'form-horizontal','role'=>'form','type'=>'file')); ?>
+
+          <?php echo $this->Form->input('id',
+                array('type'=>'hidden',
+                      'value' => $arrEventReviewData['id']
+                      )) ?>
+
+          <?php echo $this->Form->input('mode',
+                array('type'=>'hidden',
+                      'value' => $mode
+                      )) ?>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">公開・非公開<span class="red">*</span></label>
+            <div class="col-sm-9">
+<?php foreach($arrPublicFlg as $id => $val){ ?>
+<div class="checkbox"><label><input type="radio" name="data[EventData][public_flg]" value="<?php echo $id ?>" <?php if($arrEventReviewData['public_flg'] == $id) echo 'checked=checked' ?> ><?php echo $val ?></label></div>
+<?php } ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">タイトル<span class="red">*</span></label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('title',
+                array('label'=>false,
+                      'div' => false,
+                      'rows'=>'2',
+                      'class'=>'form-control',
+                      'value' => $arrEventReviewData['title']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">キャッチコピー<span class="red">*</span></label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('headline',
+                array('label'=>false,
+                      'div' => false,
+                      'rows'=>'6',
+                      'class'=>'form-control',
+                      'value' => $arrEventReviewData['headline']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">メイン画像</label>
+            <div class="col-sm-9">
+<p><?php echo $this->Upload->uploadImage($arrEventDataDetail,'EventReviewData.main_image',array('style'=>'thumb'));?></p>
+<?php echo $this->Form->input('main_image',array('type'=>'file','label'=>false,'div' => false,'class'=>'form-control')) ?>
+<?php echo $this->Form->input('main_image_file_name',array('type'=>'hidden','label'=>false,'div' => false,'value' => $arrEventReviewData['main_image_file_name'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">内容・説明（1<span class="red">*</span></label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('description1',
+                array('label'=>false,
+                      'div' => false,
+                      'rows'=>'4',
+                      'class'=>'form-control',
+                      'value' => $arrEventReviewData['description1']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">サブ画像１</label>
+            <div class="col-sm-9">
+<p><?php echo $this->Upload->uploadImage($arrEventDataDetail,'EventReviewData.sub_image1',array('style'=>'thumb'));?></p>
+<?php echo $this->Form->input('sub_image1',array('type'=>'file','label'=>false,'div' => false,'class'=>'form-control')) ?>
+<?php echo $this->Form->input('sub_image1_file_name',array('type'=>'hidden','label'=>false,'div' => false,'value' => $arrEventReviewData['sub_image1_file_name'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">内容・説明（2</label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('description2',
+                array('label'=>false,
+                      'div' => false,
+                      'rows'=>'4',
+                      'class'=>'form-control',
+                      'value' => $arrEventReviewData['description2']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">サブ画像２</label>
+            <div class="col-sm-9">
+<p><?php echo $this->Upload->uploadImage($arrEventDataDetail,'EventReviewData.sub_image2',array('style'=>'thumb'));?></p>
+<?php echo $this->Form->input('sub_image2',array('type'=>'file','label'=>false,'div' => false,'class'=>'form-control')) ?>
+<?php echo $this->Form->input('sub_image2_file_name',array('type'=>'hidden','label'=>false,'div' => false,'value' => $arrEventReviewData['sub_image2_file_name'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">内容・説明（3</label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('description3',
+                array('label'=>false,
+                      'div' => false,
+                      'rows'=>'4',
+                      'class'=>'form-control',
+                      'value' => $arrEventReviewData['description3']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">サブ画像３</label>
+            <div class="col-sm-9">
+<p><?php echo $this->Upload->uploadImage($arrEventDataDetail,'EventReviewData.sub_image3',array('style'=>'thumb'));?></p>
+<?php echo $this->Form->input('sub_image3',array('type'=>'file','label'=>false,'div' => false,'class'=>'form-control')) ?>
+<?php echo $this->Form->input('sub_image3_file_name',array('type'=>'hidden','label'=>false,'div' => false,'value' => $arrEventReviewData['sub_image3_file_name'])) ?>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label">内容・説明（4</label>
+            <div class="col-sm-9">
+              <?php echo $this->Form->input('description4',
+                array('label'=>false,
+                      'div' => false,
+                      'rows'=>'4',
+                      'class'=>'form-control',
+                      'value' => $arrEventReviewData['description4']
+                      )) ?>
+            </div>
+          </div>
+
+          <div class="submitButton">
+            <a href="/event/detail/<?php echo $arrEventReviewData['id'] ?>"><button class="btn btn-lg btn-primary btnW200" type="button">キャンセル</button></a>
+            <button class="btn btn-lg btn-primary btnW200" type="submit">登録・更新</button>
+          </div>
+    
+<?php echo $this->Form->end(); ?>
+
+<h2 class="sub-header">イベント詳細情報</h2>
+<table class="table table-hover">
+  <tbody>
+    <tr>
+      <th>タイトル</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrEventData['title'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>進捗ステータス</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrEventData['hold_status'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>キャッチコピー</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrEventData['headline'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>開催日・時間</th>
+      <td colspan="3"><p><?php echo date('Y年m月d日　H時i分',strtotime($arrEventData['event_date'].' '.$arrEventData['start_time'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>募集期間</th>
+      <td colspan="3"><p><?php echo date('Y年m月d日',strtotime($arrEventData['entry_start_date'])); ?> ～ <?php echo date('Y年m月d日',strtotime($arrEventData['entry_end_date'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>エリア</th>
+      <td colspan="3"><p><?php echo @$arrArea[$arrEventData['area']]; ?></p></td>
+    </tr>
+    <tr>
+      <th>カテゴリ</th>
+      <td colspan="3"><p><?php echo str_replace(';',' / ',$arrEventData['category']); ?></p></td>
+    </tr>
+    <tr>
+      <th>タグ</th>
+      <td colspan="3"><p><?php echo str_replace(';',' / ',$arrEventData['tags']); ?></p></td>
+    </tr>
+    <tr>
+      <th>料金</th>
+      <td colspan="3"><p>男性 <?php echo number_format($arrEventData['fee_male']); ?>円
+          女性 <?php echo number_format($arrEventData['fee_female']); ?>円</p></td>
+    </tr>
+    <tr>
+      <th>参加定員</th>
+      <td colspan="3"><p>男性 <?php echo number_format($arrEventData['quorum_male']); ?>名
+          女性 <?php echo number_format($arrEventData['quorum_female']); ?>名</p></td>
+    </tr>
+    <tr>
+      <th>参加者数</th>
+      <td colspan="3"><p>男性 <?php echo number_format($arrEventData['turnout_male']); ?>名
+          女性 <?php echo number_format($arrEventData['turnout_female']); ?>名</p></td>
+    </tr>
+    <tr>
+      <th>参加条件</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrEventData['precondition'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>会場</th>
+      <td colspan="3"><p><b>会場名・店舗名</b>：<?php echo h($arrEventData['place_address']); ?></p>
+        <p><b>住所</b>：<?php echo h($arrEventData['place_address']); ?></p>
+        <p><b>アクセス</b>：<?php echo h($arrEventData['place_access']); ?></p>
+        <p><b>電話番号</b>：<?php echo h($arrEventData['place_phone']); ?></p>
+        <p><b>メール</b>：<?php echo h($arrEventData['place_email']); ?></p>
+        <p><b>ホームページ</b>：<?php echo h($arrEventData['place_url']); ?></p>
+        <p><b>googleマップ</b>：<?php echo h($arrEventData['place_map']); ?></p></td>
+    </tr>
+    <tr>
+      <th>メイン画像</th>
+      <td colspan="3"><p><?php echo $this->Upload->uploadImage($arrEventDataDetail,'EventData.main_image',array('style'=>'thumb'));?></p></td>
+    </tr>
+    <tr>
+      <th>内容 1</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrEventData['description1'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>サブ画像1</th>
+      <td colspan="3"><p><?php echo $this->Upload->uploadImage($arrEventDataDetail,'EventData.sub_image1',array('style'=>'thumb'));?></p></td>
+    </tr>
+    <tr>
+      <th>内容 2</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrEventData['description2'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>サブ画像2</th>
+      <td colspan="3"><p><?php echo $this->Upload->uploadImage($arrEventDataDetail,'EventData.sub_image2',array('style'=>'thumb'));?></p></td>
+    </tr>
+    <tr>
+      <th>内容 3</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrEventData['description3'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>サブ画像3</th>
+      <td colspan="3"><p><?php echo $this->Upload->uploadImage($arrEventDataDetail,'EventData.sub_image3',array('style'=>'thumb'));?></p></td>
+    </tr>
+    <tr>
+      <th>内容 4</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrEventData['description4'])); ?></p></td>
+    </tr>
+  </tbody>
+</table>

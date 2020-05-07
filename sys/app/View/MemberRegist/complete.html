@@ -1,0 +1,26 @@
+<?php
+$meta_title = Configure::read('html.member');
+$meta_keywords = Configure::read('html.member');
+$meta_description = Configure::read('html.member');
+
+$this->set('title_for_layout',$meta_title);
+$this->Html->meta('keywords', $meta_keywords, array('inline' => false));
+$this->Html->meta('description', $meta_description, array('inline' => false));
+
+$this->Html->css('/css/style.css', null, array('inline' => false));
+
+$arrTopicPath[] = array('商品一覧' => '');
+$this->set('arrTopicPath',$arrTopicPath);
+
+$code_area = <<< EOF
+EOF;
+$this->assign('code_area', $code_area);
+?>
+<section>
+  <h2 class="f25 mb40">新規会員登録</h2>
+  <h3 class="ml30 mb20 mt20"><span>会員登録完了</span></h3>
+  <p class="textleft ml30 spml30n">
+      新規会員登録ありがとうございます。ご本人様確認のためメールをお送りしました。ご本人様確認完了後、ログインできます。<br /><br />
+      <a href="/mypage/login">ログインはこちらから</a><br />
+  </p>
+</section>

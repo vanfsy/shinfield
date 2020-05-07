@@ -1,0 +1,154 @@
+<?php
+$arrItem = $arrItemDetail['Item'];
+$arrMember = $arrItemDetail['Member'];
+
+// 性別
+$arrGender = Configure::write('arrGender');
+
+// メルマガ希望
+$arrMailMagFlg = Configure::write('arrMailMagFlg');
+
+?>
+
+<h1 class="page-header">商品情報</h1>
+<h2 class="sub-header">商品詳細情報</h2>
+<?php echo $this->element('alert'); ?>
+<table class="table table-hover">
+  <tbody>
+  <tr>
+      <th>商品番号</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrItem['id'])); ?></p></td>
+  </tr>
+    <tr>
+      <th>タイトル</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrItem['title'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>メイン画像</th>
+      <td colspan="3">
+      <?php if(!empty($arrItem['main_image_file_name'])): ?>
+        <p><?php echo str_replace('/admin','',$this->Upload->uploadImage($arrItemDetail,'Item.main_image',array('style'=>'thumb')));?></p>
+      <?php endif; ?>
+      </td>
+    </tr>
+    <tr>
+      <th>サブ画像1</th>
+      <td colspan="3">
+      <?php if(!empty($arrItem['sub_image1_file_name'])): ?>
+        <p><?php echo str_replace('/admin','',$this->Upload->uploadImage($arrItemDetail,'Item.sub_image1',array('style'=>'thumb')));?></p>
+      <?php endif; ?>
+      </td>
+    </tr>
+    <tr>
+      <th>サブ画像2</th>
+      <td colspan="3">
+      <?php if(!empty($arrItem['sub_image2_file_name'])): ?>
+        <p><?php echo str_replace('/admin','',$this->Upload->uploadImage($arrItemDetail,'Item.sub_image2',array('style'=>'thumb')));?></p>
+      <?php endif; ?>
+      </td>
+    </tr>
+    <tr>
+      <th>サブ画像3</th>
+      <td colspan="3">
+      <?php if(!empty($arrItem['sub_image3_file_name'])): ?>
+        <p><?php echo str_replace('/admin','',$this->Upload->uploadImage($arrItemDetail,'Item.sub_image3',array('style'=>'thumb')));?></p>
+      <?php endif; ?>
+      </td>
+    </tr>
+    <tr>
+      <th>サブ画像4</th>
+      <td colspan="3">
+      <?php if(!empty($arrItem['sub_image4_file_name'])): ?>
+        <p><?php echo str_replace('/admin','',$this->Upload->uploadImage($arrItemDetail,'Item.sub_image4',array('style'=>'thumb')));?></p>
+      <?php endif; ?>
+      </td>
+    </tr>
+    <tr>
+      <th>ジャンル</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrItem['category'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>商品説明</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrItem['discription'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>購入者へのメッセージ</th>
+      <td colspan="3"><p><?php echo nl2br(h($arrItem['message'])); ?></p></td>
+    </tr>
+    <tr>
+      <th>価格</th>
+      <td colspan="3"><p><?php echo h($arrItem['price']); ?></p></td>
+    </tr>
+    <tr>
+      <th>紹介料</th>
+      <td colspan="3"><p><?php echo h($arrItem['fee']); ?></p></td>
+    </tr>
+    <tr>
+      <th>キーワードタグ</th>
+      <td colspan="3"><p><?php echo h($arrItem['tag1']); ?> / <?php echo h($arrItem['tag2']); ?> / <?php echo h($arrItem['tag3']); ?> / <?php echo h($arrItem['tag4']); ?> / <?php echo h($arrItem['tag5']); ?></p></td>
+    </tr>
+    <tr>
+      <th>登録更新日</th>
+      <td colspan="3"><p><?php echo date('Y年m月d日　H時i分',strtotime($arrItem['modified'])); ?></p></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="submitButton">
+  <a href="/admin/item/edit/<?php echo $arrItem['id']; ?>"><button class="btn btn-lg btn-primary btnW200" type="button">商品情報の編集</button></a>
+</div>
+
+
+<h2 class="sub-header">販売者ユーザ情報</h2>
+<table class="table table-hover">
+  <tbody>
+    <tr>
+      <th>氏名</th>
+      <td colspan="3"><p><?php echo h($arrMember['name']); ?></p></td>
+    </tr>
+    <tr>
+      <th>氏名(フリガナ)</th>
+      <td colspan="3"><p><?php echo h($arrMember['name_kana']); ?></p></td>
+    </tr>
+    <tr>
+      <th>会社名</th>
+      <td colspan="3"><p><?php echo h($arrMember['company']); ?></p></td>
+    </tr>
+    <tr>
+      <th>郵便番号</th>
+      <td colspan="3"><p><?php echo h($arrMember['postcode']); ?></p></td>
+    </tr>
+    <tr>
+      <th>住所</th>
+      <td colspan="3"><p><?php echo h($arrMember['address']); ?></p></td>
+    </tr>
+    <tr>
+      <th>電話番号</th>
+      <td colspan="3"><p><?php echo h($arrMember['phone']); ?></p></td>
+    </tr>
+    <tr>
+      <th>性別</th>
+      <td colspan="3"><p><?php echo $arrGender[$arrMember['gender']]; ?></p></td>
+    </tr>
+    <tr>
+      <th>生年月日</th>
+      <td colspan="3"><p><?php echo h($arrMember['birthday']); ?></p></td>
+    </tr>
+    <tr>
+      <th>ニックネーム</th>
+      <td colspan="3"><p><?php echo h($arrMember['nickname']); ?></p></td>
+    </tr>
+    <tr>
+      <th>メールアドレス</th>
+      <td colspan="3"><p><?php echo h($arrMember['email']); ?></p></td>
+    </tr>
+    <tr>
+      <th>メールマガジン</th>
+      <td colspan="3"><p><?php echo $arrMailMagFlg[$arrMember['mailmag_flg']]; ?></p></td>
+    </tr>
+
+  </tbody>
+</table>
+<div class="submitButton">
+  <a href="/admin/item/"><button class="btn btn-lg btn-primary btnW200" type="button">一覧へ戻る</button></a>
+</div>
